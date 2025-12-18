@@ -15,7 +15,7 @@ const footerLinks = [
     title: 'Navegação',
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Portfólio', href: '/portfolio' },
+      { label: 'Projetos', href: '/portfolio' },
       { label: 'Serviços', href: '/servicos' },
       { label: 'Sobre', href: '/sobre' },
     ],
@@ -32,9 +32,9 @@ const footerLinks = [
   {
     title: 'Contato',
     links: [
-      { label: 'Fale Comigo', href: '/contato' },
+      { label: 'Falar com Toti', href: '/contato' },
       { label: 'WhatsApp', href: 'https://wa.me/5511999999999' },
-      { label: 'Email', href: 'mailto:contato@codigofluente.studio' },
+      { label: 'Email', href: 'mailto:contato@toticavalcanti.com' },
     ],
   },
 ];
@@ -51,12 +51,12 @@ export default function Footer() {
                 <Code2 size={24} className="text-white" />
               </div>
               <span className="text-xl font-bold">
-                Código <span className="gradient-text">Fluente</span>
+                Toti <span className="gradient-text">Cavalcanti</span>
               </span>
             </Link>
-            <p className="text-foreground-secondary mb-6 max-w-sm">
-              Estúdio criativo especializado em inteligência artificial, produção
-              musical e desenvolvimento full-stack.
+            <p className="text-foreground-secondary mb-6 max-w-sm leading-relaxed">
+              Criador Híbrido: Bacharel em Ciência da Computação e Flauta Transversal.
+              Transformo conhecimento técnico em experiências criativas impossíveis.
             </p>
             
             {/* Social Links */}
@@ -102,7 +102,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-border text-center text-sm text-foreground-secondary">
           <p>
-            © {new Date().getFullYear()} Código Fluente Studio. Todos os direitos
+            © {new Date().getFullYear()} Toti Cavalcanti. Todos os direitos
             reservados.
           </p>
         </div>

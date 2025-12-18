@@ -9,7 +9,7 @@ export default function FeaturedProjects() {
   const featuredProjects = projects.filter((p) => p.featured);
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 bg-background">
       <Container>
         <div className="flex items-end justify-between mb-12">
           <SectionTitle
@@ -24,7 +24,7 @@ export default function FeaturedProjects() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

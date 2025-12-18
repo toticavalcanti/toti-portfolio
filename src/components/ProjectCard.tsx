@@ -55,17 +55,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+      <div className="p-6 space-y-4">
+        {project.subtitle && (
+          <p className="text-sm text-primary font-semibold uppercase tracking-wide">
+            {project.subtitle}
+          </p>
+        )}
+        <h3 className="text-xl md:text-2xl font-bold group-hover:text-primary transition-colors">
           {project.title}
         </h3>
-        <p className="text-foreground-secondary mb-4 line-clamp-2">
+        <p className="text-foreground-secondary line-clamp-3 leading-relaxed">
           {project.description}
         </p>
         
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
+        <div className="flex flex-wrap gap-2 pt-2">
+          {project.tags.slice(0, 4).map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>

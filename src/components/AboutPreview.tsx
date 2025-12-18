@@ -1,3 +1,5 @@
+'use client';
+
 import Container from './Container';
 import { aboutInfo } from '@/mockData';
 import Image from 'next/image';
@@ -12,7 +14,7 @@ const highlights = [
 
 export default function AboutPreview() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 bg-background">
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image */}

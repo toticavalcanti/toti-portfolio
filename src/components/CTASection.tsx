@@ -1,3 +1,5 @@
+'use client';
+
 import Container from './Container';
 import Button from './Button';
 import { ArrowRight, MessageCircle } from 'lucide-react';
@@ -6,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export default function CTASection() {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary opacity-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />
@@ -20,24 +22,23 @@ export default function CTASection() {
           className="text-center max-w-3xl mx-auto"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Pronto para criar algo{' '}
-            <span className="gradient-text">incrível</span>?
+            Vamos conversar sobre{' '}
+            <span className="gradient-text">seu projeto</span>?
           </h2>
           <p className="text-xl text-foreground-secondary mb-8">
-            Vamos conversar sobre seu próximo projeto e transformar suas ideias em
-            realidade digital.
+            Conte o que você precisa. Eu respondo rápido e com proposta clara.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-6 justify-center">
             <Button size="lg" asChild>
-              <Link href="/contato">
-                Iniciar Projeto <ArrowRight size={20} className="ml-2" />
+              <Link href="https://wa.me/5511999999999" target="_blank">
+                <MessageCircle size={20} className="mr-2" />
+                Falar no WhatsApp
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="https://wa.me/5511999999999" target="_blank">
-                <MessageCircle size={20} className="mr-2" />
-                WhatsApp
+              <Link href="/contato">
+                Enviar e-mail <ArrowRight size={20} className="ml-2" />
               </Link>
             </Button>
           </div>

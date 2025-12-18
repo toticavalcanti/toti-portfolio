@@ -31,7 +31,7 @@ export default function HeroSection() {
               className="inline-block mb-4 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
             >
               <span className="text-sm font-medium text-primary">
-                ✨ Bem-vindo ao Código Fluente Studio
+                ✨ Criador Híbrido | Tech + Arte + IA
               </span>
             </motion.div>
 
@@ -41,35 +41,35 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             >
-              Criando o Futuro com{' '}
-              <span className="gradient-text">IA & Código</span>
+              Transformando{' '}
+              <span className="gradient-text">Impossível</span>
+              {' '}em Realidade
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl text-foreground-secondary mb-8 max-w-2xl"
+              className="text-xl text-foreground-secondary mb-8 max-w-2xl leading-relaxed"
             >
-              Desenvolvimento full-stack, clipes musicais com IA, personagens
-              virtuais e experimentos audiovisuais. Transformando ideias em
-              experiências digitais únicas.
+              Desenvolvimento full-stack, videoclipes com IA (2.8M+ views),
+              influencers virtuais e produção musical. Do código à criatividade.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-6"
             >
               <Button size="lg" asChild>
                 <Link href="/portfolio">
-                  Ver Portfólio <ArrowRight size={20} className="ml-2" />
+                  Ver projetos <ArrowRight size={20} className="ml-2" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/contato">
-                  Fale Comigo
+                  Falar no WhatsApp
                 </Link>
               </Button>
             </motion.div>
@@ -88,8 +88,11 @@ export default function HeroSection() {
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform cursor-pointer">
                     <Play size={32} className="text-white ml-1" />
                   </div>
-                  <p className="text-foreground-secondary">
-                    Assista ao showreel
+                  <p className="text-foreground font-semibold mb-1">
+                    Prova real de autoridade em IA
+                  </p>
+                  <p className="text-foreground-secondary text-sm">
+                    Vídeo criado com avatar digital
                   </p>
                 </div>
               </div>
@@ -102,21 +105,7 @@ export default function HeroSection() {
         </div>
       </Container>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-primary flex items-start justify-center p-2">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-primary"
-          />
-        </div>
-      </motion.div>
+
     </section>
   );
 }

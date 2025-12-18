@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/utils';
 import { motion } from 'framer-motion';
 
@@ -20,7 +22,7 @@ export default function Card({
       transition={{ duration: 0.3 }}
       className={cn(
         'bg-background-secondary rounded-xl p-6 border border-border transition-all duration-300',
-        hover && 'hover:border-primary',
+        hover && 'hover:border-primary hover:shadow-lg',
         glow && 'glow-border',
         className
       )}

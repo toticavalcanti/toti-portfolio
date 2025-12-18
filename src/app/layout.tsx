@@ -17,13 +17,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Código Fluente Studio | IA, Música & Desenvolvimento",
-  description: "Estúdio criativo especializado em inteligência artificial, produção musical e desenvolvimento full-stack. Criando experiências digitais únicas.",
-  keywords: ["IA", "Inteligência Artificial", "Desenvolvimento Web", "Música", "Clipes", "Next.js", "React"],
+  title: "Toti Cavalcanti | Desenvolvedor & Criador com IA",
+  description: "Portfólio de Toti Cavalcanti - Desenvolvedor full-stack especializado em inteligência artificial, produção musical e criação de experiências digitais únicas.",
+  keywords: ["IA", "Inteligência Artificial", "Desenvolvimento Web", "Música", "Clipes", "Next.js", "React", "Toti Cavalcanti"],
   authors: [{ name: "Toti Cavalcanti" }],
   openGraph: {
-    title: "Código Fluente Studio",
-    description: "IA, Música & Desenvolvimento Full-Stack",
+    title: "Toti Cavalcanti - Desenvolvedor & Criador com IA",
+    description: "Portfólio profissional - IA, Música & Desenvolvimento Full-Stack",
     type: "website",
   },
 };
@@ -34,9 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="scroll-smooth">
+    <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-background text-foreground`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main>{children}</main>

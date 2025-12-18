@@ -3,8 +3,9 @@
 export interface Project {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
-  category: 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento';
+  category: 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
   tags: string[];
   thumbnail: string;
   videoUrl?: string;
@@ -55,4 +56,4 @@ export interface ContactFormData {
   message: string;
 }
 
-export type ProjectCategory = 'todos' | 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento';
+export type ProjectCategory = 'todos' | 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';

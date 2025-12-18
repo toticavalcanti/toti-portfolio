@@ -11,7 +11,7 @@ import { cn } from '@/utils';
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Portfólio', href: '/portfolio' },
+  { label: 'Projetos', href: '/portfolio' },
   { label: 'Serviços', href: '/servicos' },
   { label: 'Sobre', href: '/sobre' },
   { label: 'Contato', href: '/contato' },
@@ -52,7 +52,7 @@ export default function Navbar() {
               <Code2 size={24} className="text-white" />
             </div>
             <span className="text-xl font-bold hidden sm:block">
-              Código <span className="gradient-text">Fluente</span>
+              Toti <span className="gradient-text">Cavalcanti</span>
             </span>
           </Link>
 
@@ -73,7 +73,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Button size="sm" asChild>
-              <Link href="/contato">Fale Comigo</Link>
+              <Link href="/contato">Falar com Toti</Link>
             </Button>
           </div>
 
@@ -115,7 +115,7 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <Button size="sm" className="w-full" asChild>
-                  <Link href="/contato">Fale Comigo</Link>
+                  <Link href="/contato">Falar com Toti</Link>
                 </Button>
               </div>
             </Container>

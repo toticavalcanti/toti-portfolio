@@ -1,3 +1,5 @@
+'use client';
+
 import { TimelineItem as TimelineItemType } from '@/types';
 import { motion } from 'framer-motion';
 
