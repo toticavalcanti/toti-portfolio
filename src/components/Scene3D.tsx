@@ -33,8 +33,11 @@ export default function Scene3D() {
   return (
     <div className="w-full h-[400px] rounded-xl overflow-hidden bg-background-tertiary border border-border">
       <Canvas camera={{ position: [0, 0, 3] }}>
+        {/* @ts-expect-error - Three.js primitives */}
         <ambientLight intensity={0.5} />
+        {/* @ts-expect-error - Three.js primitives */}
         <directionalLight position={[10, 10, 5]} intensity={1} />
+        {/* @ts-expect-error - Three.js primitives */}
         <pointLight position={[-10, -10, -5]} intensity={0.5} color="#06b6d4" />
         <AnimatedSphere />
         <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />

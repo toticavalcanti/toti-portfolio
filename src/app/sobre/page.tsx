@@ -1,13 +1,10 @@
 'use client';
 
-import { lazy, Suspense } from 'react';
 import PageHeader from '@/components/PageHeader';
 import Container from '@/components/Container';
 import Timeline from '@/components/Timeline';
 import { aboutInfo, timeline } from '@/mockData';
 import { Code2, Music, Sparkles, Zap } from 'lucide-react';
-
-const Scene3D = lazy(() => import('@/components/Scene3D'));
 
 const skills = [
   { icon: Code2, label: 'Full-Stack Development', items: ['React', 'Next.js', 'Node.js', 'TypeScript'] },
@@ -107,15 +104,9 @@ export default function SobrePage() {
           <p className="text-center text-foreground-secondary mb-8">
             Uma pequena demonstração de elementos 3D interativos
           </p>
-          <Suspense
-            fallback={
-              <div className="w-full h-[400px] rounded-xl bg-background-tertiary border border-border flex items-center justify-center">
-                <p className="text-foreground-secondary">Carregando cena 3D...</p>
-              </div>
-            }
-          >
-            <Scene3D />
-          </Suspense>
+          <div className="w-full h-[400px] rounded-xl bg-background-tertiary border border-border flex items-center justify-center">
+            <p className="text-foreground-secondary">Experimento 3D em desenvolvimento...</p>
+          </div>
         </Container>
       </section>
     </>

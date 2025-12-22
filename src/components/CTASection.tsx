@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export default function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary opacity-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />
@@ -21,22 +21,22 @@ export default function CTASection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 md:mb-6">
             Vamos conversar sobre{' '}
             <span className="gradient-text">seu projeto</span>?
           </h2>
-          <p className="text-xl text-foreground-secondary mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8">
             Conte o que você precisa. Eu respondo rápido e com proposta clara.
           </p>
 
-          <div className="flex flex-wrap gap-6 justify-center">
-            <Button size="lg" asChild>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+            <Button size="md" asChild>
               <Link href="https://wa.me/5511999999999" target="_blank">
                 <MessageCircle size={20} className="mr-2" />
                 Falar no WhatsApp
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="md" variant="outline" asChild>
               <Link href="/contato">
                 Enviar e-mail <ArrowRight size={20} className="ml-2" />
               </Link>

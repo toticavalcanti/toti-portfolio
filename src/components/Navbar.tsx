@@ -95,28 +95,30 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="md:hidden glass-effect border-t border-border"
           >
             <Container>
-              <div className="py-4 space-y-4">
+              <div className="py-4 space-y-3">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      'block py-2 text-sm font-medium transition-colors hover:text-primary',
+                      'block py-2.5 px-2 text-sm font-medium transition-colors hover:text-primary rounded-lg hover:bg-background-tertiary',
                       pathname === link.href
-                        ? 'text-primary'
+                        ? 'text-primary bg-background-tertiary'
                         : 'text-foreground-secondary'
                     )}
                   >
                     {link.label}
                   </Link>
                 ))}
-                <Button size="sm" className="w-full" asChild>
-                  <Link href="/contato">Falar com Toti</Link>
-                </Button>
+                <div className="pt-2">
+                  <Button size="md" className="w-full" asChild>
+                    <Link href="/contato">Falar com Toti</Link>
+                  </Button>
+                </div>
               </div>
             </Container>
           </motion.div>

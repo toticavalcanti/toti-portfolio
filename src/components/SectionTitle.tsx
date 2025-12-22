@@ -23,20 +23,20 @@ export default function SectionTitle({
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       className={cn(
-        'mb-12',
+        'mb-16 lg:mb-20',
         centered ? 'text-center' : '',
         className
       )}
     >
-      <h2 className="text-4xl md:text-5xl font-bold mb-4">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 md:mb-6">
         <span className="gradient-text">{title}</span>
       </h2>
       {subtitle && (
-        <p className="text-foreground-secondary text-lg md:text-xl max-w-2xl">
+        <p className="text-base sm:text-lg md:text-xl text-foreground-secondary max-w-3xl">
           {subtitle}
         </p>
       )}
-      <div className="mt-4 h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
+      <div className="mt-6 h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
     </motion.div>
   );
 }

@@ -29,7 +29,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-background-secondary">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 relative overflow-hidden bg-background-secondary">
       <Container>
         <SectionTitle
           title="Resultados Comprovados"
@@ -37,7 +37,7 @@ export default function StatsSection() {
           centered
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mt-8 sm:mt-10 md:mt-12">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}

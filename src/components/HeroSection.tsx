@@ -17,7 +17,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background/50 to-background -z-10" />
 
       <Container>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -28,9 +28,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block mb-4 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+              className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20"
             >
-              <span className="text-sm font-medium text-primary">
+              <span className="text-xs sm:text-sm font-medium text-primary">
                 ✨ Criador Híbrido | Tech + Arte + IA
               </span>
             </motion.div>
@@ -39,7 +39,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight"
             >
               Transformando{' '}
               <span className="gradient-text">Impossível</span>
@@ -50,7 +50,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl text-foreground-secondary mb-8 max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed"
             >
               Desenvolvimento full-stack, videoclipes com IA (2.8M+ views),
               influencers virtuais e produção musical. Do código à criatividade.
@@ -60,14 +60,14 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-wrap gap-6"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
-              <Button size="lg" asChild>
+              <Button size="md" asChild>
                 <Link href="/portfolio">
                   Ver projetos <ArrowRight size={20} className="ml-2" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button size="md" variant="outline" asChild>
                 <Link href="/contato">
                   Falar no WhatsApp
                 </Link>

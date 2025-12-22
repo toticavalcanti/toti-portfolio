@@ -39,26 +39,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizes = {
-      sm: 'px-8 py-4 text-sm gap-2',
-      md: 'px-10 py-5 text-base gap-3',
-      lg: 'px-16 py-8 text-lg gap-4',
+      sm: 'px-4 py-2.5 text-sm gap-2',
+      md: 'px-6 py-3 text-base gap-2.5',
+      lg: 'px-8 py-3.5 text-lg gap-3',
     };
 
     const classes = cn(baseStyles, variants[variant], sizes[size], className);
-    
-    const inlineStyles = {
-      paddingLeft: size === 'lg' ? '32px' : size === 'md' ? '24px' : '16px',
-      paddingRight: size === 'lg' ? '32px' : size === 'md' ? '24px' : '16px',
-      paddingTop: size === 'lg' ? '16px' : size === 'md' ? '12px' : '8px',
-      paddingBottom: size === 'lg' ? '16px' : size === 'md' ? '12px' : '8px',
-    };
 
     if (asChild) {
       return (
         <Slot
           ref={ref as any}
           className={classes}
-          style={inlineStyles}
           onDrag={onDrag}
           onDragEnd={onDragEnd}
           onDragStart={onDragStart}
@@ -79,12 +71,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={classes}
-        style={{
-          paddingLeft: size === 'lg' ? '64px' : size === 'md' ? '40px' : '32px',
-          paddingRight: size === 'lg' ? '64px' : size === 'md' ? '40px' : '32px',
-          paddingTop: size === 'lg' ? '32px' : size === 'md' ? '20px' : '16px',
-          paddingBottom: size === 'lg' ? '32px' : size === 'md' ? '20px' : '16px',
-        }}
         {...props}
       >
         {children}

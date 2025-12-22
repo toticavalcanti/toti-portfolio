@@ -14,9 +14,9 @@ const highlights = [
 
 export default function AboutPreview() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
       <Container>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -55,7 +55,7 @@ export default function AboutPreview() {
             </p>
 
             {/* Highlights */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-6">
               {highlights.map((item, index) => (
                 <div
                   key={index}

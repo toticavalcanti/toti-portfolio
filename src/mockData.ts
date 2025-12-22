@@ -33,7 +33,7 @@ export const projects: Project[] = [
     description: 'Projeto completo de influencer digital: criação de persona, voz sintética, videoclipes, presença em redes sociais (YouTube, Instagram, TikTok, Pinterest). Workflow completo de produção de conteúdo com IA.',
     category: 'personagem',
     tags: ['IA Generativa', 'Voice Cloning', 'Character Design', 'Social Media'],
-    thumbnail: 'https://i.ytimg.com/vi/FpzK-6zQmTU/maxresdefault.jpg',
+    thumbnail: 'https://i.ytimg.com/vi/FpzK-6zQmTU/hqdefault.jpg',
     videoUrl: 'https://www.youtube.com/@scarlettfinchofficial',
     demoUrl: 'https://www.instagram.com/scarlettfinchofficial/',
     featured: true,
