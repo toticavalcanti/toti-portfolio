@@ -11,11 +11,6 @@ const stats = [
     description: 'Clipes de Zé Ramalho com IA',
   },
   {
-    number: '22',
-    label: 'Músicas Produzidas',
-    description: 'Antologia 50 Anos',
-  },
-  {
     number: '6',
     label: 'Projetos em Destaque',
     description: 'Do código à criatividade',

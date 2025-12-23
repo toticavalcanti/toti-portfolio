@@ -22,18 +22,18 @@ export default function CTASection() {
           className="text-center max-w-3xl mx-auto"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 md:mb-6">
-            Vamos conversar sobre{' '}
-            <span className="gradient-text">seu projeto</span>?
+            Vamos Conversar Sobre{' '}
+            <span className="gradient-text">Seu Projeto</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8">
-            Conte o que você precisa. Eu respondo rápido e com proposta clara.
+            Explique sua necessidade. Avalio e retorno com proposta clara.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <Button size="md" asChild>
               <Link href="https://wa.me/5511999999999" target="_blank">
                 <MessageCircle size={20} className="mr-2" />
-                Falar no WhatsApp
+                Iniciar Conversa
               </Link>
             </Button>
             <Button size="md" variant="outline" asChild>

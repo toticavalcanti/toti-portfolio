@@ -31,7 +31,7 @@ export default function HeroSection() {
               className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20"
             >
               <span className="text-xs sm:text-sm font-medium text-primary">
-                ✨ Criador Híbrido | Tech + Arte + IA
+                ⚡ Engenheiro × Criador × Diretor Técnico
               </span>
             </motion.div>
 
@@ -41,9 +41,9 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight"
             >
-              Transformando{' '}
-              <span className="gradient-text">Impossível</span>
-              {' '}em Realidade
+              Sistemas Inteligentes.{' '}
+              <span className="gradient-text">Conteúdo Impossível.</span>
+              {' '}Resultados Reais.
             </motion.h1>
 
             <motion.p
@@ -52,8 +52,7 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed"
             >
-              Desenvolvimento full-stack, videoclipes com IA (2.8M+ views),
-              influencers virtuais e produção musical. Do código à criatividade.
+              Desenvolvimento full-stack, automação inteligente e produção audiovisual generativa. Mais de uma década construindo, testando e entregando projetos que integram código, IA e criação.
             </motion.p>
 
             <motion.div
@@ -64,12 +63,12 @@ export default function HeroSection() {
             >
               <Button size="md" asChild>
                 <Link href="/portfolio">
-                  Ver projetos <ArrowRight size={20} className="ml-2" />
+                  Projetos Realizados <ArrowRight size={20} className="ml-2" />
                 </Link>
               </Button>
               <Button size="md" variant="outline" asChild>
                 <Link href="/contato">
-                  Falar no WhatsApp
+                  Iniciar Conversa
                 </Link>
               </Button>
             </motion.div>
@@ -89,10 +88,10 @@ export default function HeroSection() {
                     <Play size={32} className="text-white ml-1" />
                   </div>
                   <p className="text-foreground font-semibold mb-1">
-                    Prova real de autoridade em IA
+                    Vídeo criado com avatar digital próprio
                   </p>
                   <p className="text-foreground-secondary text-sm">
-                    Vídeo criado com avatar digital
+                    30s sobre método, experiência e resultados
                   </p>
                 </div>
               </div>
