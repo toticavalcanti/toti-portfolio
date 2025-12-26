@@ -25,14 +25,16 @@ export default function AboutPreview() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 border border-border">
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center text-foreground-secondary">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-5xl font-bold text-white">TC</span>
-                  </div>
-                  <p className="text-sm">Avatar placeholder</p>
-                </div>
+            <div className="relative">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 border border-border">
+                <Image
+                  src="https://github.com/toticavalcanti/toti-assets/blob/master/toti-studio-02.png?raw=true&t=20231223"
+                  alt={aboutInfo.name}
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
 

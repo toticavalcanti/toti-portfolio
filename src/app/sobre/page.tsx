@@ -5,6 +5,7 @@ import Container from '@/components/Container';
 import Timeline from '@/components/Timeline';
 import { aboutInfo, timeline } from '@/mockData';
 import { Code2, Music, Sparkles, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 const skills = [
   { icon: Code2, label: 'Full-Stack Development', items: ['React', 'Next.js', 'Node.js', 'TypeScript'] },
@@ -32,14 +33,14 @@ export default function SobrePage() {
             {/* Avatar */}
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 border border-border">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary to-secondary mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-7xl font-bold text-white">TC</span>
-                    </div>
-                    <p className="text-foreground-secondary">Avatar placeholder</p>
-                  </div>
-                </div>
+                <Image
+                  src={aboutInfo.avatar}
+                  alt={aboutInfo.name}
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
 
@@ -48,9 +49,13 @@ export default function SobrePage() {
               <h2 className="text-3xl font-bold mb-4">
                 Olá, sou <span className="gradient-text">{aboutInfo.name}</span>
               </h2>
-              <p className="text-lg text-foreground-secondary mb-6 leading-relaxed">
-                {aboutInfo.extendedBio}
-              </p>
+              <div className="space-y-4">
+                {aboutInfo.extendedBio.map((paragraph, index) => (
+                  <p key={index} className="text-lg text-foreground-secondary leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </Container>
@@ -58,24 +63,31 @@ export default function SobrePage() {
 
       {/* Skills Section */}
       <section className="py-16 bg-background-secondary">
-        <Container>
+        <Container size="md">
           <h2 className="text-3xl font-bold text-center mb-12">
             <span className="gradient-text">Habilidades & Ferramentas</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="grid sm:grid-cols-2 gap-8">
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="bg-background border border-border rounded-lg p-6 hover:border-primary transition-colors"
+                className="p-6 rounded-lg bg-background border border-border"
               >
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4">
-                  <skill.icon size={24} className="text-white" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                    <skill.icon size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">{skill.label}</h3>
                 </div>
-                <h3 className="font-bold mb-3">{skill.label}</h3>
-                <ul className="space-y-1">
+                <ul className="space-y-2">
                   {skill.items.map((item, i) => (
-                    <li key={i} className="text-sm text-foreground-secondary">
-                      • {item}
+                    <li
+                      key={i}
+                      className="text-foreground-secondary flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -92,21 +104,6 @@ export default function SobrePage() {
             <span className="gradient-text">Minha Jornada</span>
           </h2>
           <Timeline items={timeline} />
-        </Container>
-      </section>
-
-      {/* 3D Section */}
-      <section className="py-16 bg-background-secondary">
-        <Container size="md">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            <span className="gradient-text">Experimento 3D</span>
-          </h2>
-          <p className="text-center text-foreground-secondary mb-8">
-            Uma pequena demonstração de elementos 3D interativos
-          </p>
-          <div className="w-full h-[400px] rounded-xl bg-background-tertiary border border-border flex items-center justify-center">
-            <p className="text-foreground-secondary">Experimento 3D em desenvolvimento...</p>
-          </div>
         </Container>
       </section>
     </>

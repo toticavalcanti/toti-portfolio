@@ -8,13 +8,13 @@ export default function ServicesOverview() {
     <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background-secondary">
       <Container>
         <SectionTitle
-          title="Serviços"
-          subtitle="Soluções criativas e tecnológicas para transformar suas ideias em realidade"
+          title="Desenvolvimento & Consultoria"
+          subtitle="Sistemas web, automação com IA e produção audiovisual com tecnologias generativas"
           centered
           className="mx-auto"
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 lg:gap-16 mt-8 sm:mt-10 md:mt-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-16 mt-8 sm:mt-10 md:mt-12">
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

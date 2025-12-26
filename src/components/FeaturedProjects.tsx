@@ -13,8 +13,8 @@ export default function FeaturedProjects() {
       <Container>
         <div className="flex items-end justify-between mb-8 sm:mb-10 md:mb-12">
           <SectionTitle
-            title="Projetos em Destaque"
-            subtitle="Conheça alguns dos trabalhos mais recentes e impactantes do estúdio"
+            title="Projetos Audiovisuais"
+            subtitle="Conheça alguns dos trabalhos audiovisuais mais recentes"
           />
           <Link
             href="/portfolio"

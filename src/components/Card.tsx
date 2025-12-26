@@ -21,7 +21,7 @@ export default function Card({
       whileHover={hover ? { y: -5, scale: 1.02 } : {}}
       transition={{ duration: 0.3 }}
       className={cn(
-        'bg-background-secondary rounded-xl p-6 sm:p-8 md:p-10 border border-border transition-all duration-300',
+        'bg-background-secondary rounded-xl p-6 sm:p-8 md:p-10 border border-border transition-all duration-300 overflow-hidden',
         hover && 'hover:border-primary hover:shadow-lg hover:shadow-primary/10',
         glow && 'glow-border',
         className

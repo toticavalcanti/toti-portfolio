@@ -55,8 +55,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-foreground-secondary mb-6 max-w-sm leading-relaxed">
-              Criador Híbrido: Bacharel em Ciência da Computação e Flauta Transversal.
-              Transformo conhecimento técnico em experiências criativas impossíveis.
+              Arquitetura de Software, Desenvolvimento Full-Stack e IA. Do código à infraestrutura, entrego projetos digitais complexos e escaláveis.
             </p>
             
             {/* Social Links */}
@@ -65,12 +64,12 @@ export default function Footer() {
                 const Icon = iconMap[social.icon];
                 return Icon ? (
                   <Link
-                    key={social.platform}
+                    key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 rounded-lg bg-background-tertiary border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-all"
-                    aria-label={social.platform}
+                    aria-label={social.name}
                   >
                     <Icon size={20} />
                   </Link>

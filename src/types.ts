@@ -43,7 +43,7 @@ export interface TimelineItem {
 }
 
 export interface SocialLink {
-  platform: string;
+  name: string;
   url: string;
   icon: string;
 }
@@ -57,3 +57,38 @@ export interface ContactFormData {
 }
 
 export type ProjectCategory = 'todos' | 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
+
+// YouTube API Types
+export interface YouTubeChannelData {
+  channelId?: string;
+  channelTitle: string;
+  description?: string;
+  thumbnail: string;
+  subscriberCount: string | null;
+  videoCount: string | null;
+  viewCount?: string | null;
+}
+
+export interface YouTubeVideoData {
+  videoId: string;
+  title: string;
+  description?: string;
+  channelTitle: string;
+  publishedAt: string;
+  thumbnail: string;
+  viewCount: string | null;
+  likeCount?: string | null;
+}
+
+// Channel Type
+export interface Channel {
+  id: string;
+  name: string;
+  handle: string;
+  url: string;
+  description: string;
+  thumbnail?: string; // URL da thumbnail do canal
+  category: 'music' | 'tech' | 'character' | 'films' | 'label';
+  status: 'active' | 'lab';
+  featured: boolean;
+}
