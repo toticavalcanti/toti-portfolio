@@ -13,8 +13,8 @@ const categories: { value: ProjectCategory; label: string }[] = [
   { value: 'todos', label: 'Todos' },
   { value: 'clipe', label: 'Clipes' },
   { value: 'personagem', label: 'Personagens' },
-  { value: 'banda', label: 'Banda' },
   { value: 'app', label: 'Apps' },
+  { value: 'educacao', label: 'Educação' },
   { value: 'experimento', label: 'Experimentos' },
 ];
 

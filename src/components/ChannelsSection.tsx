@@ -7,7 +7,7 @@ import { channels } from '@/mockData';
 
 export default function ChannelsSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28">
       <Container>
         <SectionTitle
           title="Canais de Conteúdo"

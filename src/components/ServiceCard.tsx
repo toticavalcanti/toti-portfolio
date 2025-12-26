@@ -1,6 +1,6 @@
 import { Service } from '@/types';
 import Card from './Card';
-import { LucideIcon, Music, User, Code, Sparkles } from 'lucide-react';
+import { LucideIcon, Music, User, Code, Sparkles, Code2, Video, Mic2, Palette } from 'lucide-react';
 import { Check } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -12,6 +12,10 @@ const iconMap: Record<string, LucideIcon> = {
   User,
   Code,
   Sparkles,
+  Code2,
+  Video,
+  Mic2,
+  Palette,
 };
 
 export default function ServiceCard({ service }: ServiceCardProps) {
@@ -42,6 +46,20 @@ export default function ServiceCard({ service }: ServiceCardProps) {
               </li>
             ))}
           </ul>
+
+          {/* Real Examples */}
+          {service.realExamples && service.realExamples.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-border">
+              <h4 className="text-xs font-semibold text-primary mb-2">Cases Reais:</h4>
+              <ul className="space-y-1">
+                {service.realExamples.map((example, index) => (
+                  <li key={index} className="text-xs text-foreground-secondary italic">
+                    • {example}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </Card>

@@ -10,8 +10,8 @@ export default function ServicosPage() {
   return (
     <>
       <PageHeader
-        title="Serviços"
-        description="Soluções criativas e tecnológicas para transformar suas ideias em realidade digital"
+        title="Serviços & Soluções"
+        description="Software, IA, audiovisual, música, personagens digitais e design visual. Base técnica aplicada a diferentes domínios."
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Serviços' },

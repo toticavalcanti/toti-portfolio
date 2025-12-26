@@ -1,8 +1,9 @@
+'use client';
+
 import { Project } from '@/types';
 import Card from './Card';
 import Tag from './Tag';
 import { ExternalLink, Github, Play } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface ProjectCardProps {
@@ -12,16 +13,17 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/projetos/${project.id}`} className="block h-full">
-      <Card className="group overflow-hidden p-0 h-full hover:border-primary transition-colors">
+      <Card glow className="group overflow-hidden p-0 h-full hover:border-primary transition-colors">
         <div className="flex flex-col h-full">
           {/* Thumbnail */}
           <div className="relative aspect-video overflow-hidden bg-background-tertiary rounded-lg">
-            <Image
+            <img
               src={project.thumbnail}
               alt={project.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              onError={(e) => {
+                e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23222" width="400" height="300"/%3E%3Ctext fill="%23666" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3EImagem indisponível%3C/text%3E%3C/svg%3E';
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             
@@ -40,10 +42,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 {project.subtitle}
               </p>
             )}
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold group-hover:text-primary transition-colors line-clamp-2">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold group-hover:text-primary transition-colors">
               {project.title}
             </h3>
-            <p className="text-sm sm:text-base text-foreground-secondary line-clamp-3 leading-relaxed flex-1">
+            <p className="text-sm sm:text-base text-foreground-secondary leading-relaxed flex-1">
               {project.description}
             </p>
             

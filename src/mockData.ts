@@ -48,7 +48,20 @@ export const projects: Project[] = [
     thumbnail: 'https://github.com/toticavalcanti/toti-assets/blob/dc058e6175bc13492cee90ca1de396b24bbebfe1/site-ze-ramalho.jpg?raw=true',
     demoUrl: 'https://www.zeramalho.com.br',
     featured: false,
-    date: '2024',
+    date: '2025',
+  },
+  {
+    id: '3b',
+    title: 'Portfólio Profissional',
+    subtitle: 'Next.js | Full-Stack',
+    description: 'Portfólio profissional desenvolvido com Next.js, TypeScript e Tailwind CSS. Arquitetura moderna, animações com Framer Motion, integração com YouTube API. Demonstração técnica ao vivo das competências apresentadas.',
+    category: 'app',
+    tags: ['Next.js', 'TypeScript', 'Full-Stack', 'React', 'Tailwind CSS'],
+    thumbnail: 'https://github.com/toticavalcanti/toti-assets/blob/master/toti-studio.png?raw=true',
+    demoUrl: 'https://toticavalcanti.com',
+    githubUrl: 'https://github.com/toticavalcanti',
+    featured: false,
+    date: '2026',
   },
   {
     id: '4',
@@ -137,15 +150,26 @@ export const projects: Project[] = [
     date: '2024-ongoing',
   },
   {
-    id: '6',
-    title: 'Arte Generativa Aplicada',
-    subtitle: 'Laboratório Criativo | IA + Curadoria',
-    description: 'Projeto autoral explorando IA generativa, composição e identidade visual. Experimentação estética aplicada em produtos físicos (Redbubble, Colab55). Laboratório de criação, não loja.',
+    id: '7',
+    title: 'Arte Generativa - Redbubble',
+    subtitle: 'Loja Comercial | IA + Design',
+    description: 'Loja comercial no Redbubble com estampas e designs criados com IA generativa. Arte digital aplicada em produtos físicos: camisetas, canecas, adesivos e muito mais. Composição e identidade visual exploradas através de inteligência artificial.',
     category: 'experimento',
     tags: ['IA Generativa', 'Arte Digital', 'Design', 'Curadoria', 'Identidade Visual'],
     thumbnail: 'https://github.com/toticavalcanti/toti-assets/blob/master/red-bubble.jpg?raw=true',
     demoUrl: 'https://www.redbubble.com/people/toticavalcanti',
-    githubUrl: 'https://www.colab55.com/@toticavalcanti',
+    featured: false,
+    date: '2024-ongoing',
+  },
+  {
+    id: '8',
+    title: 'Arte Generativa - Colab55',
+    subtitle: 'Loja Comercial | IA + Design',
+    description: 'Loja comercial no Colab55 com estampas e designs criados com IA generativa. Arte digital aplicada em produtos físicos: camisetas, capinhas, almofadas e muito mais. Composição e identidade visual exploradas através de inteligência artificial.',
+    category: 'experimento',
+    tags: ['IA Generativa', 'Arte Digital', 'Design', 'Curadoria', 'Identidade Visual'],
+    thumbnail: 'https://github.com/toticavalcanti/toti-assets/blob/master/colab55.jpg?raw=true',
+    demoUrl: 'https://www.colab55.com/@toticavalcanti',
     featured: false,
     date: '2024-ongoing',
   },
@@ -155,75 +179,194 @@ export const projects: Project[] = [
 export const services: Service[] = [
   {
     id: '1',
-    title: 'Desenvolvimento de Software & Sistemas',
+    title: 'Software, Sistemas & Automação',
     icon: 'Code2',
-    description: 'Aplicações web e sistemas completos: frontend, backend, banco de dados, deploy. Arquitetura técnica real, não apenas interfaces.',
+    category: 'software',
+    description: 'Desenvolvimento full stack de aplicações web e sistemas sob medida. Backend, frontend, banco de dados, deploy e operação.',
+    detailedDescription: 'Desenvolvimento completo de sistemas web: arquitetura de backend (Node.js, Python, Golang), frontend moderno (Next.js/React), bancos de dados (MongoDB, PostgreSQL), infraestrutura (Docker, CI/CD) e DevOps. Projetos reais em produção.',
     whatsIncluded: [
-      'Desenvolvimento Full-Stack (Next.js, Node.js, Python)',
-      'APIs RESTful e integrações',
-      'Banco de dados (MongoDB, PostgreSQL)',
-      'Deploy e infraestrutura (Docker, CI/CD)',
-      'Arquitetura de software documentada',
+      'Desenvolvimento Full-Stack (Next.js, Node.js, Python, Golang)',
+      'APIs RESTful e integrações com sistemas externos',
+      'Banco de dados relacional e NoSQL (MongoDB, PostgreSQL)',
+      'Deploy, infraestrutura e CI/CD (Docker, cloud)',
+      'Arquitetura de software documentada e manutenível',
+      'DevOps e operação de sistemas em produção'
     ],
     whoItsFor: [
       'Empresas que precisam de sistemas customizados',
-      'Startups construindo MVPs técnicos',
-      'Projetos que exigem backend robusto e escalável',
+      'Startups construindo MVPs com arquitetura técnica sólida',
+      'Projetos que exigem backend robusto e escalável'
     ],
     benefits: [
-      'Arquitetura técnica sólida e documentada',
-      'Código profissional e manutenível',
-      'Performance otimizada e medida',
-      'Prazo e escopo definidos',
+      'Arquitetura técnica profissional e documentada',
+      'Código limpo, testável e manutenível',
+      'Performance otimizada e monitorada',
+      'Prazo e escopo transparentes'
     ],
+    realExamples: [
+      'Site oficial Zé Ramalho (Next.js + MongoDB + Node.js em produção)',
+      'Este portfólio (Next.js em produção)',
+      'Plataforma Código Fluente (WordPress + infraestrutura cloud)'
+    ]
   },
   {
     id: '2',
-    title: 'Automação e Inteligência Artificial',
-    icon: 'Sparkles',
-    description: 'Soluções de IA aplicada: automação, assistentes conversacionais, integração de LLMs. Sistemas que reduzem custos e escalam.',
-    whatsIncluded: [
-      'Assistentes conversacionais (chatbots, agentes)',
-      'Automação de processos repetitivos',
-      'Integração de APIs de IA (OpenAI, Anthropic, Google)',
-      'Análise de dados e dashboards inteligentes',
-      'Consultoria em IA aplicada a negócios',
-    ],
-    whoItsFor: [
-      'Empresas com alto volume de atendimento',
-      'Negócios com processos manuais ineficientes',
-      'Projetos que precisam escalar sem contratar',
-    ],
-    benefits: [
-      'Redução mensurável de custos operacionais',
-      'Automação técnica (não apenas promessas)',
-      'Integração com sistemas existentes',
-      'Escalabilidade comprovada',
-    ],
-  },
-  {
-    id: '3',
-    title: 'Criação Audiovisual com IA',
-    icon: 'Music',
-    description: 'Produção audiovisual com IA generativa: videoclipes, avatares digitais, conteúdo para marcas. Do roteiro à entrega final.',
+    title: 'Produção Audiovisual com IA',
+    icon: 'Video',
+    category: 'audiovisual',
+    description: 'Videoclipes, vídeos promocionais e conteúdo audiovisual produzidos com IA generativa. Do roteiro à entrega final.',
+    detailedDescription: 'Produção audiovisual completa utilizando IA generativa como ferramenta criativa. Videoclipes profissionais, vídeos de vendas, conteúdo para redes sociais, avatares digitais realistas e narrativas visuais complexas. Técnicas avançadas de consistência de personagens e cenários.',
     whatsIncluded: [
       'Videoclipes profissionais com IA generativa',
-      'Avatares digitais personalizados',
-      'Criação de influencers virtuais (identidade completa)',
-      'Conteúdo audiovisual para marcas e campanhas',
-      'Roteiro, produção e pós-produção',
+      'Vídeos promocionais e de vendas',
+      'Avatares digitais realistas e personalizados',
+      'Conteúdo audiovisual para redes sociais e campanhas',
+      'Roteiro, produção e pós-produção completa',
+      'Narrativas visuais com consistência de personagens'
     ],
     whoItsFor: [
       'Artistas e músicos independentes',
-      'Marcas que querem inovação criativa',
-      'Projetos de entretenimento digital',
+      'Marcas que buscam inovação criativa',
+      'Empresas criando material promocional diferenciado'
     ],
     benefits: [
-      'Custo reduzido vs. produção tradicional',
-      'Entrega rápida com qualidade profissional',
-      'Resultado diferenciado e inovador',
-      'Portfólio comprovado (Zé Ramalho, Scarlett Finch)',
+      'Custo significativamente menor que produção tradicional',
+      'Entrega rápida sem comprometer qualidade',
+      'Resultado visual inovador e diferenciado',
+      'Portfólio comprovado com artista consagrado (Zé Ramalho)'
     ],
+    realExamples: [
+      '3 videoclipes oficiais de Zé Ramalho com IA generativa',
+      'Múltiplos videoclipes para Scarlett Finch (cantora virtual)'
+    ]
+  },
+  {
+    id: '3',
+    title: 'Música & Produção Musical',
+    icon: 'Music',
+    category: 'music-production',
+    description: 'Produção musical híbrida combinando técnicas tradicionais e IA. Arranjos, trilhas, bases e transformação de gravações simples em material profissional.',
+    detailedDescription: 'Produção musical completa utilizando técnicas tradicionais e ferramentas de IA como apoio técnico. Recriação de arranjos complexos, produção de trilhas originais, transformação de demos em material com qualidade profissional. Uso de Suno e outras ferramentas como parte do processo criativo, não como substituição.',
+    whatsIncluded: [
+      'Produção musical com técnicas tradicionais + IA',
+      'Recriação e rearranjo de músicas existentes',
+      'Trilhas sonoras e bases instrumentais',
+      'Transformação de gravações simples em material profissional',
+      'Uso de ferramentas como Suno como apoio técnico',
+      'Conteúdos musicais para vídeos, podcasts e produtos'
+    ],
+    whoItsFor: [
+      'Artistas que precisam de produção musical acessível',
+      'Criadores de conteúdo que necessitam trilhas originais',
+      'Projetos que exigem qualidade profissional com orçamento reduzido'
+    ],
+    benefits: [
+      'Qualidade profissional com custo otimizado',
+      'Combinação de expertise musical e técnica',
+      'Processos adaptativos a diferentes orçamentos',
+      'Entregas rápidas sem comprometer resultado'
+    ],
+    realExamples: [
+      'Produção musical para Scarlett Finch',
+      'Recriações de clássicos pela banda PUTZ!'
+    ]
+  },
+  {
+    id: '4',
+    title: 'Performance Musical & Pocket Shows',
+    icon: 'Mic2',
+    category: 'live-performance',
+    description: 'Apresentações musicais instrumentais ao vivo. Saxofone (tenor/soprano), flauta e formato pocket show para eventos corporativos, culturais e institucionais.',
+    detailedDescription: 'Performances musicais ao vivo em formato pocket show. Instrumentos: saxofone tenor, saxofone soprano e flauta transversal. Formato com playback profissional, possibilidade de vocal pontual. Repertório flexível adaptado ao tipo de evento. Experiência em eventos corporativos, culturais e privados.',
+    whatsIncluded: [
+      'Performance instrumental ao vivo (saxofone tenor/soprano e flauta)',
+      'Formato pocket show com playback profissional',
+      'Possibilidade de vocal pontual em músicas específicas',
+      'Repertório adaptado ao tipo de evento',
+      'Equipamento de som próprio (opcional)',
+      'Ensaio e preparação customizada'
+    ],
+    whoItsFor: [
+      'Eventos corporativos que buscam música instrumental de qualidade',
+      'Eventos culturais e institucionais',
+      'Casamentos, festas e eventos privados',
+      'Estabelecimentos que desejam música ao vivo diferenciada'
+    ],
+    benefits: [
+      'Formato compacto e profissional',
+      'Músico com formação técnica (bacharelado em flauta)',
+      'Versatilidade de repertório e instrumentos',
+      'Apresentação adequada a diferentes públicos e ambientes'
+    ],
+    realExamples: [
+      'Banda de Zé Ramalho (desde 1995)',
+      'Sandra de Sá (1993-1994)',
+      'Orquestra de Sax de Paulo Moura (1990-1995)'
+    ]
+  },
+  {
+    id: '5',
+    title: 'Personagens Digitais & Celebridades Virtuais',
+    icon: 'Sparkles',
+    category: 'digital-character',
+    description: 'Criação de personagens digitais completos com IA: identidade visual, voz, personalidade e presença multiplataforma. Do conceito ao lançamento.',
+    detailedDescription: 'Desenvolvimento completo de personagens digitais e influencers virtuais utilizando IA. Criação de identidade visual consistente, síntese de voz personalizada, definição de personalidade e narrativa, presença em múltiplas plataformas (YouTube, Instagram, TikTok). Aplicável a campanhas de marca, produtos de entretenimento ou projetos artísticos.',
+    whatsIncluded: [
+      'Criação de identidade visual completa do personagem',
+      'Síntese de voz personalizada e consistente',
+      'Definição de personalidade, tom e narrativa',
+      'Presença multiplataforma (YouTube, Instagram, TikTok, etc.)',
+      'Conteúdo audiovisual de lançamento',
+      'Consultoria em estratégia de presença digital'
+    ],
+    whoItsFor: [
+      'Marcas que desejam criar embaixadores virtuais',
+      'Projetos de entretenimento digital inovadores',
+      'Campanhas que buscam diferenciação e engajamento',
+      'Artistas explorando novas formas de expressão'
+    ],
+    benefits: [
+      'Controle total sobre a personalidade e imagem da celebridade',
+      'Consistência absoluta em todas as plataformas',
+      'Diferenciação criativa e inovação técnica',
+      'Case comprovado: Scarlett Finch (cantora virtual ativa)'
+    ],
+    realExamples: [
+      'Scarlett Finch: cantora pop virtual britânica com presença multiplataforma',
+      'Múltiplos videoclipes e conteúdo digital consistente'
+    ]
+  },
+  {
+    id: '6',
+    title: 'Design, Estampas & Produtos Visuais',
+    icon: 'Palette',
+    category: 'visual-design',
+    description: 'Criação de artes e estampas utilizando IA generativa. Design para produtos físicos, roupas e objetos. Curadoria visual aplicada.',
+    detailedDescription: 'Criação de artes visuais, estampas e design gráfico utilizando IA generativa como ferramenta criativa. Desenvolvimento de identidades visuais, padrões para estamparia, artes para produtos físicos (camisetas, canecas, pôsteres). Lojas ativas em Redbubble e Colab55. Projetos sob encomenda para marcas e produtos específicos.',
+    whatsIncluded: [
+      'Criação de estampas e artes com IA generativa',
+      'Design para aplicação em roupas, objetos e produtos',
+      'Desenvolvimento de identidade visual e padrões',
+      'Curadoria e refinamento estético',
+      'Adaptação para diferentes formatos e suportes',
+      'Consultoria em aplicação de IA para design'
+    ],
+    whoItsFor: [
+      'Marcas que desejam estampas exclusivas e inovadoras',
+      'Empreendedores criando produtos visuais diferenciados',
+      'Artistas buscando identidade visual única',
+      'Projetos que exigem volume de criações visuais'
+    ],
+    benefits: [
+      'Criação rápida de artes únicas e consistentes',
+      'Custo otimizado vs. design tradicional',
+      'Exploração criativa sem limites técnicos',
+      'Portfólio visual comprovado (Redbubble, Colab55)'
+    ],
+    realExamples: [
+      'Loja ativa na Redbubble com múltiplas artes',
+      'Loja ativa na Colab55 com produtos aplicados'
+    ]
   },
 ];
 
@@ -279,11 +422,21 @@ export const aboutInfo = {
   title: 'Software Engineer & Systems Architect',
   bio: 'Ciência da Computação como base para a criação de sistemas, automações e projetos digitais, visuais e audiovisuais.',
   extendedBio: [
-    'Bacharel em Ciência da Computação, atuo no desenvolvimento de sistemas e aplicações web com foco em backend, arquitetura de software e DevOps. Trabalho com stacks modernas como Golang (Fiber), Python (Django), Node.js, Next.js, MongoDB, além de pipelines de automação, infraestrutura e operação de sistemas em produção.',
-    'Utilizo inteligência artificial e automação como ferramentas transversais, integradas ao desenvolvimento de software, à operação de sistemas e à criação musical e audiovisual, sempre em projetos reais em produção.',
-    'Projetos em produção: site oficial de Zé Ramalho (Next.js, MongoDB, Node.js), videoclipes profissionais com IA generativa, personagens virtuais completos, sistemas de automação inteligente. Founder of Código Fluente — plataforma educacional sobre programação, DevOps e IA.',
-    'Stack técnica: Backend (Golang/Fiber, Python/Django, Node.js), Frontend (Next.js/React), Database (MongoDB), DevOps/Infra (Docker, CI/CD, cloud), IA aplicada (LLMs, automação). A partir dessa base técnica, aplico esses sistemas à criação musical, audiovisual e visual.',
-    'Resultado: sistemas que operam em produção, projetos que entregam valor mensurável.',
+    'Dupla formação: Bacharel em Ciência da Computação e Bacharel em Música.',
+    
+    'Desenvolvo sistemas e aplicações full-stack: frontend, backend, banco de dados, infraestrutura e DevOps.',
+    
+    'Stack técnica: Golang (Fiber), Python (Django), Node.js, Next.js, MongoDB.',
+    
+    'Músico profissional desde 1987.',
+    
+    'Toco com Zé Ramalho desde 1995, toquei com Sandra de Sá entre 1993 e 1994, e integrei a orquestra de sax fundada por Paulo Moura entre 1990 e 1995.',
+    
+    'Utilizo inteligência artificial aplicada como ferramenta em desenvolvimento de software, automação, produção musical e criação audiovisual.',
+    
+    'Projetos atuais: site oficial de Zé Ramalho (Next.js + MongoDB + Node.js), este portfólio (Next.js), videoclipes com IA generativa, personagem virtual Scarlett Finch, plataforma educacional Código Fluente.',
+    
+    'Resultado: sistemas que funcionam e projetos que entregam valor.'
   ],
   avatar: 'https://github.com/toticavalcanti/toti-assets/blob/master/toti-studio.png?raw=true',
   email: 'contato@toticavalcanti.com',

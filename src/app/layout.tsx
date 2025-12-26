@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ParticlesBackground from "@/components/ParticlesBackground";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -36,12 +37,15 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-background text-foreground`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-background text-foreground relative`}
         suppressHydrationWarning
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ParticlesBackground />
+        <div className="relative z-10">
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

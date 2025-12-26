@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Container from '@/components/Container';
 import { projects } from '@/mockData';
-import { ArrowLeft, Calendar, ExternalLink, Github, Youtube } from 'lucide-react';
+import { ArrowLeft, Calendar, ExternalLink, Github, Youtube, Store } from 'lucide-react';
 import Link from 'next/link';
 
 // Função para extrair videoId da URL do YouTube
@@ -140,6 +140,19 @@ export default async function ProjetoDetalhes({ params }: { params: Promise<{ id
                     >
                       <Github size={20} />
                       <span>Ver no GitHub</span>
+                      <ExternalLink size={16} className="ml-auto" />
+                    </a>
+                  )}
+                  
+                  {projeto.storeUrl && (
+                    <a
+                      href={projeto.storeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-foreground-secondary hover:text-primary transition-colors"
+                    >
+                      <Store size={20} />
+                      <span>Loja Alternativa</span>
                       <ExternalLink size={16} className="ml-auto" />
                     </a>
                   )}

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Container from './Container';
 import Button from './Button';
-import ParticlesBackground from './ParticlesBackground';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import Link from 'next/link';
@@ -13,9 +12,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Particles Background */}
-      <ParticlesBackground />
-
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background/50 to-background -z-10" />
 
@@ -107,7 +103,7 @@ export default function HeroSection() {
                         <Play size={32} className="text-white ml-1 drop-shadow-lg" />
                       </div>
                       <p className="text-white font-semibold mb-1 drop-shadow-lg">
-                        Vídeo criado com avatar digital criado com IA.
+                        Vídeo criado com avatar digital feito com IA.
                       </p>
                       <p className="text-white/90 text-sm drop-shadow-lg">
                         Método, Experiência e Resultados.

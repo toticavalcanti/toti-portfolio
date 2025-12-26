@@ -11,6 +11,7 @@ export interface Project {
   videoUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
+  storeUrl?: string;  // Para lojas adicionais (Colab55, etc.)
   featured: boolean;
   date: string;
 }
@@ -23,6 +24,9 @@ export interface Service {
   whatsIncluded: string[];
   whoItsFor: string[];
   benefits: string[];
+  category?: 'software' | 'ai' | 'audiovisual' | 'music-production' | 'live-performance' | 'digital-character' | 'visual-design';
+  realExamples?: string[];
+  detailedDescription?: string;
 }
 
 export interface Post {

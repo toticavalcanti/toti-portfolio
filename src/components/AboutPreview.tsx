@@ -14,7 +14,7 @@ const highlights = [
 
 export default function AboutPreview() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28">
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
           {/* Image */}

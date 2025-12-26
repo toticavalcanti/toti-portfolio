@@ -9,7 +9,7 @@ export default function FeaturedProjects() {
   const featuredProjects = projects.filter((p) => p.featured);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28">
       <Container>
         <div className="flex items-end justify-between mb-8 sm:mb-10 md:mb-12">
           <SectionTitle

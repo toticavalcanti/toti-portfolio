@@ -13,13 +13,13 @@ export default function ChannelCard({ channel }: ChannelCardProps) {
   const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(channel.name)}&size=400&background=6366f1&color=fff&bold=true&font-size=0.4`;
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden" hover={false}>
+    <Card glow className="flex flex-col h-full overflow-hidden group">
       {/* Thumbnail do canal - sem padding para ficar centralizada */}
       <div className="relative w-full aspect-video bg-background-tertiary overflow-hidden">
         <img
           src={channel.thumbnail || fallbackUrl}
           alt={channel.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
           onError={(e) => {
             e.currentTarget.src = fallbackUrl;
@@ -36,7 +36,7 @@ export default function ChannelCard({ channel }: ChannelCardProps) {
 
       {/* Content com padding reduzido */}
       <div className="flex flex-col flex-1 p-3">
-        <h3 className="text-base font-bold mb-2">{channel.name}</h3>
+        <h3 className="text-base font-bold mb-2 group-hover:text-primary transition-colors">{channel.name}</h3>
         <p className="text-sm text-foreground-secondary mb-3 flex-1 leading-relaxed">
           {channel.description}
         </p>

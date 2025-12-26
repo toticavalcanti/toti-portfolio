@@ -5,11 +5,11 @@ import { services } from '@/mockData';
 
 export default function ServicesOverview() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-background-secondary">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28">
       <Container>
         <SectionTitle
-          title="Desenvolvimento & Consultoria"
-          subtitle="Sistemas web, automação com IA e produção audiovisual com tecnologias generativas"
+          title="Serviços & Soluções"
+          subtitle="Sistemas, automação, audiovisual, música, personagens digitais e design."
           centered
           className="mx-auto"
         />
