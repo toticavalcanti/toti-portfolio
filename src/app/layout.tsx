@@ -18,13 +18,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Toti Cavalcanti | Desenvolvedor & Criador com IA",
-  description: "Portfólio de Toti Cavalcanti - Desenvolvedor full-stack especializado em inteligência artificial, produção musical e criação de experiências digitais únicas.",
-  keywords: ["IA", "Inteligência Artificial", "Desenvolvimento Web", "Música", "Clipes", "Next.js", "React", "Toti Cavalcanti"],
+  title: "Toti Cavalcanti | Desenvolvedor, Videoclipes com IA e Músico Profissional",
+  description: "Desenvolvimento web full-stack, videoclipes profissionais com IA generativa, arte generativa para produtos e pocket shows ao vivo. Cases: Site Zé Ramalho, Scarlett Finch, lojas Redbubble e Colab55.",
+  keywords: [
+    "desenvolvimento web",
+    "videoclipes com ia",
+    "ia generativa",
+    "músico profissional",
+    "pocket show",
+    "saxofone",
+    "flauta",
+    "arte generativa",
+    "redbubble",
+    "colab55",
+    "next.js",
+    "toti cavalcanti",
+    "zé ramalho",
+    "scarlett finch"
+  ],
   authors: [{ name: "Toti Cavalcanti" }],
   openGraph: {
-    title: "Toti Cavalcanti - Desenvolvedor & Criador com IA",
-    description: "Portfólio profissional - IA, Música & Desenvolvimento Full-Stack",
+    title: "Toti Cavalcanti - Desenvolvedor, Videoclipes IA e Músico",
+    description: "Desenvolvimento web full-stack, videoclipes com IA, arte generativa e apresentações musicais ao vivo.",
     type: "website",
   },
 };

@@ -214,30 +214,42 @@ export const services: Service[] = [
     title: 'Produção Audiovisual com IA',
     icon: 'Video',
     category: 'audiovisual',
-    description: 'Videoclipes, vídeos promocionais e conteúdo audiovisual produzidos com IA generativa. Do roteiro à entrega final.',
-    detailedDescription: 'Produção audiovisual completa utilizando IA generativa como ferramenta criativa. Videoclipes profissionais, vídeos de vendas, conteúdo para redes sociais, avatares digitais realistas e narrativas visuais complexas. Técnicas avançadas de consistência de personagens e cenários.',
+    description: 'Videoclipes profissionais completos utilizando IA generativa de última geração. Desde o conceito criativo até a entrega final: roteiro, storyboard, geração de imagens, animação, edição e sincronização musical. Portfolio comprovado com artistas consagrados (Zé Ramalho) e projetos autorais (Scarlett Finch, PUTZ!).',
+    detailedDescription: 'Videoclipes profissionais end-to-end com IA generativa de última geração. Do conceito à entrega: roteiro criativo, storyboard detalhado, geração de imagens consistentes, animação frame-by-frame, edição profissional e sincronização musical perfeita. Portfolio real com artista consagrado (Zé Ramalho), personagem virtual (Scarlett Finch) e covers de alta fidelidade (PUTZ!). Custo até 80% menor que produção tradicional com resultados visuais únicos. Pricing: a partir de R$ 5.000. Delivery: 2-4 semanas.',
     whatsIncluded: [
       'Videoclipes profissionais com IA generativa',
+      'Roteiro criativo e storyboard detalhado',
+      'Geração de imagens com consistência de personagens',
       'Vídeos promocionais e de vendas',
       'Avatares digitais realistas e personalizados',
       'Conteúdo audiovisual para redes sociais e campanhas',
-      'Roteiro, produção e pós-produção completa',
-      'Narrativas visuais com consistência de personagens'
+      'Produção e pós-produção completa',
+      'Narrativas visuais complexas',
+      'Sincronização musical perfeita (músico profissional desde 1987)'
     ],
     whoItsFor: [
-      'Artistas e músicos independentes',
-      'Marcas que buscam inovação criativa',
-      'Empresas criando material promocional diferenciado'
+      'Artistas que querem videoclipes impactantes sem custo de produção tradicional',
+      'Bandas independentes buscando conteúdo visual profissional',
+      'Selos e gravadoras que precisam de volume de entregas',
+      'Cantores virtuais e projetos de personagens digitais',
+      'Músicos que valorizam narrativa visual criativa',
+      'Marcas que buscam inovação criativa'
     ],
     benefits: [
-      'Custo significativamente menor que produção tradicional',
-      'Entrega rápida sem comprometer qualidade',
-      'Resultado visual inovador e diferenciado',
-      'Portfólio comprovado com artista consagrado (Zé Ramalho)'
+      'Custo muito inferior a produções tradicionais (até 80% de economia)',
+      'Resultados visuais únicos e impossíveis de replicar filmando',
+      'Controle total da narrativa e estética visual',
+      'Portfolio comprovado: Zé Ramalho, Scarlett Finch, PUTZ!',
+      'Experiência musical desde 1987 garante sincronização perfeita',
+      'Domínio completo: da música à finalização audiovisual',
+      'Entrega rápida sem comprometer qualidade (2-4 semanas)'
     ],
     realExamples: [
-      '3 videoclipes oficiais de Zé Ramalho com IA generativa',
-      'Múltiplos videoclipes para Scarlett Finch (cantora virtual)'
+      'Zé Ramalho - Jardim das Acácias (IA generativa completa)',
+      'Zé Ramalho - Canção Agalopada (narrativa visual complexa)',
+      'Zé Ramalho - Martelo Armagedom (produção híbrida)',
+      'Scarlett Finch - múltiplos clipes com personagem virtual',
+      'PUTZ! - covers de alta fidelidade (Peter Gabriel, Lô Borges)'
     ]
   },
   {
@@ -338,11 +350,11 @@ export const services: Service[] = [
   },
   {
     id: '6',
-    title: 'Design, Estampas & Produtos Visuais',
+    title: 'Arte Generativa para Produtos',
     icon: 'Palette',
     category: 'visual-design',
-    description: 'Criação de artes e estampas utilizando IA generativa. Design para produtos físicos, roupas e objetos. Curadoria visual aplicada.',
-    detailedDescription: 'Criação de artes visuais, estampas e design gráfico utilizando IA generativa como ferramenta criativa. Desenvolvimento de identidades visuais, padrões para estamparia, artes para produtos físicos (camisetas, canecas, pôsteres). Lojas ativas em Redbubble e Colab55. Projetos sob encomenda para marcas e produtos específicos.',
+    description: 'Criação de estampas e designs exclusivos utilizando IA generativa para aplicação em produtos físicos. Lojas comerciais ativas na Redbubble e Colab55 com múltiplas artes publicadas e à venda. Ideal para marcas que buscam identidade visual única sem os custos de um designer tradicional.',
+    detailedDescription: 'Criação profissional de estampas e designs com IA generativa para produtos físicos. Lojas comerciais comprovadamente ativas: Redbubble e Colab55 com artes já publicadas e à venda. Identidade visual única, composição original, curadoria especializada. Pricing: a partir de R$ 800 (pacote de 10 artes). Delivery: 1-2 semanas.',
     whatsIncluded: [
       'Criação de estampas e artes com IA generativa',
       'Design para aplicação em roupas, objetos e produtos',
@@ -352,20 +364,24 @@ export const services: Service[] = [
       'Consultoria em aplicação de IA para design'
     ],
     whoItsFor: [
-      'Marcas que desejam estampas exclusivas e inovadoras',
-      'Empreendedores criando produtos visuais diferenciados',
-      'Artistas buscando identidade visual única',
-      'Projetos que exigem volume de criações visuais'
+      'Marcas de vestuário que buscam estampas exclusivas',
+      'Empreendedores iniciando lojas de print-on-demand',
+      'Empresas que precisam de volume de artes visuais',
+      'Artistas querendo explorar IA como ferramenta criativa',
+      'Projetos que valorizam identidade visual única'
     ],
     benefits: [
-      'Criação rápida de artes únicas e consistentes',
-      'Custo otimizado vs. design tradicional',
-      'Exploração criativa sem limites técnicos',
-      'Portfólio visual comprovado (Redbubble, Colab55)'
+      'Custo por arte muito inferior ao design tradicional',
+      'Velocidade de produção: múltiplas variações em dias',
+      'Estilo único e difícil de replicar',
+      'Portfolio ativo: lojas na Redbubble e Colab55',
+      'Expertise em composição visual e curadoria',
+      'Artes prontas para aplicação em produtos'
     ],
     realExamples: [
-      'Loja ativa na Redbubble com múltiplas artes',
-      'Loja ativa na Colab55 com produtos aplicados'
+      'Loja ativa Redbubble: www.redbubble.com/people/toticavalcanti',
+      'Loja ativa Colab55: produtos já publicados e à venda',
+      'Múltiplas categorias: camisetas, canecas, adesivos, capinhas, almofadas'
     ]
   },
 ];
