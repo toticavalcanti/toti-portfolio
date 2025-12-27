@@ -7,11 +7,11 @@ import { aboutInfo, timeline } from '@/mockData';
 import { Code2, Music, Sparkles, Zap } from 'lucide-react';
 import Image from 'next/image';
 
-const skills = [
-  { icon: Code2, label: 'Full-Stack Development', items: ['React', 'Next.js', 'Node.js', 'TypeScript'] },
-  { icon: Sparkles, label: 'IA Generativa', items: ['Stable Diffusion', 'Midjourney', 'ChatGPT', 'Runway'] },
-  { icon: Music, label: 'Produção Musical', items: ['Ableton', 'FL Studio', 'Mixing', 'Mastering'] },
-  { icon: Zap, label: 'Outras Skills', items: ['Git', 'Docker', 'AWS', 'Figma'] },
+const techStacks = [
+  { icon: Code2, label: 'Full-Stack Development', items: ['Golang', 'Python', 'Next.js', 'Node.js', 'TypeScript'] },
+  { icon: Sparkles, label: 'IA Generativa', items: ['Adobe Firefly', 'ChatGPT', 'Klingai', 'Flow', 'Nano Banana'] },
+  { icon: Music, label: 'Produção Musical', items: ['Edição de Audio e Midi', 'Composição', 'Trilha', 'Mixagem', 'Masterização'] },
+  { icon: Code2, label: 'Outras Skills', items: ['Git', 'Docker', 'AWS', 'K8S'] },
 ];
 
 export default function SobrePage() {
@@ -69,7 +69,7 @@ export default function SobrePage() {
           </h2>
 
           <div className="grid sm:grid-cols-2 gap-8">
-            {skills.map((skill, index) => (
+            {techStacks.map((skill, index) => (
               <div
                 key={index}
                 className="p-6 rounded-lg bg-background border border-border"
