@@ -212,19 +212,18 @@ export default function AvatarAIShowcase() {
           >
             {/* Player com Setas */}
             <div className="relative group">
-              {/* Container do Vídeo - tamanho fixo para evitar layout shift */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '100%', maxWidth: '450px', margin: '0 auto' }}>
-                {/* Container com tamanho fixo e overflow hidden */}
-                <div className="w-full relative overflow-hidden" style={{ height:'600px', width: '400px', margin: '0 auto' }}>
+              {/* Container EXATO do tamanho do vídeo - 400x600px */}
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '400px', height: '600px', margin: '0 auto' }}>
+                {/* Container interno fixo */}
+                <div className="w-full h-full relative overflow-hidden">
                   {/* Renderização direta sem AnimatePresence */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {/* Wrapper fixo para evitar layout shift do iframe */}
-                    <div className="relative overflow-hidden" style={{ width: '400px', height: '600px' }}>
-                      {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
+                  <div className="absolute inset-0">
+                    {/* Wrapper EXATO para evitar layout shift */}
+                    <div className="w-full h-full overflow-hidden">{currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
                         <iframe
                           key={`youtube-${activeVideoIndex}`}
                           src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
-                          className="absolute inset-0 w-full h-full"
+                          className="w-full h-full"
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
@@ -233,7 +232,7 @@ export default function AvatarAIShowcase() {
                         <iframe
                           key={`instagram-${activeVideoIndex}`}
                           src={currentVideo.instagramEmbed}
-                          className="absolute inset-0 w-full h-full"
+                          className="w-full h-full"
                           frameBorder="0"
                           scrolling="no"
                           allow="encrypted-media"
