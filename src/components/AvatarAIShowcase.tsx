@@ -6,7 +6,7 @@ import Container from './Container';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
 import Link from 'next/link';
-import { Play, DollarSign, Clock, TrendingUp, Zap, ArrowRight, X } from 'lucide-react';
+import { DollarSign, Clock, TrendingUp, Zap, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Video {
   id: string;
@@ -16,13 +16,11 @@ interface Video {
   instagramEmbed?: string;
   title: string;
   description: string;
-  thumbnail?: string;
 }
 
 export default function AvatarAIShowcase() {
-  const [selectedVideoIndex, setSelectedVideoIndex] = useState<number | null>(null);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
 
-  // Vídeos: preparado para YouTube IDs (fácil trocar depois)
   const videos: Video[] = [
     {
       id: '1',
@@ -90,7 +88,15 @@ export default function AvatarAIShowcase() {
     }
   ];
 
-  const selectedVideo = selectedVideoIndex !== null ? videos[selectedVideoIndex] : null;
+  const currentVideo = videos[activeVideoIndex];
+
+  const handlePrevious = () => {
+    setActiveVideoIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveVideoIndex((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-28">
@@ -224,45 +230,83 @@ export default function AvatarAIShowcase() {
             </motion.div>
           </motion.div>
 
-          {/* Lado Direito - Grid de Vídeos */}
+          {/* Lado Direito - Carrossel de Vídeos */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* Grid 2x4 de video cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
-              {videos.map((video, index) => (
-                <motion.button
-                  key={video.id}
-                  onClick={() => setSelectedVideoIndex(index)}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
-                  className="group relative aspect-[9/16] rounded-xl overflow-hidden border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
-                >
-                  {/* Thumbnail placeholder com gradiente */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/20 flex items-center justify-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-background/80 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Play size={24} className="sm:w-8 sm:h-8 text-primary ml-1" />
-                    </div>
-                  </div>
+            {/* Player com Setas */}
+            <div className="relative group">
+              {/* Container do Vídeo - centralizado */}
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg">
+                {/* Vídeo centralizado com aspect ratio correto */}
+                <div className="w-full flex items-center justify-center" style={{ minHeight: '500px', maxHeight: '600px' }}>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeVideoIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full flex items-center justify-center"
+                    >
+                      {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
+                          className="w-full h-full aspect-[9/16]"
+                          style={{ maxWidth: '400px', height: '600px' }}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
+                        <iframe
+                          src={currentVideo.instagramEmbed}
+                          className="w-full h-full"
+                          style={{ maxWidth: '400px', height: '600px' }}
+                          frameBorder="0"
+                          scrolling="no"
+                          allow="encrypted-media"
+                        />
+                      ) : null}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
 
-                  {/* Número do vídeo */}
-                  <div className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-background/90 backdrop-blur text-foreground text-xs sm:text-sm flex items-center justify-center font-bold">
-                    {index + 1}
-                  </div>
+                {/* Info do Vídeo - overlay no bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-1">
+                    {currentVideo.title}
+                  </h3>
+                  <p className="text-white/80 text-xs sm:text-sm">
+                    {currentVideo.description}
+                  </p>
+                </div>
+              </div>
 
-                  {/* Título overlay no hover */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">
-                      {video.title}
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
+              {/* Setas de Navegação - sempre visíveis em mobile, hover em desktop */}
+              <button
+                onClick={handlePrevious}
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/90 backdrop-blur border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all flex items-center justify-center shadow-lg sm:opacity-0 sm:group-hover:opacity-100"
+                aria-label="Vídeo anterior"
+              >
+                <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
+              </button>
+
+              <button
+                onClick={handleNext}
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-background/90 backdrop-blur border border-border hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all flex items-center justify-center shadow-lg sm:opacity-0 sm:group-hover:opacity-100"
+                aria-label="Próximo vídeo"
+              >
+                <ChevronRight size={20} className="sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Indicador de posição */}
+              <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-background/90 backdrop-blur text-foreground text-xs sm:text-sm font-medium border border-border shadow-lg">
+                {activeVideoIndex + 1} / {videos.length}
+              </div>
             </div>
 
             {/* Link para Instagram */}
@@ -282,62 +326,6 @@ export default function AvatarAIShowcase() {
           </motion.div>
         </div>
       </Container>
-
-      {/* Modal de Vídeo */}
-      <AnimatePresence>
-        {selectedVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedVideoIndex(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-background rounded-2xl overflow-hidden shadow-2xl"
-            >
-              {/* Botão Fechar */}
-              <button
-                onClick={() => setSelectedVideoIndex(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/90 backdrop-blur flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <X size={20} />
-              </button>
-
-              {/* Player de Vídeo */}
-              <div className="aspect-video bg-background-secondary">
-                {selectedVideo.type === 'youtube' && selectedVideo.youtubeId ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1`}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : selectedVideo.type === 'instagram' && selectedVideo.instagramEmbed ? (
-                  <iframe
-                    src={selectedVideo.instagramEmbed}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    scrolling="no"
-                    allow="encrypted-media"
-                  />
-                ) : null}
-              </div>
-
-              {/* Info do Vídeo */}
-              <div className="p-6 border-t border-border">
-                <h3 className="text-xl font-bold mb-2">{selectedVideo.title}</h3>
-                <p className="text-foreground-secondary">{selectedVideo.description}</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
