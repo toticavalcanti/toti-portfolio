@@ -186,8 +186,7 @@ export const services: Service[] = [
     icon: 'Video',
     tagline: 'Transforme sua música em narrativa visual profissional',
     category: 'audiovisual',
-    description: 'Produção completa de videoclipes usando IA generativa combinada com pós-produção profissional. Trabalho com imagens geradas por IA, fotos fornecidas pelo cliente ou vídeos fornecidos pelo cliente. Resultados comprovados: clipes de Zé Ramalho com milhões de visualizações.',
-    detailedDescription: 'Videoclipes profissionais end-to-end com IA generativa de última geração. Do conceito à entrega: roteiro criativo, storyboard detalhado, geração de imagens consistentes, animação frame-by-frame, edição profissional e sincronização musical perfeita. Portfolio real: Zé Ramalho (artista consagrado), Scarlett Finch (personagem virtual), PUTZ! (covers de alta fidelidade). Custo até 80% menor que produção tradicional.',
+    description: 'Produção completa de videoclipes usando IA generativa combinada com pós-produção profissional. Trabalho com imagens geradas por IA, fotos fornecidas pelo cliente ou vídeos fornecidos pelo cliente. A precificação reflete o custo real dos serviços de IA (Runway Gen-3, Midjourney, Pika Labs) que cobram por segundo de vídeo gerado, mais o trabalho de edição e finalização. Resultados comprovados: clipes de Zé Ramalho com milhões de visualizações.',
 
     pricing: {
       model: 'por minuto',
@@ -287,10 +286,9 @@ export const services: Service[] = [
     id: '2',
     title: 'Produção Musical Profissional',
     icon: 'Music',
-    tagline: 'Transformo material tosco em produção de nível profissional',
+    tagline: 'Transformo suas ideias musicais em música gravada com arranjos no estilo que você escolher, com qualidade profissional do mercado',
     category: 'music-production',
-    description: 'Produção musical completa para qualquer estilo e instrumentação. Transformo demos mal gravadas, vocais toscas e composições básicas em músicas com acabamento profissional. Trabalho com técnicas tradicionais, MIDI sequencing e IA generativa conforme apropriado.',
-    detailedDescription: 'Produção musical end-to-end: correção de afinação, timing, arranjo completo, instrumentação, mixagem e masterização profissional. Técnicas tradicionais + IA como apoio técnico. Qualquer estilo: MPB, Rock, Jazz, Árabe, Indiano... sem limitações.',
+    description: 'Produção musical completa para qualquer estilo e instrumentação. Transformo demos mal gravadas, vocais toscas, simples ideias melódicas ou composições básicas em músicas com acabamento profissional de mercado. Trabalho com técnicas tradicionais, MIDI sequencing e IA generativa conforme apropriado. Do conceito inicial à master final, entrego música pronta para lançamento.',
 
     pricing: {
       model: 'por minuto',
@@ -340,20 +338,20 @@ export const services: Service[] = [
     },
 
     whatsIncluded: [
-      'Transformação de material tosco em profissional',
+      'Transformação de ideias musicais em produção completa',
+      'Arranjo profissional no estilo que você escolher',
       'Correção de afinação vocal (tuning/melodyne)',
       'Correção de timing e limpeza de ruídos',
-      'Arranjo completo no estilo desejado',
       'Gravações de flauta, sax tenor/soprano, teclados (quando aplicável)',
       'Programação MIDI de qualquer instrumento virtual',
       'Uso de IA generativa quando apropriado',
       'Mixagem profissional multitrack',
-      'Masterização para streaming/CD',
+      'Masterização para streaming/CD com qualidade de mercado',
       'Até 2 rodadas de revisão',
       'Entrega em múltiplos formatos (WAV, MP3, stems opcionais)'
     ],
 
-    stylesNote: 'PRODUZ QUALQUER ESTILO: MPB, Samba, Forró, Pop, Rock, Jazz, Blues, Eletrônico, Árabe, Indiano, Africano, Orquestral, Experimental. Sem restrições de gênero ou instrumentação.',
+    stylesNote: 'PRODUZ QUALQUER ESTILO: MPB, Samba, Forró, Sertanejo, Pop, Rock, Indie, Jazz, Blues, Funk, Soul, Eletrônico (House, Techno, Trap, Lo-fi), World Music (Árabe, Indiano, Africano, Celta), Orquestral, Experimental. Sem restrições de gênero ou instrumentação.',
 
     addOns: [
       { name: 'Arte de capa single', price: 'R$ 500' },
@@ -364,26 +362,28 @@ export const services: Service[] = [
     ],
 
     whoItsFor: [
-      'Compositores sem estrutura de gravação',
-      'Artistas independentes lançando álbuns',
+      'Compositores com ideias que precisam virar músicas prontas',
+      'Artistas sem estrutura de gravação',
+      'Músicos lançando álbuns independentes',
       'Produtoras musicais terceirizando produção',
-      'Projetos de cinema e audiovisual',
+      'Projetos de cinema e audiovisual (trilhas)',
       'Empresas (jingles, vídeos institucionais)',
       'Criadores de conteúdo para YouTube/TikTok'
     ],
 
     benefits: [
-      'Qualidade profissional sem investir em estúdio',
+      'Qualidade profissional de mercado sem investir em estúdio',
+      'Do conceito/ideia à música pronta para lançamento',
       'Flexibilidade criativa total nos arranjos',
       'Prazo: 2-6 semanas por faixa completa',
-      'Revisões ilimitadas até aprovação final',
+      'Revisões até aprovação final',
       'Produção de álbuns completos',
       'Qualquer estilo ou instrumentação'
     ],
 
     realExamples: [
       'Antologia 50 Anos - Zé Ramalho: 22 faixas produzidas',
-      'Estilos variados: Blues, Árabe, Indiano, Regional',
+      'Estilos variados: Blues, Árabe, Indiano, Regional Nordestino',
       'Técnicas híbridas: tradicional + MIDI + IA'
     ],
 
@@ -403,7 +403,6 @@ export const services: Service[] = [
     tagline: 'Performance ao vivo profissional com flauta e sax',
     category: 'live-performance',
     description: 'Apresentações musicais ao vivo: flauta transversal, sax tenor, sax soprano, com bases pré-gravadas ou playback profissional. Repertório customizado conforme o evento. Equipamento de som e luz pode ser incluído ou o cliente pode fornecer.',
-    detailedDescription: 'Performances musicais ao vivo profissionais. Instrumentos: flauta transversal, saxofone tenor e soprano. Formato com bases gravadas ou playback. Anos de experiência: banda de Zé Ramalho desde 1995, Sandra de Sá, Paulo Moura. Músico profissional desde 1987.',
 
     pricing: {
       model: 'por hora',
@@ -528,12 +527,11 @@ export const services: Service[] = [
   // ============================================
   {
     id: '4',
-    title: 'Arte Generativa para Produtos',
+    title: 'Imagens com IA Generativa',
     icon: 'Palette',
     tagline: 'Arte digital de alta qualidade para qualquer aplicação',
     category: 'visual-design',
-    description: 'Criação de imagens usando IA generativa (Midjourney, Stable Diffusion) com pós-edição profissional no Photoshop. Trabalho com geração de imagens originais, não faço gravação fotográfica. Ideal para marketing, redes sociais, capas de álbum, produtos e branding.',
-    detailedDescription: 'Geração de imagens profissionais com IA + pós-edição Photoshop. Estampas únicas, arte conceitual, capas de álbum, marketing visual. Lojas comprovadamente ativas: Redbubble e Colab55. Pricing transparente por quantidade com desconto progressivo.',
+    description: 'Criação de imagens usando IA generativa (Midjourney, Stable Diffusion) com pós-edição profissional no Photoshop. Trabalho com geração de imagens originais, não faço gravação fotográfica. A precificação considera o custo das plataformas de IA (que cobram por geração) mais o tempo de curadoria, iterações e pós-edição. Ideal para marketing, redes sociais, capas de álbum, produtos e branding.',
 
     pricing: {
       model: 'por quantidade',
@@ -652,11 +650,10 @@ export const services: Service[] = [
   {
     id: '5',
     title: 'Desenvolvimento Web Full-Stack',
-    icon: 'Code2',
+    icon: 'Code',
     tagline: 'Sites e aplicações modernas que convertem',
     category: 'software',
     description: 'Desenvolvimento completo de aplicações web profissionais: desde sites institucionais até e-commerces e plataformas complexas. Código limpo, performance otimizada, SEO avançado. Stack moderna: Next.js, React, Node.js, MongoDB.',
-    detailedDescription: 'Desenvolvimento end-to-end de aplicações web: planejamento, arquitetura, UI/UX, frontend, backend, banco de dados, deploy produção. Performance 95+ Google Lighthouse, SEO avançado, código manutenível. Cases reais: Site Zé Ramalho, este portfolio.',
 
     pricing: {
       model: 'por projeto',
@@ -759,16 +756,126 @@ export const services: Service[] = [
   },
 
   // ============================================
-  // SERVIÇO 6: AUTOMAÇÃO EMPRESARIAL COM IA
+  // SERVIÇO 6: VÍDEOS PUBLICITÁRIOS COM AVATARES IA (NOVO!)
   // ============================================
   {
     id: '6',
+    title: 'Vídeos Publicitários com Avatares IA',
+    icon: 'Video',
+    tagline: 'Porta-vozes virtuais realistas para suas campanhas em redes sociais',
+    category: 'audiovisual',
+    description: 'Criação de vídeos publicitários profissionais usando avatares IA realistas como apresentadores. Ideal para divulgação de produtos, serviços, cursos, plataformas e conteúdo educacional em redes sociais (Instagram, TikTok, YouTube, Facebook). Avatares com sincronização labial perfeita, movimentos naturais e apresentação profissional. Custo muito inferior à contratação de atores reais ou produção tradicional.',
+
+    pricing: {
+      model: 'por segundo',
+      unit: '/segundo de vídeo final',
+      ranges: [
+        {
+          name: 'Básico',
+          price: 'R$ 15 - 20',
+          description: 'Avatar padrão, script simples, fundo fixo ou chroma key.',
+          ideal: 'Posts rápidos para redes sociais (15-30s)'
+        },
+        {
+          name: 'Profissional',
+          price: 'R$ 25 - 35',
+          description: 'Avatar customizado, cenário elaborado, edição avançada, legendas.',
+          ideal: 'Anúncios, apresentações de produtos (30-60s)'
+        },
+        {
+          name: 'Premium',
+          price: 'R$ 40 - 50',
+          description: 'Múltiplos avatares, motion graphics, animações, produção cinematográfica.',
+          ideal: 'Campanhas completas, vídeos institucionais (60s+)'
+        }
+      ],
+      discounts: [
+        'Pack 5 vídeos: 10% desconto',
+        'Pack 10 vídeos: 15% desconto',
+        'Pack mensal (20+ vídeos): 20% desconto'
+      ],
+      examples: [
+        {
+          description: 'Vídeo de 30s para Instagram Reels (profissional)',
+          calculation: '30s × R$ 30 = R$ 900',
+          total: 'R$ 900'
+        },
+        {
+          description: 'Série de 10 vídeos de 20s para TikTok (básico)',
+          calculation: '(10 × 20s × R$ 17,50) × 0,85 (desconto 15%)',
+          total: 'R$ 2.975'
+        },
+        {
+          description: 'Vídeo institucional 90s (premium)',
+          calculation: '90s × R$ 45 = R$ 4.050',
+          total: 'R$ 4.050'
+        }
+      ]
+    },
+
+    whatsIncluded: [
+      'Avatar IA realista com sincronização labial perfeita',
+      'Script ou roteiro (se fornecido pelo cliente)',
+      'Voz sintética profissional OU narração fornecida',
+      'Cenário/background personalizado',
+      'Edição e pós-produção',
+      'Legendas (opcional)',
+      'Exportação em formatos otimizados para redes sociais',
+      '1 rodada de revisão',
+      'Entrega em até 5 dias úteis'
+    ],
+
+    addOns: [
+      { name: 'Script/roteiro profissional', price: '+R$ 300-500' },
+      { name: 'Narração com voz humana profissional', price: '+R$ 200-400' },
+      { name: 'Legendas em português + inglês', price: '+R$ 150' },
+      { name: 'Motion graphics e animações extras', price: '+R$ 300-800' },
+      { name: 'Entrega expressa (24-48h)', price: '+30% do valor' },
+      { name: 'Avatar customizado único para sua marca', price: '+R$ 1.500 (one-time)' }
+    ],
+
+    whoItsFor: [
+      'Empresas divulgando produtos/serviços',
+      'Criadores de cursos online',
+      'Plataformas educacionais (como Código Fluente)',
+      'E-commerces fazendo anúncios',
+      'Agências de marketing digital',
+      'Startups lançando produtos',
+      'Influencers e creators'
+    ],
+
+    benefits: [
+      'Custo 80-90% menor que produção com atores reais',
+      'Produção rápida: 3-5 dias vs semanas',
+      'Sem necessidade de estúdio, câmeras ou equipe',
+      'Consistência visual em toda campanha',
+      'Fácil atualização de conteúdo',
+      'Ideal para testes A/B de diferentes abordagens',
+      'Escalável: produza dezenas de vídeos rapidamente'
+    ],
+
+    realExamples: [
+      'Vídeos de divulgação do Código Fluente no Instagram',
+      'Série educacional sobre programação com avatar apresentador',
+      'Canal YouTube Código Fluente: @codigofluente'
+    ],
+
+    technologies: [
+      'HeyGen', 'D-ID', 'Synthesia',
+      'ElevenLabs (voz)', 'Adobe Premiere Pro', 'After Effects'
+    ]
+  },
+
+  // ============================================
+  // SERVIÇO 7: AUTOMAÇÃO EMPRESARIAL COM IA
+  // ============================================
+  {
+    id: '7',
     title: 'Automação Empresarial com IA',
     icon: 'Sparkles',
     tagline: 'Reduza custos e aumente eficiência com inteligência artificial',
     category: 'ai',
     description: 'Implementação de soluções de IA para automatizar processos empresariais: chatbots inteligentes, análise de documentos, geração de conteúdo, análise preditiva. Consultoria completa desde arquitetura até deploy.',
-    detailedDescription: 'Soluções de IA empresarial customizadas: chatbots 24/7, classificação/extração de documentos, geração de conteúdo em escala, análise preditiva, automação de workflows. Consultoria + desenvolvimento + treinamento de equipe. ROI comprovado em 6-12 meses.',
 
     pricing: {
       model: 'por projeto',

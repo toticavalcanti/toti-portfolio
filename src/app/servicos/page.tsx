@@ -91,9 +91,12 @@ export default function ServicosPage() {
                   Por que preço por minuto/quantidade ao invés de pacotes fechados?
                 </h3>
                 <p className="text-foreground-secondary">
-                  Transparência total. Você paga exatamente pelo que usa. Um clipe de 3 minutos 
-                  não deve custar o mesmo que um de 5 minutos. Cada projeto é único, e o preço 
-                  reflete o trabalho real necessário, não categorias arbitrárias.
+                  O custo de produção com IA é diretamente proporcional à quantidade gerada. 
+                  Serviços como Runway Gen-3, Midjourney e APIs de IA cobram por uso: por segundo 
+                  de vídeo gerado, por imagem criada, por token processado. Um clipe de 5 minutos 
+                  consome significativamente mais créditos de IA que um de 3 minutos. Além disso, 
+                  há o tempo de edição, pós-produção e refinamento. A precificação por minutagem 
+                  reflete o custo real de produção, não uma categoria arbitrária.
                 </p>
               </div>
 
@@ -122,14 +125,16 @@ export default function ServicosPage() {
                 </p>
               </div>
 
-              <div className="bg-background-secondary rounded-lg p-6">
+               <div className="bg-background-secondary rounded-lg p-6">
                 <h3 className="text-lg font-bold mb-2">
                   Trabalho com todos os estilos musicais?
                 </h3>
                 <p className="text-foreground-secondary">
-                  SIM! Produção musical: MPB, Samba, Forró, Pop, Rock, Jazz, Blues, Eletrônico, 
-                  Árabe, Indiano, Africano, Orquestral, Experimental... qualquer estilo ou 
-                  instrumentação. O preço varia pela complexidade do trabalho, não pelo estilo.
+                  SIM! Produção musical: MPB, Samba, Forró, Sertanejo, Pop, Rock, Jazz, Blues, 
+                  Eletrônico, Árabe, Indiano, Africano, Orquestral, Experimental... qualquer 
+                  estilo ou instrumentação. Transformo suas ideias musicais em música gravada 
+                  com arranjos no estilo que você escolher, com qualidade profissional do mercado. 
+                  O preço varia pela complexidade do trabalho, não pelo estilo.
                 </p>
               </div>
 
@@ -142,6 +147,32 @@ export default function ServicosPage() {
                   mesa, microfones), você paga apenas o cachê artístico. Se não tem, posso 
                   providenciar todo o equipamento + técnico, com custo adicional claro e 
                   transparente conforme tamanho do público.
+                </p>
+              </div>
+
+              <div className="bg-background-secondary rounded-lg p-6">
+                <h3 className="text-lg font-bold mb-2">
+                  Quanto custa usar as IAs? Isso está incluído no preço?
+                </h3>
+                <p className="text-foreground-secondary">
+                  Sim, está incluído! Os custos das plataformas de IA (Runway Gen-3, Midjourney, 
+                  HeyGen, APIs da OpenAI, etc) já estão embutidos na precificação. Por exemplo, 
+                  o Runway cobra cerca de US$ 0,05 por segundo de vídeo gerado - um clipe de 3 
+                  minutos pode custar US$ 9+ só em créditos de IA, sem contar múltiplas tentativas 
+                  e refinamentos. A precificação por minuto/quantidade garante que o custo real 
+                  de produção está coberto de forma justa para ambos.
+                </p>
+              </div>
+
+              <div className="bg-background-secondary rounded-lg p-6">
+                <h3 className="text-lg font-bold mb-2">
+                  Avatares IA são convincentes? Parecem reais?
+                </h3>
+                <p className="text-foreground-secondary">
+                  Sim! As tecnologias atuais (HeyGen, D-ID, Synthesia) produzem avatares com 
+                  qualidade fotorrealista. Sincronização labial perfeita, movimentos naturais e 
+                  expressões convincentes. A qualidade é tão alta que muitas pessoas não percebem 
+                  que é IA. Veja exemplos reais nos vídeos do Código Fluente no Instagram e YouTube.
                 </p>
               </div>
 
