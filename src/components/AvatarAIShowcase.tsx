@@ -1,76 +1,96 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Container from './Container';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
 import Link from 'next/link';
-import { Play, DollarSign, Clock, TrendingUp, Zap, ArrowRight } from 'lucide-react';
+import { Play, DollarSign, Clock, TrendingUp, Zap, ArrowRight, X } from 'lucide-react';
+
+interface Video {
+  id: string;
+  type: 'youtube' | 'instagram';
+  youtubeId?: string;
+  instagramUrl?: string;
+  instagramEmbed?: string;
+  title: string;
+  description: string;
+  thumbnail?: string;
+}
 
 export default function AvatarAIShowcase() {
-  const [activeVideo, setActiveVideo] = useState(0);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState<number | null>(null);
 
-  // URLs dos vídeos do Instagram do Código Fluente
-  // Total de 8 vídeos: 4 com avatares + 4 logo reveals
-  const videos = [
+  // Vídeos: preparado para YouTube IDs (fácil trocar depois)
+  const videos: Video[] = [
     {
-      url: 'https://www.instagram.com/p/DMoNmEou1pw/',
-      embed: 'https://www.instagram.com/p/DMoNmEou1pw/embed',
+      id: '1',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/DMoNmEou1pw/',
+      instagramEmbed: 'https://www.instagram.com/p/DMoNmEou1pw/embed',
       title: 'Avatar apresentando conceitos de programação',
       description: 'Modelo virtual realista explicando desenvolvimento web'
     },
     {
-      url: 'https://www.instagram.com/p/DMT5SwcPH88/',
-      embed: 'https://www.instagram.com/p/DMT5SwcPH88/embed',
+      id: '2',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/DMT5SwcPH88/',
+      instagramEmbed: 'https://www.instagram.com/p/DMT5SwcPH88/embed',
       title: 'Divulgação de curso online',
       description: 'Porta-voz virtual para educação e cursos'
     },
     {
-      url: 'https://www.instagram.com/p/DL6GvGCtkyT/',
-      embed: 'https://www.instagram.com/p/DL6GvGCtkyT/embed',
+      id: '3',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/DL6GvGCtkyT/',
+      instagramEmbed: 'https://www.instagram.com/p/DL6GvGCtkyT/embed',
       title: 'Anúncio de produto tech',
       description: 'Avatar profissional para marketing de produtos'
     },
     {
-      url: 'https://www.instagram.com/p/DMOoJTnPuAR/',
-      embed: 'https://www.instagram.com/p/DMOoJTnPuAR/embed',
+      id: '4',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/DMOoJTnPuAR/',
+      instagramEmbed: 'https://www.instagram.com/p/DMOoJTnPuAR/embed',
       title: 'Conteúdo educacional',
       description: 'Apresentador virtual para plataformas de ensino'
     },
     {
-      url: 'https://www.instagram.com/p/Cl59qxOrx85/',
-      embed: 'https://www.instagram.com/p/Cl59qxOrx85/embed',
+      id: '5',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/Cl59qxOrx85/',
+      instagramEmbed: 'https://www.instagram.com/p/Cl59qxOrx85/embed',
       title: 'Logo Reveal Código Fluente #1',
       description: 'Animação profissional de logo com IA'
     },
     {
-      url: 'https://www.instagram.com/p/CoEFWZ8sop_/',
-      embed: 'https://www.instagram.com/p/CoEFWZ8sop_/embed',
+      id: '6',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/CoEFWZ8sop_/',
+      instagramEmbed: 'https://www.instagram.com/p/CoEFWZ8sop_/embed',
       title: 'Logo Reveal Código Fluente #2',
       description: 'Design de marca animado com elementos visuais'
     },
     {
-      url: 'https://www.instagram.com/p/Cq88Q5eMpCP/',
-      embed: 'https://www.instagram.com/p/Cq88Q5eMpCP/embed',
+      id: '7',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/Cq88Q5eMpCP/',
+      instagramEmbed: 'https://www.instagram.com/p/Cq88Q5eMpCP/embed',
       title: 'Logo Reveal Código Fluente #3',
       description: 'Apresentação visual da identidade da marca'
     },
     {
-      url: 'https://www.instagram.com/p/Cvlbd7-PC7u/',
-      embed: 'https://www.instagram.com/p/Cvlbd7-PC7u/embed',
+      id: '8',
+      type: 'instagram',
+      instagramUrl: 'https://www.instagram.com/p/Cvlbd7-PC7u/',
+      instagramEmbed: 'https://www.instagram.com/p/Cvlbd7-PC7u/embed',
       title: 'Logo Reveal Código Fluente #4',
       description: 'Motion graphics e animação de logo'
     }
   ];
 
-  // Auto-rotate vídeos a cada 8 segundos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveVideo((prev) => (prev + 1) % videos.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [videos.length]);
+  const selectedVideo = selectedVideoIndex !== null ? videos[selectedVideoIndex] : null;
 
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-28">
@@ -96,7 +116,7 @@ export default function AvatarAIShowcase() {
               que contratação de atores reais.</strong>
             </p>
 
-            {/* Benefícios em Grid - usando mesmo estilo do StatsSection */}
+            {/* Benefícios em Grid */}
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -163,7 +183,7 @@ export default function AvatarAIShowcase() {
               </motion.div>
             </div>
 
-            {/* Pricing Card - usando mesmo estilo */}
+            {/* Pricing Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -181,7 +201,7 @@ export default function AvatarAIShowcase() {
               </div>
             </motion.div>
 
-            {/* CTAs - usando componente Button padrão */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -204,66 +224,49 @@ export default function AvatarAIShowcase() {
             </motion.div>
           </motion.div>
 
-          {/* Lado Direito - Vídeos do Instagram */}
+          {/* Lado Direito - Grid de Vídeos */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* Vídeo Principal */}
-            <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary mb-6 shadow-lg">
-              <div className="aspect-[9/16] max-h-[600px]">
-                <iframe
-                  src={videos[activeVideo].embed}
-                  className="w-full h-full"
-                  frameBorder="0"
-                  scrolling="no"
-                  allow="encrypted-media"
-                />
-              </div>
-
-              {/* Info do Vídeo - overlay sutil */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6">
-                <h3 className="text-white font-semibold text-sm sm:text-base mb-1">
-                  {videos[activeVideo].title}
-                </h3>
-                <p className="text-white/80 text-xs sm:text-sm">
-                  {videos[activeVideo].description}
-                </p>
-              </div>
-            </div>
-
-            {/* Thumbnails / Seletor - Grid de 4 colunas (8 vídeos = 2 linhas) */}
-            <div className="grid grid-cols-4 gap-3 mb-6">
+            {/* Grid 2x4 de video cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
               {videos.map((video, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveVideo(index)}
-                  className={`
-                    relative aspect-[9/16] rounded-lg overflow-hidden
-                    transition-all duration-300 border-2
-                    ${activeVideo === index 
-                      ? 'border-primary scale-105 shadow-lg' 
-                      : 'border-border hover:border-primary/50 opacity-60 hover:opacity-100'
-                    }
-                  `}
+                <motion.button
+                  key={video.id}
+                  onClick={() => setSelectedVideoIndex(index)}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  className="group relative aspect-[9/16] rounded-xl overflow-hidden border-2 border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
                 >
-                  {/* Placeholder com gradiente - padrão do site */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                    <Play size={20} className="sm:w-6 sm:h-6 text-primary drop-shadow" />
+                  {/* Thumbnail placeholder com gradiente */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/20 flex items-center justify-center">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-background/80 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Play size={24} className="sm:w-8 sm:h-8 text-primary ml-1" />
+                    </div>
                   </div>
-                  
+
                   {/* Número do vídeo */}
-                  <div className="absolute top-1.5 right-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-background/80 backdrop-blur text-foreground text-xs flex items-center justify-center font-medium">
+                  <div className="absolute top-2 right-2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-background/90 backdrop-blur text-foreground text-xs sm:text-sm flex items-center justify-center font-bold">
                     {index + 1}
                   </div>
-                </button>
+
+                  {/* Título overlay no hover */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">
+                      {video.title}
+                    </p>
+                  </div>
+                </motion.button>
               ))}
             </div>
 
-            {/* Link para Instagram - estilo padrão de links */}
-            <div className="text-center">
+            {/* Link para Instagram */}
+            <div className="text-center mt-6">
               <a
                 href="https://www.instagram.com/codigofluente/"
                 target="_blank"
@@ -279,6 +282,62 @@ export default function AvatarAIShowcase() {
           </motion.div>
         </div>
       </Container>
+
+      {/* Modal de Vídeo */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedVideoIndex(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl bg-background rounded-2xl overflow-hidden shadow-2xl"
+            >
+              {/* Botão Fechar */}
+              <button
+                onClick={() => setSelectedVideoIndex(null)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/90 backdrop-blur flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Player de Vídeo */}
+              <div className="aspect-video bg-background-secondary">
+                {selectedVideo.type === 'youtube' && selectedVideo.youtubeId ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1`}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : selectedVideo.type === 'instagram' && selectedVideo.instagramEmbed ? (
+                  <iframe
+                    src={selectedVideo.instagramEmbed}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    scrolling="no"
+                    allow="encrypted-media"
+                  />
+                ) : null}
+              </div>
+
+              {/* Info do Vídeo */}
+              <div className="p-6 border-t border-border">
+                <h3 className="text-xl font-bold mb-2">{selectedVideo.title}</h3>
+                <p className="text-foreground-secondary">{selectedVideo.description}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
