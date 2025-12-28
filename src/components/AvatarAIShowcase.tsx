@@ -163,15 +163,20 @@ export default function AvatarAIShowcase() {
 
           {/* Lado Direito - Carrossel SIMPLES */}
           <div className="flex flex-col items-center gap-6">
-            {/* Container do Vídeo */}
-            <div className="relative group w-full max-w-[400px]">
-              {/* Iframe Instagram - tamanho natural */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg">
+            {/* Container do Vídeo - FIXO 328px (tamanho do Instagram) */}
+            <div className="relative group" style={{ width: '328px' }}>
+              {/* Iframe Instagram - tamanho FIXO */}
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px' }}>
                 <iframe
                   key={`video-${activeVideoIndex}`}
                   src={currentVideo.instagramEmbed}
-                  className="w-full"
-                  style={{ minHeight: '500px', border: 'none' }}
+                  style={{ 
+                    width: '328px',
+                    minHeight: '500px',
+                    maxHeight: '700px',
+                    border: 'none',
+                    display: 'block'
+                  }}
                   frameBorder="0"
                   scrolling="no"
                   allow="encrypted-media"
