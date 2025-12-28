@@ -225,25 +225,26 @@ export default function AvatarAIShowcase() {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0 flex items-center justify-center"
                     >
-                      {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
-                        <iframe
-                          src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
-                          className="w-full h-full"
-                          style={{ maxWidth: '400px', height: '600px' }}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
-                        <iframe
-                          src={currentVideo.instagramEmbed}
-                          className="w-full h-full"
-                          style={{ maxWidth: '400px', height: '600px' }}
-                          frameBorder="0"
-                          scrolling="no"
-                          allow="encrypted-media"
-                        />
-                      ) : null}
+                      {/* Wrapper fixo para evitar layout shift do iframe */}
+                      <div className="relative" style={{ width: '400px', height: '600px' }}>
+                        {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
+                          <iframe
+                            src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
+                            className="absolute inset-0 w-full h-full"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
+                          <iframe
+                            src={currentVideo.instagramEmbed}
+                            className="absolute inset-0 w-full h-full"
+                            frameBorder="0"
+                            scrolling="no"
+                            allow="encrypted-media"
+                          />
+                        ) : null}
+                      </div>
                     </motion.div>
                   </AnimatePresence>
                 </div>
