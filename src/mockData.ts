@@ -177,214 +177,684 @@ export const projects: Project[] = [
 
 // Services
 export const services: Service[] = [
+  // ============================================
+  // SERVIÇO 1: VIDEOCLIPES COM IA GENERATIVA
+  // ============================================
   {
     id: '1',
-    title: 'Software, Sistemas & Automação',
-    icon: 'Code2',
-    category: 'software',
-    description: 'Desenvolvimento full stack de aplicações web e sistemas sob medida. Backend, frontend, banco de dados, deploy e operação.',
-    detailedDescription: 'Desenvolvimento completo de sistemas web: arquitetura de backend (Node.js, Python, Golang), frontend moderno (Next.js/React), bancos de dados (MongoDB, PostgreSQL), infraestrutura (Docker, CI/CD) e DevOps. Projetos reais em produção.',
+    title: 'Videoclipes com IA Generativa',
+    icon: 'Video',
+    tagline: 'Transforme sua música em narrativa visual profissional',
+    category: 'audiovisual',
+    description: 'Produção completa de videoclipes usando IA generativa combinada com pós-produção profissional. Trabalho com imagens geradas por IA, fotos fornecidas pelo cliente ou vídeos fornecidos pelo cliente. Resultados comprovados: clipes de Zé Ramalho com milhões de visualizações.',
+    detailedDescription: 'Videoclipes profissionais end-to-end com IA generativa de última geração. Do conceito à entrega: roteiro criativo, storyboard detalhado, geração de imagens consistentes, animação frame-by-frame, edição profissional e sincronização musical perfeita. Portfolio real: Zé Ramalho (artista consagrado), Scarlett Finch (personagem virtual), PUTZ! (covers de alta fidelidade). Custo até 80% menor que produção tradicional.',
+
+    pricing: {
+      model: 'por minuto',
+      unit: '/minuto de vídeo final',
+      ranges: [
+        {
+          name: 'Simples',
+          price: 'R$ 1.200 - 1.800',
+          description: 'Visual clean, lyric video, performance. Cenas estáticas ou movimento simples.',
+          ideal: 'Artistas independentes, singles simples, orçamento limitado'
+        },
+        {
+          name: 'Médio',
+          price: 'R$ 2.500 - 3.500',
+          description: 'Narrativa visual desenvolvida, múltiplas cenas e locações, 3-5 personagens.',
+          ideal: 'Artistas estabelecidos, lançamentos importantes'
+        },
+        {
+          name: 'Complexo',
+          price: 'R$ 4.000 - 5.000',
+          description: 'Narrativa épica, 10+ cenas, muitos personagens, efeitos especiais, motion graphics.',
+          ideal: 'Produções premium, projetos de grande impacto'
+        }
+      ],
+      examples: [
+        {
+          description: 'Lyric video 3min (simples)',
+          calculation: '3min × R$ 1.500 = R$ 4.500',
+          total: 'R$ 4.500'
+        },
+        {
+          description: 'Clipe narrativo 3:45min (médio)',
+          calculation: '3,75min × R$ 3.000 = R$ 11.250',
+          total: 'R$ 11.250'
+        },
+        {
+          description: 'Clipe épico 4:30min (complexo)',
+          calculation: '4,5min × R$ 4.500 = R$ 20.250',
+          total: 'R$ 20.250'
+        }
+      ]
+    },
+
     whatsIncluded: [
-      'Desenvolvimento Full-Stack (Next.js, Node.js, Python, Golang)',
-      'APIs RESTful e integrações com sistemas externos',
-      'Banco de dados relacional e NoSQL (MongoDB, PostgreSQL)',
-      'Deploy, infraestrutura e CI/CD (Docker, cloud)',
-      'Arquitetura de software documentada e manutenível',
-      'DevOps e operação de sistemas em produção'
+      'Desenvolvimento de conceito criativo',
+      'Geração de imagens/vídeos com IA ou processamento de material fornecido',
+      'Edição profissional (Premiere/DaVinci)',
+      'Sincronização perfeita com música',
+      'Color grading cinematográfico',
+      'Efeitos visuais básicos',
+      '2 rodadas de revisão',
+      'Entrega em 4K',
+      'Versões para múltiplas plataformas (16:9, 9:16, 1:1)'
     ],
+
+    addOns: [
+      { name: 'Making-of do clipe', price: 'R$ 1.500 (fixo)' },
+      { name: 'Versões alternativas (cut diferente)', price: '+R$ 500/minuto' },
+      { name: 'Legendas/lyrics animadas', price: '+R$ 300/minuto' },
+      { name: 'Motion graphics complexos', price: '+R$ 500-1.000/minuto' },
+      { name: 'Consultoria de lançamento', price: 'R$ 1.200 (fixo)' }
+    ],
+
     whoItsFor: [
-      'Empresas que precisam de sistemas customizados',
-      'Startups construindo MVPs com arquitetura técnica sólida',
-      'Projetos que exigem backend robusto e escalável'
+      'Artistas independentes e bandas',
+      'Gravadoras e produtoras musicais',
+      'Compositores lançando singles',
+      'Projetos de música experimental',
+      'Artistas que buscam visual inovador'
     ],
+
     benefits: [
-      'Arquitetura técnica profissional e documentada',
-      'Código limpo, testável e manutenível',
-      'Performance otimizada e monitorada',
-      'Prazo e escopo transparentes'
+      'Custo 60-80% menor que produção tradicional',
+      'Prazo de entrega: 2-4 semanas',
+      'Estética única e visualmente impactante',
+      'Possibilidades ilimitadas de cenários',
+      'Resultados comprovados: milhões de visualizações',
+      'Revisões inclusas no pacote'
     ],
+
     realExamples: [
-      'Site oficial Zé Ramalho (Next.js + MongoDB + Node.js em produção)',
-      'Este portfólio (Next.js em produção)',
-      'Plataforma Código Fluente (WordPress + infraestrutura cloud)'
+      'Zé Ramalho - Jardim das Acácias: 920K+ views',
+      'Zé Ramalho - Canção Agalopada: 1.9M+ views',
+      'Scarlett Finch - 6+ videoclipes produzidos'
+    ],
+
+    technologies: [
+      'Runway Gen-3', 'Midjourney', 'Pika Labs',
+      'Adobe Premiere Pro', 'After Effects', 'DaVinci Resolve'
     ]
   },
+
+  // ============================================
+  // SERVIÇO 2: PRODUÇÃO MUSICAL PROFISSIONAL
+  // ============================================
   {
     id: '2',
-    title: 'Produção Audiovisual com IA',
-    icon: 'Video',
-    category: 'audiovisual',
-    description: 'Videoclipes profissionais completos utilizando IA generativa de última geração. Desde o conceito criativo até a entrega final: roteiro, storyboard, geração de imagens, animação, edição e sincronização musical. Portfolio comprovado com artistas consagrados (Zé Ramalho) e projetos autorais (Scarlett Finch, PUTZ!).',
-    detailedDescription: 'Videoclipes profissionais end-to-end com IA generativa de última geração. Do conceito à entrega: roteiro criativo, storyboard detalhado, geração de imagens consistentes, animação frame-by-frame, edição profissional e sincronização musical perfeita. Portfolio real com artista consagrado (Zé Ramalho), personagem virtual (Scarlett Finch) e covers de alta fidelidade (PUTZ!). Custo até 80% menor que produção tradicional com resultados visuais únicos. Pricing: a partir de R$ 5.000. Delivery: 2-4 semanas.',
+    title: 'Produção Musical Profissional',
+    icon: 'Music',
+    tagline: 'Transformo material tosco em produção de nível profissional',
+    category: 'music-production',
+    description: 'Produção musical completa para qualquer estilo e instrumentação. Transformo demos mal gravadas, vocais toscas e composições básicas em músicas com acabamento profissional. Trabalho com técnicas tradicionais, MIDI sequencing e IA generativa conforme apropriado.',
+    detailedDescription: 'Produção musical end-to-end: correção de afinação, timing, arranjo completo, instrumentação, mixagem e masterização profissional. Técnicas tradicionais + IA como apoio técnico. Qualquer estilo: MPB, Rock, Jazz, Árabe, Indiano... sem limitações.',
+
+    pricing: {
+      model: 'por minuto',
+      unit: '/minuto de música finalizada',
+      ranges: [
+        {
+          name: 'Simples',
+          price: 'R$ 800 - 1.000',
+          description: 'Material tem qualidade razoável, poucos elementos, arranjo direto.',
+          ideal: 'Baladas acústicas, demos que só precisam de polish'
+        },
+        {
+          name: 'Médio',
+          price: 'R$ 1.000 - 1.300',
+          description: 'Material precisa de trabalho considerável. Banda completa, 10-20 tracks.',
+          ideal: 'Rock, pop, MPB com banda, arranjos elaborados'
+        },
+        {
+          name: 'Complexo',
+          price: 'R$ 1.300 - 1.500',
+          description: 'Reconstrução quase total. 20+ tracks, orquestração, experimentação.',
+          ideal: 'World music elaborada, orquestral, experimental, avant-garde'
+        }
+      ],
+      discounts: [
+        '4-6 músicas (EP): 10% de desconto',
+        '7-10 músicas: 15% de desconto',
+        '11+ músicas (álbum): 20% de desconto'
+      ],
+      examples: [
+        {
+          description: 'Balada acústica 3:30min (simples)',
+          calculation: '3,5min × R$ 900 = R$ 3.150',
+          total: 'R$ 3.150'
+        },
+        {
+          description: 'Rock com banda 4min (médio)',
+          calculation: '4min × R$ 1.150 = R$ 4.600',
+          total: 'R$ 4.600'
+        },
+        {
+          description: 'Álbum 10 músicas, 42min total (médio-complexo)',
+          calculation: '42min × R$ 1.250 = R$ 52.500, menos 20% desconto',
+          total: 'R$ 42.000'
+        }
+      ]
+    },
+
     whatsIncluded: [
-      'Videoclipes profissionais com IA generativa',
-      'Roteiro criativo e storyboard detalhado',
-      'Geração de imagens com consistência de personagens',
-      'Vídeos promocionais e de vendas',
-      'Avatares digitais realistas e personalizados',
-      'Conteúdo audiovisual para redes sociais e campanhas',
-      'Produção e pós-produção completa',
-      'Narrativas visuais complexas',
-      'Sincronização musical perfeita (músico profissional desde 1987)'
+      'Transformação de material tosco em profissional',
+      'Correção de afinação vocal (tuning/melodyne)',
+      'Correção de timing e limpeza de ruídos',
+      'Arranjo completo no estilo desejado',
+      'Gravações de flauta, sax tenor/soprano, teclados (quando aplicável)',
+      'Programação MIDI de qualquer instrumento virtual',
+      'Uso de IA generativa quando apropriado',
+      'Mixagem profissional multitrack',
+      'Masterização para streaming/CD',
+      'Até 2 rodadas de revisão',
+      'Entrega em múltiplos formatos (WAV, MP3, stems opcionais)'
     ],
+
+    stylesNote: 'PRODUZ QUALQUER ESTILO: MPB, Samba, Forró, Pop, Rock, Jazz, Blues, Eletrônico, Árabe, Indiano, Africano, Orquestral, Experimental. Sem restrições de gênero ou instrumentação.',
+
+    addOns: [
+      { name: 'Arte de capa single', price: 'R$ 500' },
+      { name: 'Arte de capa EP', price: 'R$ 800' },
+      { name: 'Arte de capa álbum completo', price: 'R$ 1.200' },
+      { name: 'Lyric video básico', price: 'Conforme minutagem de vídeo' },
+      { name: 'Composição original (letra + melodia + harmonia)', price: 'R$ 1.500' }
+    ],
+
     whoItsFor: [
-      'Artistas que querem videoclipes impactantes sem custo de produção tradicional',
-      'Bandas independentes buscando conteúdo visual profissional',
-      'Selos e gravadoras que precisam de volume de entregas',
-      'Cantores virtuais e projetos de personagens digitais',
-      'Músicos que valorizam narrativa visual criativa',
-      'Marcas que buscam inovação criativa'
+      'Compositores sem estrutura de gravação',
+      'Artistas independentes lançando álbuns',
+      'Produtoras musicais terceirizando produção',
+      'Projetos de cinema e audiovisual',
+      'Empresas (jingles, vídeos institucionais)',
+      'Criadores de conteúdo para YouTube/TikTok'
     ],
+
     benefits: [
-      'Custo muito inferior a produções tradicionais (até 80% de economia)',
-      'Resultados visuais únicos e impossíveis de replicar filmando',
-      'Controle total da narrativa e estética visual',
-      'Portfolio comprovado: Zé Ramalho, Scarlett Finch, PUTZ!',
-      'Experiência musical desde 1987 garante sincronização perfeita',
-      'Domínio completo: da música à finalização audiovisual',
-      'Entrega rápida sem comprometer qualidade (2-4 semanas)'
+      'Qualidade profissional sem investir em estúdio',
+      'Flexibilidade criativa total nos arranjos',
+      'Prazo: 2-6 semanas por faixa completa',
+      'Revisões ilimitadas até aprovação final',
+      'Produção de álbuns completos',
+      'Qualquer estilo ou instrumentação'
     ],
+
     realExamples: [
-      'Zé Ramalho - Jardim das Acácias (IA generativa completa)',
-      'Zé Ramalho - Canção Agalopada (narrativa visual complexa)',
-      'Zé Ramalho - Martelo Armagedom (produção híbrida)',
-      'Scarlett Finch - múltiplos clipes com personagem virtual',
-      'PUTZ! - covers de alta fidelidade (Peter Gabriel, Lô Borges)'
+      'Antologia 50 Anos - Zé Ramalho: 22 faixas produzidas',
+      'Estilos variados: Blues, Árabe, Indiano, Regional',
+      'Técnicas híbridas: tradicional + MIDI + IA'
+    ],
+
+    technologies: [
+      'Logic Pro X', 'Ableton Live', 'Suno AI', 'Udio',
+      'ElevenLabs', 'iZotope Suite', 'Native Instruments'
     ]
   },
+
+  // ============================================
+  // SERVIÇO 3: POCKET SHOWS & APRESENTAÇÕES MUSICAIS
+  // ============================================
   {
     id: '3',
-    title: 'Música & Produção Musical',
-    icon: 'Music',
-    category: 'music-production',
-    description: 'Produção musical híbrida combinando técnicas tradicionais e IA. Arranjos, trilhas, bases e transformação de gravações simples em material profissional.',
-    detailedDescription: 'Produção musical completa utilizando técnicas tradicionais e ferramentas de IA como apoio técnico. Recriação de arranjos complexos, produção de trilhas originais, transformação de demos em material com qualidade profissional. Uso de Suno e outras ferramentas como parte do processo criativo, não como substituição.',
+    title: 'Pocket Shows & Apresentações Musicais',
+    icon: 'Mic2',
+    tagline: 'Performance ao vivo profissional com flauta e sax',
+    category: 'live-performance',
+    description: 'Apresentações musicais ao vivo: flauta transversal, sax tenor, sax soprano, com bases pré-gravadas ou playback profissional. Repertório customizado conforme o evento. Equipamento de som e luz pode ser incluído ou o cliente pode fornecer.',
+    detailedDescription: 'Performances musicais ao vivo profissionais. Instrumentos: flauta transversal, saxofone tenor e soprano. Formato com bases gravadas ou playback. Anos de experiência: banda de Zé Ramalho desde 1995, Sandra de Sá, Paulo Moura. Músico profissional desde 1987.',
+
+    pricing: {
+      model: 'por hora',
+      unit: '/hora de show',
+      ranges: [
+        {
+          name: 'Cachê Artístico (SEM equipamento)',
+          price: 'R$ 2.500 - 5.500',
+          description: 'Apenas a performance. Cliente fornece equipamento adequado ou contrata separadamente.',
+          breakdown: [
+            '1 hora: R$ 2.500',
+            '1h30min: R$ 3.200',
+            '2 horas: R$ 4.000',
+            '3 horas: R$ 5.500'
+          ]
+        }
+      ],
+      equipment: {
+        note: 'Se o local NÃO tem equipamento adequado, posso providenciar:',
+        packages: [
+          {
+            name: 'Pacote Som Básico (até 80 pessoas)',
+            price: 'R$ 1.800',
+            includes: '2x caixas P.A., mesa digital, 3x microfones, cabos, técnico, transporte'
+          },
+          {
+            name: 'Pacote Som Profissional (80-200 pessoas)',
+            price: 'R$ 4.400',
+            includes: '4x caixas P.A., 2x subwoofers, mesa profissional, 4x microfones, monitores, técnico experiente'
+          },
+          {
+            name: 'Pacote Luz Básica',
+            price: 'R$ 700',
+            includes: '4x refletores LED RGB, controlador DMX, tripés'
+          },
+          {
+            name: 'Pacote Luz Profissional',
+            price: 'R$ 2.500',
+            includes: '8x refletores LED, 4x moving heads, mesa DMX, operador de luz'
+          }
+        ]
+      },
+      examples: [
+        {
+          description: 'Evento corporativo 1h (com equipamento próprio)',
+          calculation: 'Cachê 1h: R$ 2.500 + Equipamento: R$ 0',
+          total: 'R$ 2.500'
+        },
+        {
+          description: 'Casamento 1h30 (preciso levar som e luz)',
+          calculation: 'Cachê 1h30: R$ 3.200 + Som Profissional: R$ 4.400 + Luz Básica: R$ 700',
+          total: 'R$ 8.300'
+        },
+        {
+          description: 'Show 2h com produção completa',
+          calculation: 'Cachê 2h: R$ 4.000 + Som Pro: R$ 4.400 + Luz Pro: R$ 2.500',
+          total: 'R$ 10.900'
+        }
+      ]
+    },
+
     whatsIncluded: [
-      'Produção musical com técnicas tradicionais + IA',
-      'Recriação e rearranjo de músicas existentes',
-      'Trilhas sonoras e bases instrumentais',
-      'Transformação de gravações simples em material profissional',
-      'Uso de ferramentas como Suno como apoio técnico',
-      'Conteúdos musicais para vídeos, podcasts e produtos'
+      'Performance ao vivo (flauta transversal, sax tenor/soprano)',
+      'Bases pré-gravadas profissionais OU playback',
+      'Repertório customizado (até 3 músicas exclusivas)',
+      'Ensaio e preparação',
+      'Soundcheck (chego 1h antes quando opero som)',
+      'Deslocamento incluso até 50km do Rio de Janeiro'
     ],
+
+    equipmentRequired: {
+      title: 'Equipamento Mínimo Necessário (se cliente fornecer):',
+      items: [
+        '2x Caixas P.A. ativas (mínimo 12", ideal 15")',
+        '1x Mesa de som (mínimo 8 canais)',
+        '3x Microfones (1 voz, 1 flauta, 1 sax)',
+        '3-4x Pedestais de microfone',
+        'Cabos XLR e P10 necessários',
+        '1x DI Box (para conectar bases/playback)',
+        'Monitoração (caixa de retorno ou in-ear)'
+      ]
+    },
+
+    addOns: [
+      { name: 'Deslocamento 51-100km', price: '+R$ 250' },
+      { name: 'Deslocamento 101-200km', price: '+R$ 500' },
+      { name: 'Deslocamento acima 200km', price: 'Sob consulta' },
+      { name: 'Músico adicional (violão/guitarra/teclado/percussão/vocal)', price: 'R$ 500-1.000 cada' },
+      { name: 'Registro em vídeo (1 câmera, gravação bruta)', price: 'R$ 800' },
+      { name: 'Registro em vídeo editado', price: 'R$ 1.500' },
+      { name: 'Registro profissional (2-3 câmeras)', price: 'R$ 3.000' }
+    ],
+
     whoItsFor: [
-      'Artistas que precisam de produção musical acessível',
-      'Criadores de conteúdo que necessitam trilhas originais',
-      'Projetos que exigem qualidade profissional com orçamento reduzido'
+      'Eventos corporativos',
+      'Casamentos e festas',
+      'Restaurantes e lounges',
+      'Lançamentos de produtos',
+      'Feiras e congressos',
+      'Eventos culturais'
     ],
+
     benefits: [
-      'Qualidade profissional com custo otimizado',
-      'Combinação de expertise musical e técnica',
-      'Processos adaptativos a diferentes orçamentos',
-      'Entregas rápidas sem comprometer resultado'
+      'Músico profissional com 37 anos de carreira',
+      'Repertório versátil e customizável',
+      'Equipamento profissional disponível',
+      'Auto-operado (economia) ou com técnico (qualidade máxima)',
+      'Flexibilidade de duração (1h até 3h)',
+      'Experiência com artistas consagrados (Zé Ramalho, Sandra de Sá, Paulo Moura)'
     ],
+
     realExamples: [
-      'Produção musical para Scarlett Finch',
-      'Recriações de clássicos pela banda PUTZ!'
+      'Toco com Zé Ramalho desde 1995',
+      'Toquei com Sandra de Sá entre 1993-1994',
+      'Integrei orquestra de sax de Paulo Moura (1990-1995)',
+      'Músico profissional desde 1987'
     ]
   },
+
+  // ============================================
+  // SERVIÇO 4: IMAGENS COM IA GENERATIVA
+  // ============================================
   {
     id: '4',
-    title: 'Performance Musical & Pocket Shows',
-    icon: 'Mic2',
-    category: 'live-performance',
-    description: 'Apresentações musicais instrumentais ao vivo. Saxofone (tenor/soprano), flauta e formato pocket show para eventos corporativos, culturais e institucionais.',
-    detailedDescription: 'Performances musicais ao vivo em formato pocket show. Instrumentos: saxofone tenor, saxofone soprano e flauta transversal. Formato com playback profissional, possibilidade de vocal pontual. Repertório flexível adaptado ao tipo de evento. Experiência em eventos corporativos, culturais e privados.',
-    whatsIncluded: [
-      'Performance instrumental ao vivo (saxofone tenor/soprano e flauta)',
-      'Formato pocket show com playback profissional',
-      'Possibilidade de vocal pontual em músicas específicas',
-      'Repertório adaptado ao tipo de evento',
-      'Equipamento de som próprio (opcional)',
-      'Ensaio e preparação customizada'
-    ],
-    whoItsFor: [
-      'Eventos corporativos que buscam música instrumental de qualidade',
-      'Eventos culturais e institucionais',
-      'Casamentos, festas e eventos privados',
-      'Estabelecimentos que desejam música ao vivo diferenciada'
-    ],
-    benefits: [
-      'Formato compacto e profissional',
-      'Músico com formação técnica (bacharelado em flauta)',
-      'Versatilidade de repertório e instrumentos',
-      'Apresentação adequada a diferentes públicos e ambientes'
-    ],
-    realExamples: [
-      'Banda de Zé Ramalho (desde 1995)',
-      'Sandra de Sá (1993-1994)',
-      'Orquestra de Sax de Paulo Moura (1990-1995)'
-    ]
-  },
-  {
-    id: '5',
-    title: 'Personagens Digitais & Celebridades Virtuais',
-    icon: 'Sparkles',
-    category: 'digital-character',
-    description: 'Criação de personagens digitais completos com IA: identidade visual, voz, personalidade e presença multiplataforma. Do conceito ao lançamento.',
-    detailedDescription: 'Desenvolvimento completo de personagens digitais e influencers virtuais utilizando IA. Criação de identidade visual consistente, síntese de voz personalizada, definição de personalidade e narrativa, presença em múltiplas plataformas (YouTube, Instagram, TikTok). Aplicável a campanhas de marca, produtos de entretenimento ou projetos artísticos.',
-    whatsIncluded: [
-      'Criação de identidade visual completa do personagem',
-      'Síntese de voz personalizada e consistente',
-      'Definição de personalidade, tom e narrativa',
-      'Presença multiplataforma (YouTube, Instagram, TikTok, etc.)',
-      'Conteúdo audiovisual de lançamento',
-      'Consultoria em estratégia de presença digital'
-    ],
-    whoItsFor: [
-      'Marcas que desejam criar embaixadores virtuais',
-      'Projetos de entretenimento digital inovadores',
-      'Campanhas que buscam diferenciação e engajamento',
-      'Artistas explorando novas formas de expressão'
-    ],
-    benefits: [
-      'Controle total sobre a personalidade e imagem da celebridade',
-      'Consistência absoluta em todas as plataformas',
-      'Diferenciação criativa e inovação técnica',
-      'Case comprovado: Scarlett Finch (cantora virtual ativa)'
-    ],
-    realExamples: [
-      'Scarlett Finch: cantora pop virtual britânica com presença multiplataforma',
-      'Múltiplos videoclipes e conteúdo digital consistente'
-    ]
-  },
-  {
-    id: '6',
     title: 'Arte Generativa para Produtos',
     icon: 'Palette',
+    tagline: 'Arte digital de alta qualidade para qualquer aplicação',
     category: 'visual-design',
-    description: 'Criação de estampas e designs exclusivos utilizando IA generativa para aplicação em produtos físicos. Lojas comerciais ativas na Redbubble e Colab55 com múltiplas artes publicadas e à venda. Ideal para marcas que buscam identidade visual única sem os custos de um designer tradicional.',
-    detailedDescription: 'Criação profissional de estampas e designs com IA generativa para produtos físicos. Lojas comerciais comprovadamente ativas: Redbubble e Colab55 com artes já publicadas e à venda. Identidade visual única, composição original, curadoria especializada. Pricing: a partir de R$ 800 (pacote de 10 artes). Delivery: 1-2 semanas.',
+    description: 'Criação de imagens usando IA generativa (Midjourney, Stable Diffusion) com pós-edição profissional no Photoshop. Trabalho com geração de imagens originais, não faço gravação fotográfica. Ideal para marketing, redes sociais, capas de álbum, produtos e branding.',
+    detailedDescription: 'Geração de imagens profissionais com IA + pós-edição Photoshop. Estampas únicas, arte conceitual, capas de álbum, marketing visual. Lojas comprovadamente ativas: Redbubble e Colab55. Pricing transparente por quantidade com desconto progressivo.',
+
+    pricing: {
+      model: 'por quantidade',
+      unit: '/imagem de alta qualidade',
+      ranges: [
+        {
+          name: 'Simples',
+          price: 'R$ 80 - 100',
+          description: 'Posts de redes sociais, conteúdo para feed, ilustrações simples.',
+          iterations: '1-2 iterações até aprovação'
+        },
+        {
+          name: 'Médio',
+          price: 'R$ 120 - 150',
+          description: 'Conteúdo de marketing, arte conceitual, personagens.',
+          iterations: '3-5 iterações + pós-edição Photoshop'
+        },
+        {
+          name: 'Complexo',
+          price: 'R$ 180 - 200',
+          description: 'Capas de álbum/single, key art, imagens para produtos/merchandise.',
+          iterations: 'Múltiplas iterações + edição avançada + alta resolução para impressão'
+        }
+      ],
+      discounts: [
+        'Pack 10 imagens: 10% desconto',
+        'Pack 20 imagens: 15% desconto',
+        'Pack 50 imagens: 20% desconto',
+        'Pack 100+ imagens: 25% desconto'
+      ],
+      examples: [
+        {
+          description: 'Pack 10 imagens médias para Instagram',
+          calculation: '10 × R$ 135 × 0,90 (desconto)',
+          total: 'R$ 1.215'
+        },
+        {
+          description: 'Pack 50 imagens simples (feed mensal)',
+          calculation: '50 × R$ 90 × 0,80 (desconto)',
+          total: 'R$ 3.600'
+        },
+        {
+          description: 'Capa de álbum profissional (1 imagem complexa)',
+          calculation: '1 × R$ 600 (inclui múltiplas variações)',
+          total: 'R$ 600'
+        }
+      ]
+    },
+
     whatsIncluded: [
-      'Criação de estampas e artes com IA generativa',
-      'Design para aplicação em roupas, objetos e produtos',
-      'Desenvolvimento de identidade visual e padrões',
-      'Curadoria e refinamento estético',
-      'Adaptação para diferentes formatos e suportes',
-      'Consultoria em aplicação de IA para design'
+      'Geração de imagens com IA generativa de última geração',
+      'Múltiplas variações até aprovação',
+      'Pós-edição no Photoshop (quando aplicável)',
+      'Entrega em alta resolução',
+      'Formatos otimizados para uso pretendido',
+      'Arquivos para web e/ou impressão'
     ],
+
+    useCases: [
+      {
+        name: 'Influencer Virtual',
+        description: 'Setup inicial 50 imagens: R$ 4.500-6.000',
+        details: 'Criação de personagem consistente + biblioteca inicial'
+      },
+      {
+        name: 'Conteúdo para Redes Sociais',
+        description: 'Pack mensal 15-30 posts: R$ 1.200-2.200',
+        details: 'Posts para Instagram, Facebook, LinkedIn'
+      },
+      {
+        name: 'Capa de Álbum Completo',
+        description: 'Capa + contracapa + encarte: R$ 1.500',
+        details: 'Arte completa para lançamento musical'
+      },
+      {
+        name: 'Marketing e Campanhas',
+        description: 'Conforme quantidade e complexidade',
+        details: 'Banners, ads, materiais promocionais'
+      }
+    ],
+
     whoItsFor: [
-      'Marcas de vestuário que buscam estampas exclusivas',
-      'Empreendedores iniciando lojas de print-on-demand',
-      'Empresas que precisam de volume de artes visuais',
-      'Artistas querendo explorar IA como ferramenta criativa',
-      'Projetos que valorizam identidade visual única'
+      'Artistas e músicos (capas de álbum)',
+      'Empresas (marketing e branding)',
+      'Influencers e criadores de conteúdo',
+      'E-commerces (imagens de produtos conceituais)',
+      'Agências de publicidade',
+      'Projetos de personagens virtuais'
     ],
+
     benefits: [
-      'Custo por arte muito inferior ao design tradicional',
-      'Velocidade de produção: múltiplas variações em dias',
+      'Custo muito inferior ao design tradicional',
+      'Velocidade: múltiplas variações em dias',
       'Estilo único e difícil de replicar',
-      'Portfolio ativo: lojas na Redbubble e Colab55',
+      'Flexibilidade criativa total',
       'Expertise em composição visual e curadoria',
-      'Artes prontas para aplicação em produtos'
+      'Artes prontas para aplicação digital ou impressa'
     ],
+
     realExamples: [
       'Loja ativa Redbubble: www.redbubble.com/people/toticavalcanti',
-      'Loja ativa Colab55: produtos já publicados e à venda',
-      'Múltiplas categorias: camisetas, canecas, adesivos, capinhas, almofadas'
+      'Loja ativa Colab55: produtos publicados e à venda',
+      'Scarlett Finch: 100+ imagens de personagem virtual',
+      'Capas de álbum e singles diversos'
+    ],
+
+    technologies: [
+      'Midjourney', 'Stable Diffusion', 'DALL-E',
+      'Adobe Photoshop', 'Lightroom', 'Illustrator'
     ]
   },
+
+  // ============================================
+  // SERVIÇO 5: DESENVOLVIMENTO WEB FULL-STACK
+  // ============================================
+  {
+    id: '5',
+    title: 'Desenvolvimento Web Full-Stack',
+    icon: 'Code2',
+    tagline: 'Sites e aplicações modernas que convertem',
+    category: 'software',
+    description: 'Desenvolvimento completo de aplicações web profissionais: desde sites institucionais até e-commerces e plataformas complexas. Código limpo, performance otimizada, SEO avançado. Stack moderna: Next.js, React, Node.js, MongoDB.',
+    detailedDescription: 'Desenvolvimento end-to-end de aplicações web: planejamento, arquitetura, UI/UX, frontend, backend, banco de dados, deploy produção. Performance 95+ Google Lighthouse, SEO avançado, código manutenível. Cases reais: Site Zé Ramalho, este portfolio.',
+
+    pricing: {
+      model: 'por projeto',
+      unit: 'conforme escopo',
+      ranges: [
+        {
+          name: 'Landing Page',
+          price: 'R$ 3.000 - 5.000',
+          description: '1 página única, design responsivo, formulário de contato.',
+          timeline: '1-2 semanas'
+        },
+        {
+          name: 'Site Institucional',
+          price: 'R$ 8.000 - 15.000',
+          description: '5-10 páginas, CMS básico, blog, SEO avançado.',
+          timeline: '3-5 semanas'
+        },
+        {
+          name: 'E-commerce',
+          price: 'R$ 20.000 - 40.000',
+          description: 'Loja completa, carrinho, pagamentos, admin, estoque.',
+          timeline: '6-10 semanas'
+        },
+        {
+          name: 'Plataforma Customizada',
+          price: 'R$ 40.000+',
+          description: 'Sistema complexo, dashboard, APIs, integrações.',
+          timeline: '10-20 semanas'
+        }
+      ],
+      examples: [
+        {
+          description: 'Site institucional 7 páginas + blog',
+          calculation: 'Escopo médio',
+          total: 'R$ 12.000'
+        },
+        {
+          description: 'Landing page otimizada para conversão',
+          calculation: 'Escopo simples',
+          total: 'R$ 4.000'
+        },
+        {
+          description: 'E-commerce 50 produtos + admin',
+          calculation: 'Escopo médio-alto',
+          total: 'R$ 28.000'
+        }
+      ]
+    },
+
+    whatsIncluded: [
+      'Planejamento e arquitetura de software',
+      'UI/UX Design responsivo e moderno',
+      'Desenvolvimento frontend (Next.js/React)',
+      'Backend e APIs escaláveis (Node.js)',
+      'Integração com bancos de dados',
+      'SEO otimizado',
+      'Performance 95+ (Google Lighthouse)',
+      'Deploy em produção',
+      '30-90 dias de suporte pós-lançamento',
+      'Documentação técnica'
+    ],
+
+    addOns: [
+      { name: 'Logo e identidade visual', price: 'R$ 2.000-5.000' },
+      { name: 'Sistema de busca avançado', price: '+R$ 2.000' },
+      { name: 'Integração com ERP/CRM', price: '+R$ 5.000-15.000' },
+      { name: 'Multi-idioma (i18n)', price: '+R$ 2.000' },
+      { name: 'Manutenção mensal básica', price: 'R$ 800/mês' },
+      { name: 'Manutenção mensal profissional', price: 'R$ 1.500/mês' }
+    ],
+
+    whoItsFor: [
+      'Empresas que precisam de presença digital profissional',
+      'Artistas e profissionais liberais',
+      'E-commerces',
+      'Startups',
+      'Agências de marketing'
+    ],
+
+    benefits: [
+      'Performance superior (95+ Google Lighthouse)',
+      'SEO otimizado desde o início',
+      'Código escalável e manutenível',
+      'Design responsivo para todos dispositivos',
+      'Segurança e proteção de dados (LGPD)',
+      'Suporte técnico dedicado'
+    ],
+
+    realExamples: [
+      'Site oficial Zé Ramalho: zeramalho.com.br',
+      'Performance 95+, SEO otimizado',
+      'Next.js + MongoDB + Node.js em produção',
+      'Este portfolio: toticavalcanti.com'
+    ],
+
+    technologies: [
+      'Next.js 14+', 'React', 'TypeScript', 'Tailwind CSS',
+      'Node.js', 'MongoDB', 'PostgreSQL', 'Vercel', 'AWS'
+    ]
+  },
+
+  // ============================================
+  // SERVIÇO 6: AUTOMAÇÃO EMPRESARIAL COM IA
+  // ============================================
+  {
+    id: '6',
+    title: 'Automação Empresarial com IA',
+    icon: 'Sparkles',
+    tagline: 'Reduza custos e aumente eficiência com inteligência artificial',
+    category: 'ai',
+    description: 'Implementação de soluções de IA para automatizar processos empresariais: chatbots inteligentes, análise de documentos, geração de conteúdo, análise preditiva. Consultoria completa desde arquitetura até deploy.',
+    detailedDescription: 'Soluções de IA empresarial customizadas: chatbots 24/7, classificação/extração de documentos, geração de conteúdo em escala, análise preditiva, automação de workflows. Consultoria + desenvolvimento + treinamento de equipe. ROI comprovado em 6-12 meses.',
+
+    pricing: {
+      model: 'por projeto',
+      unit: 'conforme escopo',
+      ranges: [
+        {
+          name: 'Consultoria + PoC',
+          price: 'R$ 5.000 - 10.000',
+          description: 'Diagnóstico completo + Prova de Conceito funcional.',
+          timeline: '2-3 semanas'
+        },
+        {
+          name: 'Implementação Básica',
+          price: 'R$ 20.000 - 35.000',
+          description: 'Chatbot, classificador de docs, gerador de conteúdo.',
+          timeline: '6-10 semanas'
+        },
+        {
+          name: 'Implementação Completa',
+          price: 'R$ 50.000 - 80.000',
+          description: 'Solução multi-agente, integrações complexas, customização avançada.',
+          timeline: '12-16 semanas'
+        }
+      ],
+      examples: [
+        {
+          description: 'Chatbot atendimento 24/7',
+          calculation: 'Implementação básica',
+          total: 'R$ 25.000'
+        },
+        {
+          description: 'Sistema análise de contratos + chatbot',
+          calculation: 'Implementação completa',
+          total: 'R$ 65.000'
+        },
+        {
+          description: 'Consultoria + PoC (3 semanas)',
+          calculation: 'Diagnóstico inicial',
+          total: 'R$ 8.000'
+        }
+      ]
+    },
+
+    whatsIncluded: [
+      'Análise de processos e identificação de oportunidades',
+      'Desenvolvimento de soluções customizadas',
+      'Integração com sistemas existentes',
+      'Treinamento de equipe técnica e usuários',
+      'Documentação técnica completa',
+      'Suporte inicial (30-60 dias)',
+      'Monitoramento e ajustes finos'
+    ],
+
+    useCases: [
+      'Chatbots inteligentes para atendimento 24/7',
+      'Análise automatizada de documentos e contratos',
+      'Classificação e extração de dados estruturados',
+      'Geração de conteúdo personalizado em escala',
+      'Análise preditiva e forecasting',
+      'Automação de workflows complexos'
+    ],
+
+    whoItsFor: [
+      'Empresas de médio e grande porte',
+      'Startups em crescimento',
+      'E-commerces que buscam otimização',
+      'Empresas de serviços com alta demanda',
+      'CTOs planejando transformação digital'
+    ],
+
+    benefits: [
+      'Redução de até 70% em tarefas repetitivas',
+      'ROI comprovado em 6-12 meses',
+      'Escalabilidade sem aumento proporcional de custos',
+      'Insights baseados em dados reais',
+      'Vantagem competitiva com tecnologia de ponta',
+      'Liberação de equipe para tarefas estratégicas'
+    ],
+
+    technologies: [
+      'OpenAI GPT-4', 'Anthropic Claude', 'LangChain',
+      'Vector Databases', 'Python', 'Node.js', 'FastAPI'
+    ]
+  }
 ];
+
 
 // Blog Posts (placeholder for now)
 export const posts: Post[] = [];
@@ -439,19 +909,19 @@ export const aboutInfo = {
   bio: 'Ciência da Computação como base para a criação de sistemas, automações e projetos digitais, visuais e audiovisuais.',
   extendedBio: [
     'Dupla formação: Bacharel em Ciência da Computação e Bacharel em Música.',
-    
+
     'Desenvolvo sistemas e aplicações full-stack: frontend, backend, banco de dados, infraestrutura e DevOps.',
-    
+
     'Stack técnica: Golang (Fiber), Python (Django), Node.js, Next.js, MongoDB.',
-    
+
     'Músico profissional desde 1987.',
-    
+
     'Toco com Zé Ramalho desde 1995, toquei com Sandra de Sá entre 1993 e 1994, e integrei a orquestra de sax fundada por Paulo Moura entre 1990 e 1995.',
-    
+
     'Utilizo inteligência artificial aplicada como ferramenta em desenvolvimento de software, automação, produção musical e criação audiovisual.',
-    
+
     'Projetos atuais: site oficial de Zé Ramalho (Next.js + MongoDB + Node.js), este portfólio (Next.js), videoclipes com IA generativa, personagem virtual Scarlett Finch, plataforma educacional Código Fluente.',
-    
+
     'Resultado: sistemas que funcionam e projetos que entregam valor.'
   ],
   avatar: 'https://github.com/toticavalcanti/toti-assets/blob/master/toti-studio.png?raw=true',

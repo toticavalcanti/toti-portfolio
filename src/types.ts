@@ -16,16 +16,73 @@ export interface Project {
   date: string;
 }
 
+// Pricing Types
+export interface PricingRange {
+  name: string;
+  price: string;
+  description: string;
+  ideal?: string;
+  breakdown?: string[];
+  timeline?: string;
+  iterations?: string;
+}
+
+export interface PricingExample {
+  description: string;
+  calculation: string;
+  total: string;
+}
+
+export interface EquipmentPackage {
+  name: string;
+  price: string;
+  includes: string;
+}
+
+export interface AddOn {
+  name: string;
+  price: string;
+}
+
+export interface UseCase {
+  name: string;
+  description: string;
+  details: string;
+}
+
+export interface Pricing {
+  model: string; // 'por minuto', 'por hora', 'por quantidade', 'por projeto'
+  unit: string;
+  ranges: PricingRange[];
+  discounts?: string[];
+  equipment?: {
+    note: string;
+    packages: EquipmentPackage[];
+  };
+  examples: PricingExample[];
+}
+
+// Service Type (updated with pricing)
 export interface Service {
   id: string;
   title: string;
   icon: string;
+  tagline?: string;
   description: string;
+  pricing?: Pricing;
   whatsIncluded: string[];
+  stylesNote?: string; // For music production
+  equipmentRequired?: {
+    title: string;
+    items: string[];
+  }; // For pocket shows
+  addOns?: AddOn[];
+  useCases?: (string | UseCase)[];
   whoItsFor: string[];
   benefits: string[];
-  category?: 'software' | 'ai' | 'audiovisual' | 'music-production' | 'live-performance' | 'digital-character' | 'visual-design';
   realExamples?: string[];
+  technologies?: string[];
+  category?: 'software' | 'ai' | 'audiovisual' | 'music-production' | 'live-performance' | 'digital-character' | 'visual-design';
   detailedDescription?: string;
 }
 
