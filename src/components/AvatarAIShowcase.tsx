@@ -16,6 +16,7 @@ interface Video {
   instagramEmbed?: string;
   title: string;
   description: string;
+  aspectRatio: '9:16' | '16:9'; // vertical or horizontal
 }
 
 export default function AvatarAIShowcase() {
@@ -28,7 +29,8 @@ export default function AvatarAIShowcase() {
       instagramUrl: 'https://www.instagram.com/p/DMoNmEou1pw/',
       instagramEmbed: 'https://www.instagram.com/p/DMoNmEou1pw/embed',
       title: 'Avatar apresentando conceitos de programação',
-      description: 'Modelo virtual realista explicando desenvolvimento web'
+      description: 'Modelo virtual realista explicando desenvolvimento web',
+      aspectRatio: '9:16'
     },
     {
       id: '2',
@@ -36,7 +38,8 @@ export default function AvatarAIShowcase() {
       instagramUrl: 'https://www.instagram.com/p/DMT5SwcPH88/',
       instagramEmbed: 'https://www.instagram.com/p/DMT5SwcPH88/embed',
       title: 'Divulgação de curso online',
-      description: 'Porta-voz virtual para educação e cursos'
+      description: 'Porta-voz virtual para educação e cursos',
+      aspectRatio: '9:16'
     },
     {
       id: '3',
@@ -44,7 +47,8 @@ export default function AvatarAIShowcase() {
       instagramUrl: 'https://www.instagram.com/p/DL6GvGCtkyT/',
       instagramEmbed: 'https://www.instagram.com/p/DL6GvGCtkyT/embed',
       title: 'Anúncio de produto tech',
-      description: 'Avatar profissional para marketing de produtos'
+      description: 'Avatar profissional para marketing de produtos',
+      aspectRatio: '9:16'
     },
     {
       id: '4',
@@ -52,39 +56,8 @@ export default function AvatarAIShowcase() {
       instagramUrl: 'https://www.instagram.com/p/DMOoJTnPuAR/',
       instagramEmbed: 'https://www.instagram.com/p/DMOoJTnPuAR/embed',
       title: 'Conteúdo educacional',
-      description: 'Apresentador virtual para plataformas de ensino'
-    },
-    {
-      id: '5',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/Cl59qxOrx85/',
-      instagramEmbed: 'https://www.instagram.com/p/Cl59qxOrx85/embed',
-      title: 'Logo Reveal Código Fluente #1',
-      description: 'Animação profissional de logo com IA'
-    },
-    {
-      id: '6',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/CoEFWZ8sop_/',
-      instagramEmbed: 'https://www.instagram.com/p/CoEFWZ8sop_/embed',
-      title: 'Logo Reveal Código Fluente #2',
-      description: 'Design de marca animado com elementos visuais'
-    },
-    {
-      id: '7',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/Cq88Q5eMpCP/',
-      instagramEmbed: 'https://www.instagram.com/p/Cq88Q5eMpCP/embed',
-      title: 'Logo Reveal Código Fluente #3',
-      description: 'Apresentação visual da identidade da marca'
-    },
-    {
-      id: '8',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/Cvlbd7-PC7u/',
-      instagramEmbed: 'https://www.instagram.com/p/Cvlbd7-PC7u/embed',
-      title: 'Logo Reveal Código Fluente #4',
-      description: 'Motion graphics e animação de logo'
+      description: 'Apresentador virtual para plataformas de ensino',
+      aspectRatio: '9:16'
     }
   ];
 
@@ -255,8 +228,11 @@ export default function AvatarAIShowcase() {
                       {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
                         <iframe
                           src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
-                          className="w-full h-full aspect-[9/16]"
-                          style={{ maxWidth: '400px', height: '600px' }}
+                          className={`w-full h-full ${currentVideo.aspectRatio === '16:9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}`}
+                          style={currentVideo.aspectRatio === '16:9' 
+                            ? { maxWidth: '100%', height: 'auto', maxHeight: '450px' } 
+                            : { maxWidth: '400px', height: '600px' }
+                          }
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
@@ -264,8 +240,11 @@ export default function AvatarAIShowcase() {
                       ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
                         <iframe
                           src={currentVideo.instagramEmbed}
-                          className="w-full h-full"
-                          style={{ maxWidth: '400px', height: '600px' }}
+                          className={`w-full h-full ${currentVideo.aspectRatio === '16:9' ? 'aspect-[16/9]' : ''}`}
+                          style={currentVideo.aspectRatio === '16:9' 
+                            ? { maxWidth: '100%', height: 'auto', maxHeight: '450px', minHeight: '300px' } 
+                            : { maxWidth: '400px', height: '600px' }
+                          }
                           frameBorder="0"
                           scrolling="no"
                           allow="encrypted-media"
