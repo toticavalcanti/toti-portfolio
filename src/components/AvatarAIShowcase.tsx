@@ -212,27 +212,24 @@ export default function AvatarAIShowcase() {
           >
             {/* Player com Setas */}
             <div className="relative group">
-              {/* Container do Vídeo - centralizado */}
+              {/* Container do Vídeo - tamanho fixo para evitar layout shift */}
               <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg">
-                {/* Vídeo centralizado com aspect ratio correto */}
-                <div className="w-full flex items-center justify-center" style={{ minHeight: '500px', maxHeight: '600px' }}>
-                  <AnimatePresence mode="wait">
+                {/* Container com tamanho fixo */}
+                <div className="w-full relative" style={{ height:'600px' }}>
+                  <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={activeVideoIndex}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-full h-full flex items-center justify-center"
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 flex items-center justify-center"
                     >
                       {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
                         <iframe
                           src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
-                          className={`w-full h-full ${currentVideo.aspectRatio === '16:9' ? 'aspect-[16/9]' : 'aspect-[9/16]'}`}
-                          style={currentVideo.aspectRatio === '16:9' 
-                            ? { maxWidth: '100%', height: 'auto', maxHeight: '450px' } 
-                            : { maxWidth: '400px', height: '600px' }
-                          }
+                          className="w-full h-full"
+                          style={{ maxWidth: '400px', height: '600px' }}
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
@@ -240,11 +237,8 @@ export default function AvatarAIShowcase() {
                       ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
                         <iframe
                           src={currentVideo.instagramEmbed}
-                          className={`w-full h-full ${currentVideo.aspectRatio === '16:9' ? 'aspect-[16/9]' : ''}`}
-                          style={currentVideo.aspectRatio === '16:9' 
-                            ? { maxWidth: '100%', height: 'auto', maxHeight: '450px', minHeight: '300px' } 
-                            : { maxWidth: '400px', height: '600px' }
-                          }
+                          className="w-full h-full"
+                          style={{ maxWidth: '400px', height: '600px' }}
                           frameBorder="0"
                           scrolling="no"
                           allow="encrypted-media"
