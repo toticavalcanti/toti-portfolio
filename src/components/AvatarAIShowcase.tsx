@@ -213,40 +213,34 @@ export default function AvatarAIShowcase() {
             {/* Player com Setas */}
             <div className="relative group">
               {/* Container do Vídeo - tamanho fixo para evitar layout shift */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg">
-                {/* Container com tamanho fixo */}
-                <div className="w-full relative" style={{ height:'600px' }}>
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.div
-                      key={activeVideoIndex}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      {/* Wrapper fixo para evitar layout shift do iframe */}
-                      <div className="relative" style={{ width: '400px', height: '600px' }}>
-                        {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
-                          <iframe
-                            src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
-                            className="absolute inset-0 w-full h-full"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                        ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
-                          <iframe
-                            src={currentVideo.instagramEmbed}
-                            className="absolute inset-0 w-full h-full"
-                            frameBorder="0"
-                            scrolling="no"
-                            allow="encrypted-media"
-                          />
-                        ) : null}
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '100%', maxWidth: '450px', margin: '0 auto' }}>
+                {/* Container com tamanho fixo e overflow hidden */}
+                <div className="w-full relative overflow-hidden" style={{ height:'600px', width: '400px', margin: '0 auto' }}>
+                  {/* Renderização direta sem AnimatePresence */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Wrapper fixo para evitar layout shift do iframe */}
+                    <div className="relative overflow-hidden" style={{ width: '400px', height: '600px' }}>
+                      {currentVideo.type === 'youtube' && currentVideo.youtubeId ? (
+                        <iframe
+                          key={`youtube-${activeVideoIndex}`}
+                          src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
+                          className="absolute inset-0 w-full h-full"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : currentVideo.type === 'instagram' && currentVideo.instagramEmbed ? (
+                        <iframe
+                          key={`instagram-${activeVideoIndex}`}
+                          src={currentVideo.instagramEmbed}
+                          className="absolute inset-0 w-full h-full"
+                          frameBorder="0"
+                          scrolling="no"
+                          allow="encrypted-media"
+                        />
+                      ) : null}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Info do Vídeo - overlay no bottom */}
