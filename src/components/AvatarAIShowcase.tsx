@@ -24,38 +24,42 @@ export default function AvatarAIShowcase() {
   const videos: Video[] = [
     {
       id: '1',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/DMoNmEou1pw/',
-      instagramEmbed: 'https://www.instagram.com/p/DMoNmEou1pw/embed',
-      title: 'Avatar apresentando conceitos de programação',
-      description: 'Modelo virtual realista explicando desenvolvimento web',
+      type: 'youtube',
+      youtubeId: 'U1IDmFtDiaA',
+      title: 'Apresentadora Virtual AI',
+      description: 'Modelo feminina apresentando conteúdo profissional',
       aspectRatio: '9:16'
     },
     {
       id: '2',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/DMT5SwcPH88/',
-      instagramEmbed: 'https://www.instagram.com/p/DMT5SwcPH88/embed',
-      title: 'Divulgação de curso online',
-      description: 'Porta-voz virtual para educação e cursos',
+      type: 'youtube',
+      youtubeId: '10bnVh51QJk',
+      title: 'Apresentador Virtual AI',
+      description: 'Modelo masculino para campanhas publicitárias',
       aspectRatio: '9:16'
     },
     {
       id: '3',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/DL6GvGCtkyT/',
-      instagramEmbed: 'https://www.instagram.com/p/DL6GvGCtkyT/embed',
-      title: 'Anúncio de produto tech',
-      description: 'Avatar profissional para marketing de produtos',
+      type: 'youtube',
+      youtubeId: 'M1gBozt07vg',
+      title: 'Avatar Feminino AI',
+      description: 'Porta-voz virtual para marketing digital',
       aspectRatio: '9:16'
     },
     {
       id: '4',
-      type: 'instagram',
-      instagramUrl: 'https://www.instagram.com/p/DMOoJTnPuAR/',
-      instagramEmbed: 'https://www.instagram.com/p/DMOoJTnPuAR/embed',
-      title: 'Conteúdo educacional',
-      description: 'Apresentador virtual para plataformas de ensino',
+      type: 'youtube',
+      youtubeId: 'jlBDhAjsHGw',
+      title: 'Avatar Masculino AI',
+      description: 'Apresentador para conteúdo educacional',
+      aspectRatio: '9:16'
+    },
+    {
+      id: '5',
+      type: 'youtube',
+      youtubeId: '9t9yhJ_B0QE',
+      title: 'Modelo Virtual Feminina',
+      description: 'Avatar realista para divulgação de produtos',
       aspectRatio: '9:16'
     }
   ];
@@ -163,24 +167,40 @@ export default function AvatarAIShowcase() {
 
           {/* Lado Direito - Carrossel SIMPLES */}
           <div className="flex flex-col items-center gap-6">
-            {/* Container do Vídeo - FIXO 328px (tamanho do Instagram) */}
+            {/* Container do Vídeo - FIXO 328px */}
             <div className="relative group" style={{ width: '328px' }}>
-              {/* Iframe Instagram - tamanho FIXO */}
+              {/* Iframe - YouTube ou Instagram */}
               <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px' }}>
-                <iframe
-                  key={`video-${activeVideoIndex}`}
-                  src={currentVideo.instagramEmbed}
-                  style={{ 
-                    width: '328px',
-                    minHeight: '500px',
-                    maxHeight: '700px',
-                    border: 'none',
-                    display: 'block'
-                  }}
-                  frameBorder="0"
-                  scrolling="no"
-                  allow="encrypted-media"
-                />
+                {currentVideo.type === 'youtube' ? (
+                  <iframe
+                    key={`video-${activeVideoIndex}`}
+                    src={`https://www.youtube.com/embed/${currentVideo.youtubeId}`}
+                    style={{ 
+                      width: '328px',
+                      height: '583px',
+                      border: 'none',
+                      display: 'block'
+                    }}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <iframe
+                    key={`video-${activeVideoIndex}`}
+                    src={currentVideo.instagramEmbed}
+                    style={{ 
+                      width: '328px',
+                      minHeight: '500px',
+                      maxHeight: '700px',
+                      border: 'none',
+                      display: 'block'
+                    }}
+                    frameBorder="0"
+                    scrolling="no"
+                    allow="encrypted-media"
+                  />
+                )}
 
                 {/* Setas - aparecem no hover */}
                 <button
@@ -212,15 +232,15 @@ export default function AvatarAIShowcase() {
               </div>
             </div>
 
-            {/* Link Instagram */}
+            {/* Link YouTube */}
             <a
-              href="https://www.instagram.com/codigofluente/"
+              href="https://www.youtube.com/@codigofluente"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-foreground-secondary hover:text-primary transition-all"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
               Ver mais exemplos no @codigofluente
             </a>

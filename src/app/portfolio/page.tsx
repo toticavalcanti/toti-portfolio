@@ -5,7 +5,6 @@ import PageHeader from '@/components/PageHeader';
 import Container from '@/components/Container';
 import ProjectFilter from '@/components/ProjectFilter';
 import ProjectGrid from '@/components/ProjectGrid';
-import AvatarAIShowcase from '@/components/AvatarAIShowcase';
 import { projects } from '@/mockData';
 import { ProjectCategory } from '@/types';
 
@@ -44,11 +43,8 @@ export default function PortfolioPage() {
               </p>
             </div>
           )}
-        </Container>
-      </section>
-
-      {/* Avatar AI Showcase Section */}
-      <AvatarAIShowcase />
-    </>
-  );
+      </Container>
+    </section>
+  </>
+);
 }

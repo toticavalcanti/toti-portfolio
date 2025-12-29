@@ -5,7 +5,7 @@ export interface Project {
   title: string;
   subtitle?: string;
   description: string;
-  category: 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
+  category: 'clipe' | 'personagem' | 'avatar' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
   tags: string[];
   thumbnail: string;
   videoUrl?: string;
@@ -117,7 +117,7 @@ export interface ContactFormData {
   message: string;
 }
 
-export type ProjectCategory = 'todos' | 'clipe' | 'personagem' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
+export type ProjectCategory = 'todos' | 'clipe' | 'personagem' | 'avatar' | 'banda' | 'app' | 'experimento' | 'producao-musical' | 'educacao';
 
 // YouTube API Types
 export interface YouTubeChannelData {
