@@ -70,6 +70,14 @@ export async function processMessage(
             console.log('[Agent] FAQ cache hit');
             logCostSaving('faq');
 
+            // If budget value detected, save to lead
+            if (faqResult.budgetValue) {
+                await upsertLead(phone, {
+                    budget_range: `R$ ${faqResult.budgetValue}`,
+                });
+                console.log('[Agent] Budget saved from FAQ:', faqResult.budgetValue);
+            }
+
             // Add FAQ response to history
             const faqMessage: ConversationMessage = {
                 role: 'assistant',

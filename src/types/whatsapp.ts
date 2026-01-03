@@ -17,6 +17,7 @@ export interface LeadData {
     notes?: string | null;
     status: LeadStatus;
     conversation_history?: ConversationMessage[];
+    last_message_id?: string | null; // For webhook idempotency
     created_at?: Date;
     updated_at?: Date;
 }

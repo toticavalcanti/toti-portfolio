@@ -60,6 +60,10 @@ export async function upsertLead(
             updates.push(`conversation_history = $${paramIndex++}`);
             values.push(JSON.stringify(patch.conversation_history));
         }
+        if (patch.last_message_id !== undefined) {
+            updates.push(`last_message_id = $${paramIndex++}`);
+            values.push(patch.last_message_id);
+        }
 
         updates.push(`updated_at = NOW()`);
         values.push(phone); // WHERE condition
@@ -85,10 +89,11 @@ export async function upsertLead(
         notes, 
         status, 
         conversation_history,
+        last_message_id,
         created_at,
         updated_at
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW())
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW(), NOW())
       RETURNING *
     `;
 
@@ -101,6 +106,7 @@ export async function upsertLead(
             patch.notes || null,
             patch.status || 'new',
             JSON.stringify(patch.conversation_history || []),
+            patch.last_message_id || null,
         ];
 
         const result = await query<LeadData>(sql, values);

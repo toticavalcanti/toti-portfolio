@@ -5,16 +5,16 @@ import type { LeadData, ConversationMessage } from '../types/whatsapp';
 // ============================================
 
 const PROHIBITED_KEYWORDS = [
-    // Saúde
-    'médico', 'remédio', 'consulta', 'sintoma', 'doença', 'hospital',
-    'tratamento', 'medicamento', 'exame', 'diagnóstico',
-    // Política
-    'eleição', 'voto', 'partido', 'político', 'governo', 'presidente',
+    // Saude (sem acento)
+    'medico', 'remedio', 'consulta', 'sintoma', 'doenca', 'hospital',
+    'tratamento', 'medicamento', 'exame', 'diagnostico',
+    // Politica
+    'eleicao', 'voto', 'partido', 'politico', 'governo', 'presidente',
     'ministro', 'deputado', 'senador', 'prefeito',
     // Apostas/Jogos
     'aposta', 'bet', 'cassino', 'loteria', 'jogo de azar',
     // Outros
-    'advogado', 'jurídico', 'processo', 'advocacia',
+    'advogado', 'juridico', 'processo', 'advocacia',
 ];
 
 const SERVICE_WHITELIST = [
@@ -59,7 +59,7 @@ export function checkGuardrails(
         return { blocked: false };
     }
 
-    const normalizedMessage = message.toLowerCase();
+    const normalizedMessage = normalizeText(message);
 
     // Check for prohibited keywords
     const hasProhibited = PROHIBITED_KEYWORDS.some(keyword =>
@@ -133,6 +133,37 @@ const FAQ_TEMPLATES: FAQTemplate[] = [
 interface FAQResult {
     isFAQ: boolean;
     response?: string;
+    budgetValue?: string; // For budget parser
+}
+
+/**
+ * Detect if message contains budget/price value
+ */
+function detectsBudgetValue(text: string): boolean {
+    const normalized = text.toLowerCase();
+    return (
+        normalized.includes('r$') ||
+        normalized.includes('reais') ||
+        /\d{3,}/.test(normalized) || // 3+ digits
+        normalized.includes(' mil') ||
+        normalized.includes(' milhao') ||
+        normalized.includes(' milhão')
+    );
+}
+
+/**
+ * Simple budget parser
+ */
+function parseBudget(text: string): string | null {
+    // Try to extract budget value
+    const match = text.match(/r\$?\s*(\d[\d.,]*)/i) ||
+        text.match(/(\d+)\s*(?:mil|reais)/i) ||
+        text.match(/(\d[\d.,]+)/);
+
+    if (match) {
+        return match[1].replace(/\./g, '').replace(',', '.');
+    }
+    return null;
 }
 
 /**
@@ -140,15 +171,31 @@ interface FAQResult {
  * Returns template response + qualifying question
  */
 export function checkFAQ(message: string): FAQResult {
-    const normalizedMessage = message.toLowerCase();
+    const normalizedMessage = normalizeText(message);
 
     for (const faq of FAQ_TEMPLATES) {
         // Check if any trigger matches
         const matches = faq.triggers.some(trigger =>
-            normalizedMessage.includes(trigger)
+            normalizedMessage.includes(normalizeText(trigger))
         );
 
         if (matches) {
+            // Special case: budget/price FAQ
+            // Don't use FAQ if user is providing their budget value
+            if (faq.triggers.some(t => t.includes('orcamento') || t.includes('preco'))) {
+                if (detectsBudgetValue(message)) {
+                    // User is informing budget, not asking price
+                    const budgetValue = parseBudget(message);
+                    return {
+                        isFAQ: true,
+                        response: budgetValue
+                            ? `Perfeito — anotei seu orçamento de R$ ${budgetValue}. Qual o prazo que você tem em mente?`
+                            : 'Entendi sobre seu orçamento. Qual o prazo que você tem em mente?',
+                        budgetValue: budgetValue || undefined,
+                    };
+                }
+            }
+
             return {
                 isFAQ: true,
                 response: `${faq.response}\n\n${faq.question}`,
@@ -166,11 +213,13 @@ export function checkFAQ(message: string): FAQResult {
 const SIMILARITY_THRESHOLD = 0.85; // 85% similar = duplicate
 
 /**
- * Normalize text for comparison
+ * Normalize text for comparison (remove accents, punctuation, lowercase)
  */
-function normalizeForComparison(text: string): string {
+function normalizeText(text: string): string {
     return text
         .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '') // Remove accents
         .replace(/[^\w\s]/g, '') // Remove punctuation
         .replace(/\s+/g, ' ') // Normalize whitespace
         .trim();
@@ -181,8 +230,8 @@ function normalizeForComparison(text: string): string {
  * Returns value between 0 and 1
  */
 function calculateSimilarity(str1: string, str2: string): number {
-    const normalized1 = normalizeForComparison(str1);
-    const normalized2 = normalizeForComparison(str2);
+    const normalized1 = normalizeText(str1);
+    const normalized2 = normalizeText(str2);
 
     if (normalized1 === normalized2) {
         return 1.0;
