@@ -72,7 +72,7 @@ export default function HeroSection() {
               className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20"
             >
               <span className="text-xs sm:text-sm font-medium text-primary">
-                Software Engineering
+                Criador Digital Completo
               </span>
             </motion.div>
 
@@ -82,8 +82,8 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight"
             >
-              Desenvolvimento web, videoclipes com IA{' '}
-              <span className="gradient-text">e música ao vivo</span>
+              Sites que convertem, videoclipes que viralizam{' '}
+              <span className="gradient-text">e música que emociona</span>
             </motion.h1>
 
             <motion.p
@@ -92,7 +92,7 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-4 sm:mb-5 md:mb-6 max-w-2xl leading-relaxed"
             >
-              Sistemas web full-stack, videoclipes profissionais e produção musical. Do código à criação artística — desenvolvimento, IA generativa e pocket shows ao vivo.
+              Transformo ideias em produtos digitais prontos para o mercado. Sites inteligentes, videoclipes de nível internacional, avatares virtuais, pocket shows ao vivo e produção musical completa - código e arte.
             </motion.p>
 
             {/* Credibility Badges */}
@@ -162,10 +162,10 @@ export default function HeroSection() {
                         <Play size={32} className="text-white ml-1 drop-shadow-lg" />
                       </div>
                       <p className="text-white font-semibold mb-1 drop-shadow-lg">
-                        Vídeo criado com avatar digital feito com IA.
+                        Avatar Digital — Criado com IA
                       </p>
                       <p className="text-white/90 text-sm drop-shadow-lg">
-                        Método, Experiência e Resultados.
+                        Projetos Reais, Resultados Comprovados
                       </p>
                     </div>
                   </div>

@@ -37,15 +37,19 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
         {/* What's Included */}
         <div className="mt-auto">
-          <h4 className="text-xs font-semibold text-primary mb-3">O que está incluído:</h4>
-          <ul className="space-y-2">
-            {service.whatsIncluded.slice(0, 3).map((item, index) => (
-              <li key={index} className="flex items-start gap-2 text-xs text-foreground-secondary">
-                <Check size={14} className="text-success mt-0.5 flex-shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          {service.whatsIncluded && service.whatsIncluded.length > 0 && (
+            <>
+              <h4 className="text-xs font-semibold text-primary mb-3">O que está incluído:</h4>
+              <ul className="space-y-2">
+                {service.whatsIncluded.slice(0, 3).map((item, index) => (
+                  <li key={index} className="flex items-start gap-2 text-xs text-foreground-secondary">
+                    <Check size={14} className="text-success mt-0.5 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           {/* Real Examples */}
           {service.realExamples && service.realExamples.length > 0 && (

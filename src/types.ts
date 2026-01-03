@@ -69,8 +69,25 @@ export interface Service {
   icon: string;
   tagline?: string;
   description: string;
-  pricing?: Pricing;
-  whatsIncluded: string[];
+  category: 'audiovisual' | 'music-production' | 'live-performance' | 'visual-design' | 'software' | 'ai';
+  featured: boolean;
+  problem?: string;
+  solution?: string;
+  deliverables?: string[];
+  process?: string[];
+  examples?: Array<{
+    title: string;
+    description: string;
+    url: string;
+  }>;
+  pricing?: {
+    from: number;
+    to: number;
+    note?: string;
+  } | Pricing;
+  idealFor?: string[];
+  benefits?: string[];
+  whatsIncluded?: string[]; // Legacy, keeping for compatibility
   stylesNote?: string; // For music production
   equipmentRequired?: {
     title: string;
@@ -78,11 +95,9 @@ export interface Service {
   }; // For pocket shows
   addOns?: AddOn[];
   useCases?: (string | UseCase)[];
-  whoItsFor: string[];
-  benefits: string[];
+  whoItsFor?: string[]; // Legacy, keeping for compatibility
   realExamples?: string[];
   technologies?: string[];
-  category?: 'software' | 'ai' | 'audiovisual' | 'music-production' | 'live-performance' | 'digital-character' | 'visual-design';
   detailedDescription?: string;
 }
 

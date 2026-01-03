@@ -246,6 +246,7 @@ export const services: Service[] = [
     icon: 'Video',
     tagline: 'Transforme sua música em narrativa visual profissional',
     category: 'audiovisual',
+    featured: true,
     description: 'Produção completa de videoclipes usando IA generativa combinada com pós-produção profissional. Trabalho com imagens geradas por IA, fotos fornecidas pelo cliente ou vídeos fornecidos pelo cliente. A precificação reflete o custo real dos serviços de IA (Runway Gen-3, Midjourney, Pika Labs) que cobram por segundo de vídeo gerado, mais o trabalho de edição e finalização. Resultados comprovados: clipes de Zé Ramalho com milhões de visualizações.',
 
     pricing: {
@@ -348,6 +349,7 @@ export const services: Service[] = [
     icon: 'Music',
     tagline: 'Transformo suas ideias musicais em música gravada com arranjos no estilo que você escolher, com qualidade profissional do mercado',
     category: 'music-production',
+    featured: true,
     description: 'Produção musical completa para qualquer estilo e instrumentação. Transformo demos mal gravadas, vocais toscas, simples ideias melódicas ou composições básicas em músicas com acabamento profissional de mercado. Trabalho com técnicas tradicionais, MIDI sequencing e IA generativa conforme apropriado. Do conceito inicial à master final, entrego música pronta para lançamento.',
 
     pricing: {
@@ -442,8 +444,11 @@ export const services: Service[] = [
     ],
 
     realExamples: [
-      'Antologia 50 Anos - Zé Ramalho: 22 faixas produzidas',
-      'Estilos variados: Blues, Árabe, Indiano, Regional Nordestino',
+      // 'Antologia 50 Anos - Zé Ramalho: 22 faixas produzidas',
+      // 'Estilos variados: Blues, Árabe, Indiano, Regional Nordestino',
+      // 'Técnicas híbridas: tradicional + MIDI + IA'
+      'Fake Soul Records: Covers de soul/R&B com produção profissional',
+      'Canal YouTube: @FakeSoulRecords',
       'Técnicas híbridas: tradicional + MIDI + IA'
     ],
 
@@ -462,6 +467,7 @@ export const services: Service[] = [
     icon: 'Mic2',
     tagline: 'Performance ao vivo profissional com flauta e sax',
     category: 'live-performance',
+    featured: true,
     description: 'Apresentações musicais ao vivo: flauta transversal, sax tenor, sax soprano, com bases pré-gravadas ou playback profissional. Repertório customizado conforme o evento. Equipamento de som e luz pode ser incluído ou o cliente pode fornecer.',
 
     pricing: {
@@ -591,6 +597,7 @@ export const services: Service[] = [
     icon: 'Palette',
     tagline: 'Arte digital de alta qualidade para qualquer aplicação',
     category: 'visual-design',
+    featured: true,
     description: 'Criação de imagens usando IA generativa (Midjourney, Stable Diffusion) com pós-edição profissional no Photoshop. Trabalho com geração de imagens originais, não faço gravação fotográfica. A precificação considera o custo das plataformas de IA (que cobram por geração) mais o tempo de curadoria, iterações e pós-edição. Ideal para marketing, redes sociais, capas de álbum, produtos e branding.',
 
     pricing: {
@@ -713,6 +720,7 @@ export const services: Service[] = [
     icon: 'Code',
     tagline: 'Sites e aplicações modernas que convertem',
     category: 'software',
+    featured: true,
     description: 'Desenvolvimento completo de aplicações web profissionais: desde sites institucionais até e-commerces e plataformas complexas. Código limpo, performance otimizada, SEO avançado. Stack moderna: Next.js, React, Node.js, MongoDB.',
 
     pricing: {
@@ -824,6 +832,7 @@ export const services: Service[] = [
     icon: 'Video',
     tagline: 'Porta-vozes virtuais realistas para suas campanhas em redes sociais',
     category: 'audiovisual',
+    featured: true,
     description: 'Criação de vídeos publicitários profissionais usando avatares IA realistas como apresentadores. Ideal para divulgação de produtos, serviços, cursos, plataformas e conteúdo educacional em redes sociais (Instagram, TikTok, YouTube, Facebook). Avatares com sincronização labial perfeita, movimentos naturais e apresentação profissional. Custo muito inferior à contratação de atores reais ou produção tradicional.',
 
     pricing: {
@@ -935,6 +944,7 @@ export const services: Service[] = [
     icon: 'Sparkles',
     tagline: 'Reduza custos e aumente eficiência com inteligência artificial',
     category: 'ai',
+    featured: true,
     description: 'Implementação de soluções de IA para automatizar processos empresariais: chatbots inteligentes, análise de documentos, geração de conteúdo, análise preditiva. Consultoria completa desde arquitetura até deploy.',
 
     pricing: {
