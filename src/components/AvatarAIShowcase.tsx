@@ -173,7 +173,7 @@ export default function AvatarAIShowcase() {
             {/* Container do Vídeo - FIXO 328px */}
             <div className="relative group" style={{ width: '328px' }}>
               {/* Iframe - YouTube ou Instagram */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px' }}>
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px', height: '583px' }}>
                 {currentVideo.type === 'youtube' ? (
                   <>
                     {/* Thumbnail Overlay */}
