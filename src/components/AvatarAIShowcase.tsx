@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Container from './Container';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
@@ -20,6 +20,21 @@ interface Video {
 
 export default function AvatarAIShowcase() {
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [showingVideo, setShowingVideo] = useState(false);
+  const playerRef = useRef<any>(null);
+
+  // Load YouTube IFrame API
+  useEffect(() => {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+    // @ts-ignore
+    window.onYouTubeIframeAPIReady = () => {
+      console.log('YouTube IFrame API Ready');
+    };
+  }, []);
 
   const videos: Video[] = [
     {
@@ -68,10 +83,20 @@ export default function AvatarAIShowcase() {
 
   const handlePrevious = () => {
     setActiveVideoIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
+    setShowingVideo(false);
   };
 
   const handleNext = () => {
     setActiveVideoIndex((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
+    setShowingVideo(false);
+  };
+
+  const handlePlayClick = () => {
+    setShowingVideo(true);
+  };
+
+  const handleVideoEnded = () => {
+    setShowingVideo(false);
   };
 
   return (
@@ -170,21 +195,66 @@ export default function AvatarAIShowcase() {
             {/* Container do Vídeo - FIXO 328px */}
             <div className="relative group" style={{ width: '328px' }}>
               {/* Iframe - YouTube ou Instagram */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px' }}>
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px', height: '583px' }}>
                 {currentVideo.type === 'youtube' ? (
-                  <iframe
-                    key={`video-${activeVideoIndex}`}
-                    src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?rel=0&modestbranding=1&vq=hd1080`}
-                    style={{ 
-                      width: '328px',
-                      height: '583px',
-                      border: 'none',
-                      display: 'block'
-                    }}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                  <>
+                    {/* Thumbnail */}
+                    {!showingVideo && (
+                      <div 
+                        className="absolute inset-0 cursor-pointer group/thumb z-10"
+                        onClick={handlePlayClick}
+                      >
+                        <img 
+                          src={`https://i.ytimg.com/vi/${currentVideo.youtubeId}/maxresdefault.jpg`}
+                          alt={currentVideo.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/thumb:bg-black/30 transition-colors">
+                          <div className="w-20 h-20 rounded-full bg-primary/90 group-hover/thumb:bg-primary group-hover/thumb:scale-110 transition-all flex items-center justify-center shadow-xl">
+                            <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* YouTube Iframe */}
+                    <iframe
+                      key={`video-${activeVideoIndex}-${showingVideo}`}
+                      src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?${showingVideo ? 'autoplay=1&' : ''}rel=0&modestbranding=1&vq=hd1080&enablejsapi=1`}
+                      style={{ 
+                        width: '328px',
+                        height: '583px',
+                        border: 'none',
+                        display: 'block'
+                      }}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      onLoad={(e) => {
+                        if (showingVideo && window.YT) {
+                          // Wait for player to be ready, then listen for end event
+                          setTimeout(() => {
+                            try {
+                              const iframe = e.target as HTMLIFrameElement;
+                              const player = new window.YT.Player(iframe, {
+                                events: {
+                                  onStateChange: (event: any) => {
+                                    if (event.data === window.YT.PlayerState.ENDED) {
+                                      handleVideoEnded();
+                                    }
+                                  }
+                                }
+                              });
+                              playerRef.current = player;
+                            } catch (err) {
+                              console.log('YT Player init error:', err);
+                            }
+                          }, 1000);
+                        }
+                      }}
+                    />
                 ) : (
                   <iframe
                     key={`video-${activeVideoIndex}`}
