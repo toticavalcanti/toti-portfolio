@@ -20,7 +20,6 @@ interface Video {
 
 export default function AvatarAIShowcase() {
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const videos: Video[] = [
     {
@@ -67,14 +66,12 @@ export default function AvatarAIShowcase() {
 
   const currentVideo = videos[activeVideoIndex];
 
-  const handleNext = () => {
-    setActiveVideoIndex((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
-    setIsPlaying(false);
-  };
-
   const handlePrevious = () => {
     setActiveVideoIndex((prev) => (prev === 0 ? videos.length - 1 : prev - 1));
-    setIsPlaying(false);
+  };
+
+  const handleNext = () => {
+    setActiveVideoIndex((prev) => (prev === videos.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -173,48 +170,21 @@ export default function AvatarAIShowcase() {
             {/* Container do Vídeo - FIXO 328px */}
             <div className="relative group" style={{ width: '328px' }}>
               {/* Iframe - YouTube ou Instagram */}
-              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px', height: '583px' }}>
+              <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px' }}>
                 {currentVideo.type === 'youtube' ? (
-                  <>
-                    {/* Thumbnail Overlay */}
-                    {!isPlaying && (
-                      <div 
-                        className="absolute inset-0 cursor-pointer group/play"
-                        onClick={() => setIsPlaying(true)}
-                      >
-                        <img 
-                          src={`https://i.ytimg.com/vi/${currentVideo.youtubeId}/maxresdefault.jpg`}
-                          alt={currentVideo.title}
-                          className="w-full h-full object-cover"
-                        />
-                        {/* Play Button Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover/play:bg-black/40 transition-colors">
-                          <div className="w-20 h-20 rounded-full bg-primary/90 group-hover/play:bg-primary group-hover/play:scale-110 transition-all flex items-center justify-center shadow-xl">
-                            <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* YouTube Iframe - Hidden when not playing */}
-                    {isPlaying && (
-                      <iframe
-                        key={`video-${activeVideoIndex}`}
-                        src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&vq=hd1080`}
-                        style={{ 
-                          width: '328px',
-                          height: '583px',
-                          border: 'none',
-                          display: 'block'
-                        }}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    )}
-                  </>
+                  <iframe
+                    key={`video-${activeVideoIndex}`}
+                    src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?rel=0&modestbranding=1&vq=hd1080`}
+                    style={{ 
+                      width: '328px',
+                      height: '583px',
+                      border: 'none',
+                      display: 'block'
+                    }}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 ) : (
                   <iframe
                     key={`video-${activeVideoIndex}`}
