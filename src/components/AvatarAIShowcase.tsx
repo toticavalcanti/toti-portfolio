@@ -7,6 +7,14 @@ import Button from './Button';
 import Link from 'next/link';
 import { DollarSign, Clock, TrendingUp, Zap, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Declare YouTube types
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
 interface Video {
   id: string;
   type: 'youtube' | 'instagram';
@@ -255,6 +263,7 @@ export default function AvatarAIShowcase() {
                         }
                       }}
                     />
+                  </>
                 ) : (
                   <iframe
                     key={`video-${activeVideoIndex}`}
@@ -270,7 +279,7 @@ export default function AvatarAIShowcase() {
                     scrolling="no"
                     allow="encrypted-media"
                   />
-                )}
+                )
 
                 {/* Setas - aparecem no hover */}
                 <button
