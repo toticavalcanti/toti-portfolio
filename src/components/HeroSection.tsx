@@ -90,9 +90,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-4 sm:mb-5 md:mb-6 max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8 max-w-3xl leading-relaxed"
             >
-              Transformo ideias em produtos digitais prontos para o mercado. Sites inteligentes, videoclipes de nível internacional, avatares virtuais, pocket shows ao vivo e produção musical completa - código e arte.
+              Transformo ideias em produtos digitais prontos para o mercado.
+              <br />
+              Sites inteligentes, videoclipes de nível internacional, avatares virtuais, pocket shows ao vivo e produção musical completa - código e arte.
             </motion.p>
 
             {/* Credibility Badges */}
