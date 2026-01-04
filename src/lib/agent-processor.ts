@@ -7,8 +7,8 @@ import {
     checkGuardrails,
     checkFAQ,
     checkDuplicate,
-    logCostSaving,
 } from './cost-controls';
+import { incrementMetric } from './metrics';
 
 const MAX_HISTORY_MESSAGES = 10; // Keep last 10 messages for context
 
@@ -50,8 +50,7 @@ export async function processMessage(
         // 1. Guardrails - block if out of scope
         const guardrailResult = checkGuardrails(message, lead);
         if (guardrailResult.blocked) {
-            console.log('[Agent] Blocked by guardrail:', guardrailResult.reason);
-            logCostSaving('guardrail');
+            console.log('[Agent] Guardrail blocked:', guardrailResult.reason);
 
             // Add fallback response to history
             const fallbackMessage: ConversationMessage = {
@@ -67,8 +66,7 @@ export async function processMessage(
         // 2. FAQ Cache - check for common questions
         const faqResult = checkFAQ(message);
         if (faqResult.isFAQ) {
-            console.log('[Agent] FAQ cache hit');
-            logCostSaving('faq');
+            console.log('[Agent] FAQ hit');
 
             // If budget value detected, save to lead
             if (faqResult.budgetValue) {
@@ -91,12 +89,11 @@ export async function processMessage(
 
         // 3. Duplicate Detection - check for repeated questions
         const duplicateResult = checkDuplicate(message, lead);
-        if (duplicateResult.isDuplicate) {
+        if (duplicateResult.isDuplicate && duplicateResult.cachedResponse) {
             console.log('[Agent] Duplicate detected - using cached response');
-            logCostSaving('duplicate');
 
             // Already in history, just return cached response
-            return duplicateResult.cachedResponse!;
+            return duplicateResult.cachedResponse;
         }
 
         // ============================================
@@ -120,11 +117,14 @@ export async function processMessage(
         // Add lead context to system prompt
         const leadContext = buildLeadContext(lead);
         if (leadContext) {
-            messages[0].content += `\n\n## CONTEXTO DO LEAD ATUAL\n${leadContext}`;
+            messages[0].content += `\n\n## CONTEXTO DO LEAD ATUAL\n${leadContext} `;
         }
 
         // Call LLM
         const llmResponse = await callLLM({ messages });
+
+        // Track LLM call in metrics (async, non-blocking)
+        incrementMetric('llm_calls').catch(() => { });
 
         // Execute actions
         await executeActions(llmResponse.actions, {
@@ -169,22 +169,22 @@ function buildLeadContext(lead: LeadData): string {
     const parts: string[] = [];
 
     if (lead.name) {
-        parts.push(`Nome: ${lead.name}`);
+        parts.push(`Nome: ${lead.name} `);
     }
     if (lead.service_interest) {
-        parts.push(`Interesse: ${lead.service_interest}`);
+        parts.push(`Interesse: ${lead.service_interest} `);
     }
     if (lead.desired_deadline) {
-        parts.push(`Prazo: ${lead.desired_deadline}`);
+        parts.push(`Prazo: ${lead.desired_deadline} `);
     }
     if (lead.budget_range) {
-        parts.push(`Orçamento: ${lead.budget_range}`);
+        parts.push(`Orçamento: ${lead.budget_range} `);
     }
     if (lead.notes) {
-        parts.push(`Notas: ${lead.notes}`);
+        parts.push(`Notas: ${lead.notes} `);
     }
     if (lead.status) {
-        parts.push(`Status atual: ${lead.status}`);
+        parts.push(`Status atual: ${lead.status} `);
     }
 
     return parts.join('\n');

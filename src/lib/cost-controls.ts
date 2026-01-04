@@ -1,4 +1,5 @@
 import type { LeadData, ConversationMessage } from '../types/whatsapp';
+import { incrementMetric } from './metrics';
 
 // ============================================
 // GUARDRAILS - Pre-LLM Scope Check
@@ -84,6 +85,10 @@ export function checkGuardrails(
     const randomResponse = FALLBACK_RESPONSES[
         Math.floor(Math.random() * FALLBACK_RESPONSES.length)
     ].replace('{service}', lead.service_interest);
+
+    // Persist metrics (async, non-blocking)
+    incrementMetric('guardrails_blocked').catch(() => { });
+    incrementMetric('llm_calls_avoided').catch(() => { });
 
     return {
         blocked: true,
@@ -186,6 +191,11 @@ export function checkFAQ(message: string): FAQResult {
                 if (detectsBudgetValue(message)) {
                     // User is informing budget, not asking price
                     const budgetValue = parseBudget(message);
+
+                    // Persist metrics (async, non-blocking)
+                    incrementMetric('faq_cache_hits').catch(() => { });
+                    incrementMetric('llm_calls_avoided').catch(() => { });
+
                     return {
                         isFAQ: true,
                         response: budgetValue
@@ -195,6 +205,10 @@ export function checkFAQ(message: string): FAQResult {
                     };
                 }
             }
+
+            // Persist metrics (async, non-blocking)
+            incrementMetric('faq_cache_hits').catch(() => { });
+            incrementMetric('llm_calls_avoided').catch(() => { });
 
             return {
                 isFAQ: true,
@@ -292,6 +306,10 @@ export function checkDuplicate(
                         duplicate: message.substring(0, 50),
                     });
 
+                    // Persist metrics (async, non-blocking)
+                    incrementMetric('duplicate_cache_hits').catch(() => { });
+                    incrementMetric('llm_calls_avoided').catch(() => { });
+
                     return {
                         isDuplicate: true,
                         cachedResponse: nextMessage.content,
@@ -305,47 +323,8 @@ export function checkDuplicate(
 }
 
 // ============================================
-// COST LOGGING
+// COST LOGGING (DEPRECATED - Now using DB metrics)
 // ============================================
-
-export interface CostSavings {
-    guardrails_blocked: number;
-    faq_cache_hits: number;
-    duplicate_cache_hits: number;
-    llm_calls_avoided: number;
-    estimated_savings_usd: number;
-}
-
-// Global counter (in-memory, resets on deploy)
-const costSavings: CostSavings = {
-    guardrails_blocked: 0,
-    faq_cache_hits: 0,
-    duplicate_cache_hits: 0,
-    llm_calls_avoided: 0,
-    estimated_savings_usd: 0,
-};
-
-const COST_PER_CALL_USD = 0.0015; // Estimate for gpt-4o-mini call
-
-export function logCostSaving(type: 'guardrail' | 'faq' | 'duplicate') {
-    costSavings.llm_calls_avoided++;
-    costSavings.estimated_savings_usd += COST_PER_CALL_USD;
-
-    switch (type) {
-        case 'guardrail':
-            costSavings.guardrails_blocked++;
-            break;
-        case 'faq':
-            costSavings.faq_cache_hits++;
-            break;
-        case 'duplicate':
-            costSavings.duplicate_cache_hits++;
-            break;
-    }
-
-    console.log('[Cost Control] Savings:', costSavings);
-}
-
-export function getCostSavings(): CostSavings {
-    return { ...costSavings };
-}
+// Funções mantidas para compatibilidade mas não mais usadas
+// Métricas agora são persistidas no Postgres via incrementMetric()
+// Ver: src/lib/metrics.ts
