@@ -206,16 +206,56 @@ export default function AvatarAIShowcase() {
               <div className="relative rounded-xl overflow-hidden border border-border bg-background-secondary shadow-lg" style={{ width: '328px', height: '583px' }}>
                 {currentVideo.type === 'youtube' ? (
                   <>
-                    {/* Thumbnail */}
+                    {/* YouTube Iframe - renderizado apenas quando tocando */}
+                    {showingVideo && (
+                      <iframe
+                        key={`video-${activeVideoIndex}`}
+                        src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1&vq=hd1080&enablejsapi=1`}
+                        style={{ 
+                          width: '328px',
+                          height: '583px',
+                          border: 'none',
+                          display: 'block'
+                        }}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        onLoad={(e) => {
+                          if (window.YT) {
+                            // Wait for player to be ready, then listen for end event
+                            setTimeout(() => {
+                              try {
+                                const iframe = e.target as HTMLIFrameElement;
+                                const player = new window.YT.Player(iframe, {
+                                  events: {
+                                    onStateChange: (event: any) => {
+                                      if (event.data === window.YT.PlayerState.ENDED) {
+                                        handleVideoEnded();
+                                      }
+                                    }
+                                  }
+                                });
+                                playerRef.current = player;
+                              } catch (err) {
+                                console.log('YT Player init error:', err);
+                              }
+                            }, 1000);
+                          }
+                        }}
+                      />
+                    )}
+
+                    {/* Thumbnail - aparece quando NÃO está tocando vídeo */}
                     {!showingVideo && (
                       <div 
-                        className="absolute inset-0 cursor-pointer group/thumb z-10"
+                        className="absolute inset-0 cursor-pointer group/thumb z-20 bg-background-secondary"
                         onClick={handlePlayClick}
                       >
                         <img 
-                          src={`https://i.ytimg.com/vi/${currentVideo.youtubeId}/maxresdefault.jpg`}
+                          src={`https://i.ytimg.com/vi/${currentVideo.youtubeId}/hqdefault.jpg`}
                           alt={currentVideo.title}
                           className="w-full h-full object-cover"
+                          loading="eager"
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/thumb:bg-black/30 transition-colors">
                           <div className="w-20 h-20 rounded-full bg-primary/90 group-hover/thumb:bg-primary group-hover/thumb:scale-110 transition-all flex items-center justify-center shadow-xl">
@@ -226,43 +266,6 @@ export default function AvatarAIShowcase() {
                         </div>
                       </div>
                     )}
-
-                    {/* YouTube Iframe */}
-                    <iframe
-                      key={`video-${activeVideoIndex}-${showingVideo}`}
-                      src={`https://www.youtube.com/embed/${currentVideo.youtubeId}?${showingVideo ? 'autoplay=1&' : ''}rel=0&modestbranding=1&vq=hd1080&enablejsapi=1`}
-                      style={{ 
-                        width: '328px',
-                        height: '583px',
-                        border: 'none',
-                        display: 'block'
-                      }}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      onLoad={(e) => {
-                        if (showingVideo && window.YT) {
-                          // Wait for player to be ready, then listen for end event
-                          setTimeout(() => {
-                            try {
-                              const iframe = e.target as HTMLIFrameElement;
-                              const player = new window.YT.Player(iframe, {
-                                events: {
-                                  onStateChange: (event: any) => {
-                                    if (event.data === window.YT.PlayerState.ENDED) {
-                                      handleVideoEnded();
-                                    }
-                                  }
-                                }
-                              });
-                              playerRef.current = player;
-                            } catch (err) {
-                              console.log('YT Player init error:', err);
-                            }
-                          }, 1000);
-                        }
-                      }}
-                    />
                   </>
                 ) : (
                   <iframe
@@ -279,7 +282,7 @@ export default function AvatarAIShowcase() {
                     scrolling="no"
                     allow="encrypted-media"
                   />
-                )
+                )}
 
                 {/* Setas - aparecem no hover */}
                 <button
