@@ -34,7 +34,7 @@ const footerLinks = [
     links: [
       { label: 'Falar com Toti', href: '/contato' },
       { label: 'WhatsApp', href: 'https://wa.me/5511999999999' },
-      { label: 'Email', href: 'mailto:contato@toticavalcanti.com' },
+      { label: 'Email', href: 'mailto:ctoticavalcanti@gmail.com' },
     ],
   },
 ];
@@ -55,7 +55,9 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-foreground-secondary mb-6 max-w-sm leading-relaxed">
-              Arquitetura de Software, Desenvolvimento Full-Stack e IA. Do código à infraestrutura, entrego projetos digitais complexos e escaláveis.
+              Arquitetura de Software, Desenvolvimento Full-Stack e IA.
+              <br />
+              Do código à infraestrutura, entrego projetos digitais complexos e escaláveis.
             </p>
             
             {/* Social Links */}
