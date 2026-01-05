@@ -455,8 +455,8 @@ export const aboutInfo = {
     'Resultado: sistemas que funcionam e projetos que entregam valor.'
   ],
   avatar: 'https://github.com/toticavalcanti/toti-assets/blob/master/toti-studio.png?raw=true',
-  email: 'contato@toticavalcanti.com',
-  whatsapp: '+5511999999999',
+  email: 'toticavalcanti@gmail.com',
+  whatsapp: '+5521982266075',
 };
 
 // Channels

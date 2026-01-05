@@ -12,6 +12,7 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   storeUrl?: string;  // Para lojas adicionais (Colab55, etc.)
+  aspectRatio?: '16:9' | '9:16';  // Aspect ratio do vídeo
   featured: boolean;
   date: string;
 }
@@ -167,4 +168,18 @@ export interface Channel {
   category: 'music' | 'tech' | 'character' | 'films' | 'label';
   status: 'active' | 'lab';
   featured: boolean;
+}
+
+// Book Type (for published books)
+export interface Book {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  coverImage: string;
+  amazonUrl: string;
+  language: string;
+  format: string;
+  topics: string[];
+  year?: string;
 }

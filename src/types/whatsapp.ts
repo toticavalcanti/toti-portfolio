@@ -18,6 +18,13 @@ export interface LeadData {
     status: LeadStatus;
     conversation_history?: ConversationMessage[];
     last_message_id?: string | null; // For webhook idempotency
+
+    // Anti-spam cache fields
+    last_inbound_at?: Date | null;
+    last_user_text_norm?: string | null;
+    last_agent_reply?: string | null;
+    last_agent_reply_at?: Date | null;
+
     created_at?: Date;
     updated_at?: Date;
 }

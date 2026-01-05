@@ -70,7 +70,7 @@ export default function ContatoPage() {
                   <div>
                     <h3 className="font-semibold mb-1">Localização</h3>
                     <p className="text-foreground-secondary">
-                      São Paulo, Brasil
+                      Rio de Janeiro, Brasil
                     </p>
                   </div>
                 </div>

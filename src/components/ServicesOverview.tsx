@@ -19,21 +19,21 @@ export default function ServicesOverview() {
           <h3 className="text-xl font-bold mb-4 text-center">Como Eu Trabalho</h3>
           <div className="grid sm:grid-cols-3 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">01</div>
+              <div className="text-3xl font-bold text-primary mb-2">01 —</div>
               <div className="font-semibold mb-1">Atendimento Inteligente</div>
               <div className="text-sm text-foreground-secondary">
-                IA entende sua demanda e gera proposta inicial automaticamente
+                Envie sua demanda via WhatsApp (ou email) descrevendo o que precisa.
               </div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">02</div>
+              <div className="text-3xl font-bold text-primary mb-2">02 —</div>
               <div className="font-semibold mb-1">Proposta Detalhada</div>
               <div className="text-sm text-foreground-secondary">
                 Escopo, prazo e investimento refinados em até 48h
               </div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">03</div>
+              <div className="text-3xl font-bold text-primary mb-2">03 —</div>
               <div className="font-semibold mb-1">Execução</div>
               <div className="text-sm text-foreground-secondary">
                 Entregas iterativas + suporte contínuo
@@ -41,7 +41,7 @@ export default function ServicesOverview() {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-border text-center text-sm text-foreground-secondary">
-            <p>💡 Conversa pessoal apenas quando necessário para alinhar detalhes finais (máx. 15min)</p>
+            <p>💡 Quando necessário, realizo uma conversa rápida para alinhar detalhes finais e avançar com segurança.</p>
           </div>
         </div>
 

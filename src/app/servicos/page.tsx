@@ -35,12 +35,13 @@ export default function ServicosPage() {
 
                 {/* Details */}
                 <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-bold mb-4 text-primary">
-                      Para quem é?
-                    </h3>
-                    <ul className="space-y-2">
-                      {service.whoItsFor.map((item, i) => (
+                  {service.whoItsFor && service.whoItsFor.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-bold mb-4 text-primary">
+                        Para quem é?
+                      </h3>
+                      <ul className="space-y-2">
+                        {service.whoItsFor.map((item, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-2 text-foreground-secondary"
@@ -48,16 +49,18 @@ export default function ServicosPage() {
                           <Check size={20} className="text-success mt-0.5 flex-shrink-0" />
                           <span>{item}</span>
                         </li>
-                      ))}
-                    </ul>
-                  </div>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
-                  <div>
-                    <h3 className="text-xl font-bold mb-4 text-primary">
-                      Benefícios
-                    </h3>
-                    <ul className="space-y-2">
-                      {service.benefits.map((item, i) => (
+                  {service.benefits && service.benefits.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-bold mb-4 text-primary">
+                        Benefícios
+                      </h3>
+                      <ul className="space-y-2">
+                        {service.benefits.map((item, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-2 text-foreground-secondary"
@@ -65,9 +68,10 @@ export default function ServicosPage() {
                           <Check size={20} className="text-success mt-0.5 flex-shrink-0" />
                           <span>{item}</span>
                         </li>
-                      ))}
-                    </ul>
-                  </div>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   <Button asChild>
                     <Link href="/contato">

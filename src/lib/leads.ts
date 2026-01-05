@@ -64,6 +64,22 @@ export async function upsertLead(
             updates.push(`last_message_id = $${paramIndex++}`);
             values.push(patch.last_message_id);
         }
+        if (patch.last_inbound_at !== undefined) {
+            updates.push(`last_inbound_at = $${paramIndex++}`);
+            values.push(patch.last_inbound_at);
+        }
+        if (patch.last_user_text_norm !== undefined) {
+            updates.push(`last_user_text_norm = $${paramIndex++}`);
+            values.push(patch.last_user_text_norm);
+        }
+        if (patch.last_agent_reply !== undefined) {
+            updates.push(`last_agent_reply = $${paramIndex++}`);
+            values.push(patch.last_agent_reply);
+        }
+        if (patch.last_agent_reply_at !== undefined) {
+            updates.push(`last_agent_reply_at = $${paramIndex++}`);
+            values.push(patch.last_agent_reply_at);
+        }
 
         updates.push(`updated_at = NOW()`);
         values.push(phone); // WHERE condition

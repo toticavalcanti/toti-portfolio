@@ -1,4 +1,4 @@
-import { Project, Service, Post, TimelineItem, SocialLink, Channel } from './types';
+import { Project, Service, Post, TimelineItem, SocialLink, Channel, Book } from './types';
 
 // Featured & All Projects
 export const projects: Project[] = [
@@ -1202,4 +1202,32 @@ export const channels: Channel[] = [
     status: 'active',
     featured: false,
   },
+];
+
+// Published Books
+export const books: Book[] = [
+  {
+    id: 'magic-prompts',
+    title: 'Magic Prompts',
+    subtitle: 'Criando Imagens Impressionantes com IA',
+    description: 'Um guia completo para criar prompts para ferramentas de geração de imagens com IA como MidJourney, DALL-E, Stable Diffusion e mais. Aprenda técnicas avançadas, insights específicos de cada ferramenta e transforme suas ideias em arte digital impressionante.',
+    coverImage: 'https://m.media-amazon.com/images/I/81o8q0MO2TL._SY425_.jpg',
+    amazonUrl: 'https://www.amazon.com.br/dp/B0DZQM2SNZ',
+    language: 'English',
+    format: 'eBook Kindle',
+    topics: ['IA', 'Arte Generativa', 'MidJourney', 'DALL-E', 'Engenharia de Prompts'],
+    year: '2024'
+  },
+  {
+    id: 'music-history',
+    title: 'Music History',
+    subtitle: 'Da Flauta Antiga aos Beats Eletrônicos',
+    description: 'Uma odisseia através do tempo musical, traçando a evolução da música desde culturas antigas até os beats eletrônicos de hoje. Explore a transformação de estilos musicais, instrumentos e contextos culturais que moldaram a trilha sonora da humanidade.',
+    coverImage: 'https://m.media-amazon.com/images/I/71fAKveojPL._SY342_.jpg',
+    amazonUrl: 'https://www.amazon.com.br/dp/B0D2VJYV87',
+    language: 'English',
+    format: 'eBook Kindle',
+    topics: ['Música', 'História', 'Cultura', 'Evolução Musical'],
+    year: '2024'
+  }
 ];

@@ -31,7 +31,7 @@ export default function CTASection() {
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <Button size="md" asChild>
-              <Link href="https://wa.me/5511999999999" target="_blank">
+              <Link href="https://wa.me/5521982266075" target="_blank">
                 <MessageCircle size={20} className="mr-2" />
                 Iniciar Conversa
               </Link>

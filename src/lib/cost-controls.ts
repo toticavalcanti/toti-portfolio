@@ -229,7 +229,7 @@ const SIMILARITY_THRESHOLD = 0.85; // 85% similar = duplicate
 /**
  * Normalize text for comparison (remove accents, punctuation, lowercase)
  */
-function normalizeText(text: string): string {
+export function normalizeText(text: string): string {
     return text
         .toLowerCase()
         .normalize('NFD')

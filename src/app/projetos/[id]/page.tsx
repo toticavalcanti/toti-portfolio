@@ -4,9 +4,14 @@ import { projects } from '@/mockData';
 import { ArrowLeft, Calendar, ExternalLink, Github, Youtube, Store } from 'lucide-react';
 import Link from 'next/link';
 
-// Função para extrair videoId da URL do YouTube
+// Função para extrair videoId da URL do YouTube (incluindo Shorts)
 function getYouTubeVideoId(url: string): string | null {
-  const match = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=|\/sandalsResorts#\w\/\w\/.*\/))([^\/&\?]{10,12})/);
+  // Suporte para Shorts: https://www.youtube.com/shorts/VIDEO_ID
+  const shortsMatch = url.match(/\/shorts\/([^\/\?&]+)/);
+  if (shortsMatch) return shortsMatch[1];
+  
+  // Outros formatos do YouTube
+  const match = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=|\/sandalsResorts#\w\/\w\/.*\/))([^\/\&\?]{10,12})/);
   return match ? match[1] : null;
 }
 
@@ -23,7 +28,7 @@ export default async function ProjetoDetalhes({ params }: { params: Promise<{ id
   return (
     <>
       {/* Breadcrumbs e Header */}
-      <section className="py-8 bg-background">
+      <section className="pt-24 pb-8 bg-background">
         <Container>
           <Link 
             href="/" 
@@ -56,15 +61,24 @@ export default async function ProjetoDetalhes({ params }: { params: Promise<{ id
             {/* Vídeo Embed - 2 colunas */}
             <div className="lg:col-span-2">
               {videoId ? (
-                <div className="aspect-video rounded-2xl overflow-hidden bg-background border border-border">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoId}?rel=0`}
-                    title={projeto.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
-                </div>
+                (() => {
+                  const isVertical = projeto.aspectRatio === '9:16';
+                  return (
+                    <div className={`rounded-2xl overflow-hidden bg-background border border-border ${
+                      isVertical ? 'max-w-md mx-auto' : ''
+                    }`}>
+                      <div className={isVertical ? 'aspect-[9/16]' : 'aspect-video'}>
+                        <iframe
+                          src={`https://www.youtube.com/embed/${videoId}?rel=0`}
+                          title={projeto.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  );
+                })()
               ) : (
                 <div className="aspect-video rounded-2xl overflow-hidden bg-background border border-border">
                   <img 
@@ -78,7 +92,7 @@ export default async function ProjetoDetalhes({ params }: { params: Promise<{ id
               {/* Descrição */}
               <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-4">Sobre o Projeto</h2>
-                <p className="text-foreground-secondary text-lg leading-relaxed">
+                <p className="text-foreground-secondary text-lg leading-relaxed whitespace-pre-line">
                   {projeto.description}
                 </p>
               </div>
