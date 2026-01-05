@@ -26,21 +26,37 @@ export interface CallLLMOptions {
 }
 
 /**
- * Call OpenAI LLM with retry logic
+ * Call OpenAI LLM with strict cost controls
+ * - Model must be set via OPENAI_MODEL env var (no fallback)
+ * - Max tokens capped at 300 for cost efficiency
+ * - Validates against expensive models
  */
 export async function callLLM(options: CallLLMOptions): Promise<LLMResponse> {
     const client = getOpenAIClient();
-    const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 
+    // A) MODELO FIXO POR ENV - SEM FALLBACK
+    const model = process.env.OPENAI_MODEL;
+    if (!model) {
+        throw new Error('OPENAI_MODEL environment variable is required. Set it to "gpt-4o-mini" for cost control.');
+    }
+
+    // C) PROTEÇÃO CONTRA MODELOS CAROS
+    if (model !== 'gpt-4o-mini') {
+        console.warn(`[LLM Warning] Using non-mini model: ${model}. This may incur higher costs.`);
+        console.warn('[LLM Warning] Recommended model: gpt-4o-mini for cost efficiency.');
+    }
+
+    // B) LIMITE DE TOKENS (ECONOMIA REAL)
     const {
         messages,
-        temperature = 0.7,
-        maxTokens = 800,
+        temperature = 0.5,        // Reduced from 0.7 for cost control
+        maxTokens = 300,          // Reduced from 800 for cost control
     } = options;
 
-    try {
-        console.log('[OpenAI] Calling model:', model);
+    // D) LOG SIMPLES (SEM VAZAR DADOS)
+    console.log(`[LLM] provider=openai model=${model} max_tokens=${maxTokens} temp=${temperature}`);
 
+    try {
         const completion = await client.chat.completions.create({
             model,
             messages,
@@ -63,18 +79,18 @@ export async function callLLM(options: CallLLMOptions): Promise<LLMResponse> {
             throw new Error('Invalid LLM response structure');
         }
 
-        console.log('[OpenAI] Success:', {
+        console.log('[LLM] Success:', {
             actions: response.actions.map(a => a.type),
             confidence: response.confidence,
         });
 
         return response;
     } catch (error) {
-        console.error('[OpenAI] Error:', error);
+        console.error('[LLM] Error:', error);
 
         // Retry once on failure
         if (error instanceof Error && error.message.includes('timeout')) {
-            console.log('[OpenAI] Retrying after timeout...');
+            console.log('[LLM] Retrying after timeout...');
             return callLLM(options);
         }
 
