@@ -92,7 +92,6 @@ export default function BooksSection() {
                   <div className="mt-auto">
                     <Button
                       asChild
-                      variant="default"
                       className="w-full group-hover:shadow-lg group-hover:shadow-primary/30 transition-all"
                     >
                       <a
