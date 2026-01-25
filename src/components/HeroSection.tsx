@@ -1,56 +1,17 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Container from './Container';
 import Button from './Button';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { MessageCircle, Play } from 'lucide-react';
 import Link from 'next/link';
+import { aboutInfo } from '@/mockData';
 
 export default function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
-  const playerRef = useRef<any>(null);
 
-  useEffect(() => {
-    // Carregar YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    // Callback global quando API carregar
-    (window as any).onYouTubeIframeAPIReady = () => {
-      console.log('YouTube API Ready');
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!showVideo) return;
-
-    // Esperar um pouco para garantir que iframe foi montado
-    const timer = setTimeout(() => {
-      if ((window as any).YT && (window as any).YT.Player) {
-        playerRef.current = new (window as any).YT.Player('youtube-player', {
-          events: {
-            onStateChange: (event: any) => {
-              // 0 = ended
-              if (event.data === 0) {
-                setShowVideo(false);
-              }
-            }
-          }
-        });
-      }
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-      if (playerRef.current) {
-        playerRef.current.destroy();
-        playerRef.current = null;
-      }
-    };
-  }, [showVideo]);
+  const whatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}?text=Olá! Vim pelo site e gostaria de um orçamento.`;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -72,7 +33,7 @@ export default function HeroSection() {
               className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20"
             >
               <span className="text-xs sm:text-sm font-medium text-primary">
-                Criador Digital Completo
+                Software Engineering
               </span>
             </motion.div>
 
@@ -82,38 +43,19 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight"
             >
-              Sites que convertem, videoclipes que viralizam{' '}
-              <span className="gradient-text">e música que emociona</span>
+              Desenvolvimento de software{' '}
+              <span className="gradient-text">e sistemas</span>
+              {' '}com inteligência artificial aplicada.
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8 max-w-3xl leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-foreground-secondary mb-6 sm:mb-7 md:mb-8 max-w-2xl leading-relaxed"
             >
-              Transformo ideias em produtos digitais prontos para o mercado.
-              <br />
-              Sites inteligentes, videoclipes de nível internacional, avatares virtuais, pocket shows ao vivo e produção musical completa - código e arte.
+              Ciência da Computação como base para a criação de sistemas, automações e projetos digitais, visuais e audiovisuais.
             </motion.p>
-
-            {/* Credibility Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-wrap gap-3 mb-6 sm:mb-7 md:mb-8"
-            >
-              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm">
-                ✓ Site Oficial Zé Ramalho
-              </div>
-              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm">
-                ✓ 15+ Videoclipes Produzidos
-              </div>
-              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm">
-                ✓ Músico Profissional desde 1987
-              </div>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -122,13 +64,13 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
             >
               <Button size="md" asChild>
-                <Link href="/contato">
-                  Solicitar Orçamento <ArrowRight size={20} className="ml-2" />
+                <Link href={whatsappUrl} target="_blank">
+                  <MessageCircle size={20} className="mr-2" /> Falar no WhatsApp
                 </Link>
               </Button>
               <Button size="md" variant="outline" asChild>
                 <Link href="/portfolio">
-                  Ver Projetos Reais
+                  Ver Portfólio
                 </Link>
               </Button>
             </motion.div>
@@ -147,35 +89,29 @@ export default function HeroSection() {
                   onClick={() => setShowVideo(true)}
                   className="block w-full h-full relative focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  {/* Thumbnail do YouTube como background */}
                   <img 
-                    src="https://i.ytimg.com/vi/dI0xptf2aag/maxresdefault.jpg"
+                    src="https://i.ytimg.com/vi/rhDKFzZJKZw/maxresdefault.jpg"
                     alt="Vídeo de apresentação"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  
-                  {/* Overlay escuro mais transparente */}
                   <div className="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-colors" />
-                  
-                  {/* Play button e texto */}
                   <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/2 to-secondary/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:from-primary/50 group-hover:to-secondary/50 transition-all cursor-pointer shadow-2xl backdrop-blur-sm">
+                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:from-primary/50 group-hover:to-secondary/50 transition-all cursor-pointer shadow-2xl backdrop-blur-sm">
                         <Play size={32} className="text-white ml-1 drop-shadow-lg" />
                       </div>
                       <p className="text-white font-semibold mb-1 drop-shadow-lg">
-                        Avatar Digital — Criado com IA
+                        Vídeo criado com avatar digital com IA
                       </p>
                       <p className="text-white/90 text-sm drop-shadow-lg">
-                        Projetos Reais, Resultados Comprovados
+                        Método, Experiência e Resultados
                       </p>
                     </div>
                   </div>
                 </button>
               ) : (
                 <iframe
-                  id="youtube-player"
-                  src="https://www.youtube.com/embed/dI0xptf2aag?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1"
+                  src="https://www.youtube.com/embed/rhDKFzZJKZw?autoplay=1&rel=0"
                   title="Vídeo de apresentação"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -190,8 +126,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </Container>
-
-
     </section>
   );
 }

@@ -1,53 +1,83 @@
+'use client';
+
 import Container from './Container';
 import SectionTitle from './SectionTitle';
-import ServiceCard from './ServiceCard';
-import { services } from '@/mockData';
+import Button from './Button';
+import { Sparkles, Code2, Music, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+const portals = [
+  {
+    id: 'ia-automacao',
+    title: 'IA & Automação',
+    description: 'WhatsApp IA, chatbots, automações e integrações que trabalham 24h por você.',
+    icon: Sparkles,
+    href: '/servicos#ia-automacao',
+    cta: 'Ver soluções de IA',
+    gradient: 'from-primary to-secondary',
+  },
+  {
+    id: 'sites-sistemas',
+    title: 'Sites & Sistemas',
+    description: 'Sites que convertem, landing pages, e-commerce e sistemas sob medida.',
+    icon: Code2,
+    href: '/servicos#sites-sistemas',
+    cta: 'Ver projetos web',
+    gradient: 'from-secondary to-accent',
+  },
+  {
+    id: 'audiovisual-musica',
+    title: 'Audiovisual & Música',
+    description: 'Videoclipes com IA, produção musical, pocket shows e avatares virtuais.',
+    icon: Music,
+    href: '/servicos#audiovisual-musica',
+    cta: 'Ver trabalhos',
+    gradient: 'from-accent to-primary',
+  },
+];
 
 export default function ServicesOverview() {
   return (
     <section className="py-16 sm:py-20 md:py-24 lg:py-28">
       <Container>
         <SectionTitle
-          title="Serviços & Soluções"
-          subtitle="Sistemas, automação, audiovisual, música, personagens digitais e design."
+          title="Escolha seu Objetivo"
+          subtitle="Três caminhos para transformar seu negócio ou projeto"
           centered
           className="mx-auto"
         />
 
-        {/* Como Eu Trabalho - AI-Powered Workflow */}
-        <div className="max-w-3xl mx-auto mb-12 p-6 sm:p-8 rounded-xl bg-background-secondary border border-border">
-          <h3 className="text-xl font-bold mb-4 text-center">Como Eu Trabalho</h3>
-          <div className="grid sm:grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">01 —</div>
-              <div className="font-semibold mb-1">Atendimento Inteligente</div>
-              <div className="text-sm text-foreground-secondary">
-                Envie sua demanda via WhatsApp (ou email) descrevendo o que precisa.
-              </div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">02 —</div>
-              <div className="font-semibold mb-1">Proposta Detalhada</div>
-              <div className="text-sm text-foreground-secondary">
-                Escopo, prazo e investimento refinados em até 48h
-              </div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">03 —</div>
-              <div className="font-semibold mb-1">Execução</div>
-              <div className="text-sm text-foreground-secondary">
-                Entregas iterativas + suporte contínuo
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 pt-6 border-t border-border text-center text-sm text-foreground-secondary">
-            <p>💡 Quando necessário, realizo uma conversa rápida para alinhar detalhes finais e avançar com segurança.</p>
-          </div>
-        </div>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mt-10">
+          {portals.map((portal, index) => (
+            <motion.div
+              key={portal.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="h-full p-8 rounded-2xl bg-background-secondary border border-border hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10">
+                {/* Icon */}
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${portal.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <portal.icon size={28} className="text-white" />
+                </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-16 mt-8 sm:mt-10 md:mt-12">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+                {/* Content */}
+                <h3 className="text-xl font-bold mb-3">{portal.title}</h3>
+                <p className="text-foreground-secondary mb-6 leading-relaxed">
+                  {portal.description}
+                </p>
+
+                {/* CTA */}
+                <Button asChild variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all">
+                  <Link href={portal.href}>
+                    {portal.cta} <ArrowRight size={16} className="ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
           ))}
         </div>
       </Container>
