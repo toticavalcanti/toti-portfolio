@@ -1,210 +1,223 @@
 import PageHeader from '@/components/PageHeader';
 import Container from '@/components/Container';
-import ServiceCard from '@/components/ServiceCard';
 import Button from '@/components/Button';
-import { services } from '@/mockData';
+import { aboutInfo } from '@/mockData';
 import Link from 'next/link';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, MessageCircle, Sparkles, Code2, Music } from 'lucide-react';
+
+// Define pillars with their services (4-6 items max each)
+const pillars = [
+  {
+    id: 'ia-automacao',
+    title: 'IA & Automação',
+    description: 'Soluções de inteligência artificial que trabalham 24h por você',
+    icon: Sparkles,
+    gradient: 'from-primary to-secondary',
+    services: [
+      {
+        name: 'WhatsApp IA Vendedor',
+        description: 'Atendimento automatizado que qualifica leads, responde dúvidas e agenda reuniões.',
+      },
+      {
+        name: 'Chatbots Inteligentes',
+        description: 'Assistentes virtuais para site, Instagram e outras plataformas.',
+      },
+      {
+        name: 'Automações de Marketing',
+        description: 'Sequências automáticas de e-mail, CRM e follow-up de leads.',
+      },
+      {
+        name: 'Integrações entre Sistemas',
+        description: 'Conecte suas ferramentas: planilhas, CRM, e-commerce, pagamentos.',
+      },
+    ],
+  },
+  {
+    id: 'sites-sistemas',
+    title: 'Sites & Sistemas',
+    description: 'Aplicações web e sistemas sob medida para seu negócio',
+    icon: Code2,
+    gradient: 'from-secondary to-accent',
+    services: [
+      {
+        name: 'Landing Pages',
+        description: 'Páginas otimizadas para conversão com design profissional.',
+      },
+      {
+        name: 'Sites Institucionais',
+        description: 'Presença digital completa com blog, SEO e painel administrativo.',
+      },
+      {
+        name: 'E-commerce',
+        description: 'Lojas virtuais completas com pagamento, estoque e relatórios.',
+      },
+      {
+        name: 'Sistemas Web',
+        description: 'Dashboards, plataformas e aplicações customizadas.',
+      },
+      {
+        name: 'Manutenção e Otimização',
+        description: 'Performance, segurança e melhorias contínuas em sites existentes.',
+      },
+    ],
+  },
+  {
+    id: 'audiovisual-musica',
+    title: 'Audiovisual & Música',
+    description: 'Produção criativa com IA: videoclipes, avatares, música',
+    icon: Music,
+    gradient: 'from-accent to-primary',
+    services: [
+      {
+        name: 'Videoclipes com IA Generativa',
+        description: 'Clipes profissionais usando IA (Runway, Midjourney) com custo menor que produção tradicional.',
+      },
+      {
+        name: 'Produção Musical Completa',
+        description: 'Do arranjo à masterização. Qualquer estilo, qualidade de mercado.',
+      },
+      {
+        name: 'Avatares e Apresentadores IA',
+        description: 'Modelos virtuais para publicidade, cursos e conteúdo de redes sociais.',
+      },
+      {
+        name: 'Pocket Shows',
+        description: 'Performance ao vivo profissional com flauta e sax (com ou sem equipamento).',
+      },
+      {
+        name: 'Arte Generativa',
+        description: 'Capas de álbum, artes para redes sociais e material promocional.',
+      },
+    ],
+  },
+];
 
 export default function ServicosPage() {
+  const whatsappBase = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
+
   return (
     <>
       <PageHeader
-        title="Serviços & Soluções"
-        description="Software, IA, audiovisual, música, personagens digitais e design visual. Base técnica aplicada a diferentes domínios."
+        title="Serviços"
+        description="Escolha o pilar que mais atende sua necessidade"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Serviços' },
         ]}
       />
 
-      <section className="py-16">
+      {/* Quick Navigation */}
+      <section className="py-8 border-b border-border sticky top-16 bg-background/95 backdrop-blur-sm z-40">
         <Container>
-          <div className="grid gap-12">
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                className={`grid lg:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
+          <div className="flex flex-wrap justify-center gap-4">
+            {pillars.map((pillar) => (
+              <a
+                key={pillar.id}
+                href={`#${pillar.id}`}
+                className="px-4 py-2 rounded-full border border-border hover:border-primary hover:bg-primary/10 transition-colors text-sm font-medium"
               >
-                {/* Service Info */}
-                <div>
-                  <ServiceCard service={service} />
-                </div>
-
-                {/* Details */}
-                <div className="space-y-6">
-                  {service.whoItsFor && service.whoItsFor.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-bold mb-4 text-primary">
-                        Para quem é?
-                      </h3>
-                      <ul className="space-y-2">
-                        {service.whoItsFor.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-foreground-secondary"
-                        >
-                          <Check size={20} className="text-success mt-0.5 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {service.benefits && service.benefits.length > 0 && (
-                    <div>
-                      <h3 className="text-xl font-bold mb-4 text-primary">
-                        Benefícios
-                      </h3>
-                      <ul className="space-y-2">
-                        {service.benefits.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-foreground-secondary"
-                        >
-                          <Check size={20} className="text-success mt-0.5 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <Button asChild>
-                    <Link href="/contato">
-                      Solicitar Orçamento <ArrowRight size={20} className="ml-2" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+                {pillar.title}
+              </a>
             ))}
           </div>
+        </Container>
+      </section>
 
-          {/* FAQ de Precificação */}
-          <section className="mt-24 pt-16 border-t border-border">
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Perguntas Frequentes sobre Precificação
-            </h2>
-            
-            <div className="max-w-4xl mx-auto space-y-6">
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Por que preço por minuto/quantidade ao invés de pacotes fechados?
-                </h3>
-                <p className="text-foreground-secondary">
-                  O custo de produção com IA é diretamente proporcional à quantidade gerada. 
-                  Serviços como Runway Gen-3, Midjourney e APIs de IA cobram por uso: por segundo 
-                  de vídeo gerado, por imagem criada, por token processado. Um clipe de 5 minutos 
-                  consome significativamente mais créditos de IA que um de 3 minutos. Além disso, 
-                  há o tempo de edição, pós-produção e refinamento. A precificação por minutagem 
-                  reflete o custo real de produção, não uma categoria arbitrária.
-                </p>
+      {/* Pillar Sections */}
+      {pillars.map((pillar, pillarIndex) => {
+        const whatsappUrl = `${whatsappBase}?text=Olá! Quero um orçamento de ${pillar.title}.`;
+
+        return (
+          <section
+            key={pillar.id}
+            id={pillar.id}
+            className={`py-16 sm:py-20 scroll-mt-32 ${pillarIndex % 2 === 1 ? 'bg-background-secondary' : ''}`}
+          >
+            <Container>
+              {/* Pillar Header */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center`}>
+                  <pillar.icon size={28} className="text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold">{pillar.title}</h2>
+                  <p className="text-foreground-secondary">{pillar.description}</p>
+                </div>
               </div>
 
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Como funciona o orçamento personalizado?
-                </h3>
-                <p className="text-foreground-secondary">
-                  1. Você preenche o formulário ou entra em contato via WhatsApp<br />
-                  2. Analisamos seu pedido em até 24h úteis<br />
-                  3. Marcamos uma conversa rápida (15-30min) para alinhar detalhes<br />
-                  4. Enviamos proposta formal com escopo e valores<br />
-                  5. Ajustamos se necessário e fechamos o projeto
-                </p>
+              {/* Services Grid */}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {pillar.services.map((service, i) => (
+                  <div
+                    key={i}
+                    className="p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition-colors"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Check size={20} className="text-success mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h3 className="font-bold mb-1">{service.name}</h3>
+                        <p className="text-sm text-foreground-secondary">{service.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Posso parcelar o pagamento?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Sim! Projetos acima de R$ 5.000 podem ser parcelados em até 3x sem juros 
-                  via transferência bancária ou Pix. Para valores maiores (R$ 20.000+), 
-                  podemos negociar pagamento por milestone: 30% início, 40% entrega intermediária, 
-                  30% entrega final.
-                </p>
+              {/* Pillar CTA */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild>
+                  <Link href={whatsappUrl} target="_blank">
+                    <MessageCircle size={20} className="mr-2" />
+                    Quero orçamento de {pillar.title}
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href="/contato">
+                    Enviar formulário <ArrowRight size={16} className="ml-2" />
+                  </Link>
+                </Button>
               </div>
-
-               <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Trabalho com todos os estilos musicais?
-                </h3>
-                <p className="text-foreground-secondary">
-                  SIM! Produção musical: MPB, Samba, Forró, Sertanejo, Pop, Rock, Jazz, Blues, 
-                  Eletrônico, Árabe, Indiano, Africano, Orquestral, Experimental... qualquer 
-                  estilo ou instrumentação. Transformo suas ideias musicais em música gravada 
-                  com arranjos no estilo que você escolher, com qualidade profissional do mercado. 
-                  O preço varia pela complexidade do trabalho, não pelo estilo.
-                </p>
-              </div>
-
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Como funciona para Pocket Shows: preciso contratar equipamento separado?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Depende. Se o local do evento já tem equipamento de som adequado (caixas P.A., 
-                  mesa, microfones), você paga apenas o cachê artístico. Se não tem, posso 
-                  providenciar todo o equipamento + técnico, com custo adicional claro e 
-                  transparente conforme tamanho do público.
-                </p>
-              </div>
-
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Quanto custa usar as IAs? Isso está incluído no preço?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Sim, está incluído! Os custos das plataformas de IA (Runway Gen-3, Midjourney, 
-                  HeyGen, APIs da OpenAI, etc) já estão embutidos na precificação. Por exemplo, 
-                  o Runway cobra cerca de US$ 0,05 por segundo de vídeo gerado - um clipe de 3 
-                  minutos pode custar US$ 9+ só em créditos de IA, sem contar múltiplas tentativas 
-                  e refinamentos. A precificação por minuto/quantidade garante que o custo real 
-                  de produção está coberto de forma justa para ambos.
-                </p>
-              </div>
-
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Avatares IA são convincentes? Parecem reais?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Sim! As tecnologias atuais (HeyGen, D-ID, Synthesia) produzem avatares com 
-                  qualidade fotorrealista. Sincronização labial perfeita, movimentos naturais e 
-                  expressões convincentes. A qualidade é tão alta que muitas pessoas não percebem 
-                  que é IA. Veja exemplos reais nos vídeos do Código Fluente no Instagram e YouTube.
-                </p>
-              </div>
-
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Tem garantia de satisfação?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Todos os projetos incluem rodadas de revisão (quantidade varia por serviço). 
-                  Se não ficar satisfeito após as revisões inclusas, podemos negociar ajustes 
-                  extras ou reembolso parcial conforme trabalho já realizado.
-                </p>
-              </div>
-
-              <div className="bg-background-secondary rounded-lg p-6">
-                <h3 className="text-lg font-bold mb-2">
-                  Quanto tempo demora para começar o projeto?
-                </h3>
-                <p className="text-foreground-secondary">
-                  Depende da minha agenda atual, mas geralmente:<br />
-                  • Projetos pequenos (até R$ 10K): Início em 1-2 semanas<br />
-                  • Projetos médios (R$ 10-30K): Início em 2-4 semanas<br />
-                  • Projetos grandes (R$ 30K+): Planejamento prévio, início em 4-6 semanas<br />
-                  Urgências podem ser aceleradas com taxa de express (+30%).
-                </p>
-              </div>
-            </div>
+            </Container>
           </section>
+        );
+      })}
+
+      {/* FAQ Section */}
+      <section className="py-16 border-t border-border">
+        <Container>
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Perguntas Frequentes
+          </h2>
+          
+          <div className="max-w-3xl mx-auto space-y-4">
+            <div className="p-6 rounded-lg bg-background-secondary">
+              <h3 className="font-bold mb-2">Como funciona o orçamento?</h3>
+              <p className="text-foreground-secondary text-sm">
+                Você descreve sua necessidade via WhatsApp ou formulário. Analiso e retorno com proposta clara contendo escopo, prazo estimado e investimento.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-background-secondary">
+              <h3 className="font-bold mb-2">Qual o prazo de entrega?</h3>
+              <p className="text-foreground-secondary text-sm">
+                Depende do escopo. Projetos simples: 1-2 semanas. Projetos médios: 3-6 semanas. Projetos complexos: sob medida. O prazo exato é definido na proposta.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-background-secondary">
+              <h3 className="font-bold mb-2">Posso parcelar?</h3>
+              <p className="text-foreground-secondary text-sm">
+                Sim, para projetos acima de R$ 5.000. Detalhes negociados caso a caso.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-background-secondary">
+              <h3 className="font-bold mb-2">Trabalha com contrato?</h3>
+              <p className="text-foreground-secondary text-sm">
+                Sim. Todos os projetos incluem proposta formal e contrato detalhando escopo, prazos, entregas e condições de pagamento.
+              </p>
+            </div>
+          </div>
         </Container>
       </section>
     </>

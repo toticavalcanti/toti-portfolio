@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore Antigravity kit vendor files
+.agent/**
+
+# Allow ONLY my portfolio-conversion skill
+!.agent/
+!.agent/skills/
+!.agent/skills/portfolio-conversion/
+!.agent/skills/portfolio-conversion/skill.md

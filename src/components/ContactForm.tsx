@@ -7,40 +7,33 @@ import TextInput from './TextInput';
 import TextArea from './TextArea';
 import Select from './Select';
 import Button from './Button';
-import { Send } from 'lucide-react';
+import { Send, AlertCircle, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
+import { aboutInfo } from '@/mockData';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
-  email: z.string().email('Email inválido'),
-  projectType: z.string().min(1, 'Selecione um tipo de projeto'),
-  budgetRange: z.string().min(1, 'Selecione uma faixa de orçamento'),
-  message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres'),
+  whatsapp: z.string().min(10, 'WhatsApp inválido (mínimo 10 dígitos)'),
+  pilar: z.string().min(1, 'Selecione o tipo de projeto'),
+  message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres').max(500, 'Mensagem muito longa (máximo 500 caracteres)'),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-const projectTypes = [
+const pilarOptions = [
   { value: '', label: 'Selecione...' },
-  { value: 'clipe', label: 'Clipe Musical com IA' },
-  { value: 'personagem', label: 'Personagem Virtual' },
-  { value: 'banda', label: 'Banda Virtual' },
-  { value: 'webapp', label: 'Aplicação Web' },
-  { value: 'outro', label: 'Outro' },
-];
-
-const budgetRanges = [
-  { value: '', label: 'Selecione...' },
-  { value: '1k-5k', label: 'R$ 1.000 - R$ 5.000' },
-  { value: '5k-10k', label: 'R$ 5.000 - R$ 10.000' },
-  { value: '10k-20k', label: 'R$ 10.000 - R$ 20.000' },
-  { value: '20k+', label: 'R$ 20.000+' },
-  { value: 'nao-sei', label: 'Não tenho certeza' },
+  { value: 'ia-automacao', label: 'IA & Automação' },
+  { value: 'sites-sistemas', label: 'Sites & Sistemas' },
+  { value: 'audiovisual-musica', label: 'Audiovisual & Música' },
 ];
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const whatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
 
   const {
     register,
@@ -53,65 +46,91 @@ export default function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-    console.log('Form data:', data);
-    setSubmitSuccess(true);
-    reset();
-    
-    setTimeout(() => {
-      setSubmitSuccess(false);
-    }, 5000);
-    
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        setSubmitError(result.message || 'Erro ao enviar mensagem. Tente novamente.');
+        return;
+      }
+
+      setSubmitSuccess(true);
+      reset();
+      
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 10000);
+
+    } catch {
+      setSubmitError('Erro de conexão. Por favor, tente novamente ou entre em contato pelo WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-6">
-        <TextInput
-          label="Nome"
-          placeholder="Seu nome completo"
-          {...register('name')}
-          error={errors.name?.message}
-        />
-        <TextInput
-          label="Email"
-          type="email"
-          placeholder="seu@email.com"
-          {...register('email')}
-          error={errors.email?.message}
-        />
-      </div>
+      <TextInput
+        label="Nome *"
+        placeholder="Seu nome completo"
+        {...register('name')}
+        error={errors.name?.message}
+      />
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <Select
-          label="Tipo de Projeto"
-          options={projectTypes}
-          {...register('projectType')}
-          error={errors.projectType?.message}
-        />
-        <Select
-          label="Faixa de Orçamento"
-          options={budgetRanges}
-          {...register('budgetRange')}
-          error={errors.budgetRange?.message}
-        />
-      </div>
+      <TextInput
+        label="WhatsApp *"
+        placeholder="(21) 99999-9999"
+        {...register('whatsapp')}
+        error={errors.whatsapp?.message}
+      />
+
+      <Select
+        label="Área de Interesse *"
+        options={pilarOptions}
+        {...register('pilar')}
+        error={errors.pilar?.message}
+      />
 
       <TextArea
-        label="Mensagem"
-        placeholder="Conte-me mais sobre seu projeto..."
-        rows={6}
+        label="Mensagem *"
+        placeholder="Descreva brevemente seu projeto ou necessidade..."
+        rows={4}
         {...register('message')}
         error={errors.message?.message}
       />
 
       {submitSuccess && (
         <div className="p-4 rounded-lg bg-success/10 border border-success text-success">
-          Mensagem enviada com sucesso! Entrarei em contato em breve.
+          ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
+        </div>
+      )}
+
+      {submitError && (
+        <div className="p-4 rounded-lg bg-error/10 border border-error text-error">
+          <div className="flex items-start gap-3">
+            <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
+            <div>
+              <p>{submitError}</p>
+              <Link
+                href={whatsappUrl}
+                target="_blank"
+                className="inline-flex items-center gap-2 mt-2 text-sm font-medium hover:underline"
+              >
+                <MessageCircle size={16} />
+                Contato via WhatsApp
+              </Link>
+            </div>
+          </div>
         </div>
       )}
 

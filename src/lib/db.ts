@@ -1,4 +1,4 @@
-import { Pool, PoolClient, QueryResult } from 'pg';
+import { Pool, PoolClient, QueryResult, QueryResultRow } from 'pg';
 
 // Singleton connection pool
 let pool: Pool | null = null;
@@ -33,7 +33,7 @@ function getPool(): Pool {
 /**
  * Execute a parameterized SQL query
  */
-export async function query<T = unknown>(
+export async function query<T extends QueryResultRow = QueryResultRow>(
     text: string,
     params?: unknown[]
 ): Promise<QueryResult<T>> {
