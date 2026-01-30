@@ -4,6 +4,47 @@ import { z } from 'zod';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// WhatsApp number for fallback
+const WHATSAPP_NUMBER = '5521982266075';
+
+/**
+ * Normalize phone number:
+ * - Remove all non-digit characters
+ * - Ensure Brazilian prefix (55) is present
+ */
+function normalizePhone(phone: string): string {
+    // Remove all non-digits
+    let digits = phone.replace(/\D/g, '');
+
+    // If starts with 0, remove it (old format like 021...)
+    if (digits.startsWith('0')) {
+        digits = digits.substring(1);
+    }
+
+    // If doesn't start with 55, add Brazilian prefix
+    if (!digits.startsWith('55')) {
+        digits = '55' + digits;
+    }
+
+    return digits;
+}
+
+/**
+ * Build WhatsApp href with pre-filled message
+ */
+function buildWhatsAppHref(name: string, pilar: string, message: string): string {
+    const pilarNames: Record<string, string> = {
+        'ia-automacao': 'IA & Automação',
+        'sites-sistemas': 'Sites & Sistemas',
+        'audiovisual-musica': 'Audiovisual & Música',
+    };
+
+    const pilarName = pilarNames[pilar] || pilar;
+    const prefilledMessage = `Olá! Sou ${name}.\n\nInteresse: ${pilarName}\n\n${message}`;
+
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(prefilledMessage)}`;
+}
+
 // Validation schema for contact form
 const contactSchema = z.object({
     name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
@@ -20,6 +61,8 @@ type ContactData = z.infer<typeof contactSchema>;
  * POST /api/contact - Capture lead from contact form
  */
 export async function POST(request: NextRequest) {
+    let parsedData: ContactData | null = null;
+
     try {
         const body = await request.json();
 
@@ -36,17 +79,25 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const data: ContactData = validationResult.data;
+        parsedData = validationResult.data;
+
+        // Normalize phone number (digits only, ensure 55 prefix)
+        const normalizedPhone = normalizePhone(parsedData.whatsapp);
 
         // Check if DATABASE_URL is configured
         const databaseUrl = process.env.DATABASE_URL;
 
         if (!databaseUrl) {
             console.warn('[Contact API] DATABASE_URL not configured - lead not saved');
+
+            // Build fallback WhatsApp link
+            const whatsappHref = buildWhatsAppHref(parsedData.name, parsedData.pilar, parsedData.message);
+
             return NextResponse.json(
                 {
                     success: false,
-                    message: 'Sistema de contato temporariamente indisponível. Por favor, entre em contato pelo WhatsApp: (21) 98226-6075',
+                    message: 'Formulário temporariamente indisponível. Clique abaixo para falar diretamente no WhatsApp:',
+                    whatsappHref,
                 },
                 { status: 503 }
             );
@@ -55,9 +106,6 @@ export async function POST(request: NextRequest) {
         // Import db module dynamically to avoid errors when DATABASE_URL is not set
         const { query } = await import('@/lib/db');
 
-        // Format WhatsApp number (remove non-digits)
-        const formattedPhone = data.whatsapp.replace(/\D/g, '');
-
         // Map pilar to readable name
         const pilarNames: Record<string, string> = {
             'ia-automacao': 'IA & Automação',
@@ -65,7 +113,7 @@ export async function POST(request: NextRequest) {
             'audiovisual-musica': 'Audiovisual & Música',
         };
 
-        // Insert lead into database
+        // Insert lead into database with NORMALIZED phone
         const insertSql = `
       INSERT INTO leads (
         phone, 
@@ -84,14 +132,14 @@ export async function POST(request: NextRequest) {
         service_interest = EXCLUDED.service_interest,
         notes = CONCAT(leads.notes, E'\n---\n', EXCLUDED.notes),
         updated_at = NOW()
-      RETURNING id
+      RETURNING id, phone
     `;
 
         const result = await query(insertSql, [
-            formattedPhone,
-            data.name,
-            pilarNames[data.pilar] || data.pilar,
-            `[Formulário Site] ${data.message}`,
+            normalizedPhone,  // Use normalized phone
+            parsedData.name,
+            pilarNames[parsedData.pilar] || parsedData.pilar,
+            `[Formulário Site] ${parsedData.message}`,
         ]);
 
         if (result.rowCount === 0) {
@@ -99,9 +147,10 @@ export async function POST(request: NextRequest) {
         }
 
         console.log('[Contact API] Lead saved successfully:', {
-            phone: formattedPhone,
-            name: data.name,
-            pilar: data.pilar
+            phone: normalizedPhone,
+            name: parsedData.name,
+            pilar: parsedData.pilar,
+            id: result.rows[0]?.id,
         });
 
         return NextResponse.json({
@@ -112,11 +161,17 @@ export async function POST(request: NextRequest) {
     } catch (error) {
         console.error('[Contact API] Error:', error);
 
-        // Return user-friendly error
+        // Build fallback WhatsApp link if we have parsed data
+        const whatsappHref = parsedData
+            ? buildWhatsAppHref(parsedData.name, parsedData.pilar, parsedData.message)
+            : `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Vim pelo formulário do site.')}`;
+
+        // Return user-friendly error with WhatsApp fallback
         return NextResponse.json(
             {
                 success: false,
-                message: 'Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo WhatsApp: (21) 98226-6075',
+                message: 'Erro ao enviar mensagem. Por favor, fale diretamente pelo WhatsApp:',
+                whatsappHref,
             },
             { status: 500 }
         );

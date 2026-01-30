@@ -21,6 +21,13 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+interface ApiResponse {
+  success: boolean;
+  message: string;
+  whatsappHref?: string;
+  errors?: Record<string, string[]>;
+}
+
 const pilarOptions = [
   { value: '', label: 'Selecione...' },
   { value: 'ia-automacao', label: 'IA & Automação' },
@@ -32,8 +39,9 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [whatsappFallback, setWhatsappFallback] = useState<string | null>(null);
 
-  const whatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
+  const defaultWhatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
 
   const {
     register,
@@ -47,6 +55,7 @@ export default function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setSubmitError(null);
+    setWhatsappFallback(null);
     
     try {
       const response = await fetch('/api/contact', {
@@ -57,13 +66,18 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const result: ApiResponse = await response.json();
 
       if (!result.success) {
         setSubmitError(result.message || 'Erro ao enviar mensagem. Tente novamente.');
+        // Set WhatsApp fallback if provided by API
+        if (result.whatsappHref) {
+          setWhatsappFallback(result.whatsappHref);
+        }
         return;
       }
 
+      // Success!
       setSubmitSuccess(true);
       reset();
       
@@ -72,7 +86,9 @@ export default function ContactForm() {
       }, 10000);
 
     } catch {
-      setSubmitError('Erro de conexão. Por favor, tente novamente ou entre em contato pelo WhatsApp.');
+      // Network or parsing error - always show feedback
+      setSubmitError('Erro de conexão. Por favor, tente novamente ou fale pelo WhatsApp:');
+      setWhatsappFallback(defaultWhatsappUrl);
     } finally {
       setIsSubmitting(false);
     }
@@ -109,26 +125,30 @@ export default function ContactForm() {
         error={errors.message?.message}
       />
 
+      {/* Success Message */}
       {submitSuccess && (
         <div className="p-4 rounded-lg bg-success/10 border border-success text-success">
           ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
         </div>
       )}
 
+      {/* Error Message with WhatsApp Fallback */}
       {submitError && (
         <div className="p-4 rounded-lg bg-error/10 border border-error text-error">
           <div className="flex items-start gap-3">
             <AlertCircle size={20} className="flex-shrink-0 mt-0.5" />
-            <div>
-              <p>{submitError}</p>
-              <Link
-                href={whatsappUrl}
-                target="_blank"
-                className="inline-flex items-center gap-2 mt-2 text-sm font-medium hover:underline"
-              >
-                <MessageCircle size={16} />
-                Contato via WhatsApp
-              </Link>
+            <div className="flex-1">
+              <p className="mb-3">{submitError}</p>
+              {whatsappFallback && (
+                <Link
+                  href={whatsappFallback}
+                  target="_blank"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#25D366] text-white font-medium hover:bg-[#128C7E] transition-colors"
+                >
+                  <MessageCircle size={18} />
+                  Abrir WhatsApp
+                </Link>
+              )}
             </div>
           </div>
         </div>
