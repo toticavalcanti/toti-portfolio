@@ -17,6 +17,7 @@ const contactSchema = z.object({
   whatsapp: z.string().min(10, 'WhatsApp inválido (mínimo 10 dígitos)'),
   pilar: z.string().min(1, 'Selecione o tipo de projeto'),
   message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres').max(500, 'Mensagem muito longa (máximo 500 caracteres)'),
+  pocketShowWaitlist: z.boolean().optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -48,9 +49,13 @@ export default function ContactForm() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  const selectedPilar = watch('pilar');
+  const showPocketShowCheckbox = selectedPilar === 'audiovisual-musica';
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -116,6 +121,27 @@ export default function ContactForm() {
         {...register('pilar')}
         error={errors.pilar?.message}
       />
+
+      {/* Pocket Show Waitlist Checkbox - Only for Audiovisual */}
+      {showPocketShowCheckbox && (
+        <div className="p-4 rounded-lg bg-warning/10 border border-warning/30">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              {...register('pocketShowWaitlist')}
+              className="mt-1 h-4 w-4 rounded border-warning text-warning focus:ring-warning"
+            />
+            <div className="flex-1">
+              <span className="font-medium text-foreground">
+                Quero entrar na lista do Pocket Show
+              </span>
+              <p className="text-sm text-foreground-secondary mt-1">
+                O Pocket Show está em montagem. Marque para ter prioridade quando disponível.
+              </p>
+            </div>
+          </label>
+        </div>
+      )}
 
       <TextArea
         label="Mensagem *"

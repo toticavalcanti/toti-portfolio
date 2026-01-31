@@ -3,7 +3,7 @@
 import Container from './Container';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { aboutInfo } from '@/mockData';
@@ -20,6 +20,7 @@ const packages = [
       'Formulário de contato',
     ],
     highlight: false,
+    isWaitingList: false,
   },
   {
     name: 'WhatsApp IA Vendedor',
@@ -32,6 +33,7 @@ const packages = [
       'Tags e segmentação',
     ],
     highlight: true,
+    isWaitingList: false,
   },
   {
     name: 'Funil Completo',
@@ -44,23 +46,26 @@ const packages = [
       'Dashboard de métricas',
     ],
     highlight: false,
+    isWaitingList: false,
   },
   {
-    name: 'Pocket Show Premium',
-    description: 'Presença digital completa para seu evento',
-    price: 'a partir de R$ 2.500',
+    name: 'Pocket Show',
+    description: 'Em montagem — entre na lista de espera',
+    price: 'valores sob consulta',
     includes: [
-      'Página do show',
-      'Playlist personalizada',
-      'Mídia promocional',
-      'Contato rápido integrado',
+      'Performance ao vivo (flauta e sax)',
+      'Repertório personalizado',
+      'Formatos variados em definição',
+      'Prioridade para quem reservar',
     ],
     highlight: false,
+    isWaitingList: true,
   },
 ];
 
 export default function PackagesSection() {
-  const whatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}?text=Olá! Tenho interesse em um pacote.`;
+  const whatsappBase = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
+  const pocketShowWaitlistUrl = `${whatsappBase}?text=${encodeURIComponent('Oi Toti! Quero entrar na lista de espera do Pocket Show. Meu nome é __. Evento em: __ (cidade/data).')}`;
 
   return (
     <section className="py-16 sm:py-20 md:py-24 bg-background-secondary">
@@ -77,51 +82,71 @@ export default function PackagesSection() {
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {packages.map((pkg, index) => (
-            <motion.div
-              key={pkg.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className={`relative p-6 rounded-xl border transition-all ${
-                pkg.highlight
-                  ? 'bg-gradient-to-b from-primary/10 to-background border-primary shadow-lg shadow-primary/20'
-                  : 'bg-background border-border hover:border-primary/50'
-              }`}
-            >
-              {pkg.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full">
-                  Popular
-                </div>
-              )}
+          {packages.map((pkg, index) => {
+            const whatsappUrl = pkg.isWaitingList 
+              ? pocketShowWaitlistUrl 
+              : `${whatsappBase}?text=Olá! Tenho interesse no pacote ${pkg.name}.`;
 
-              <h3 className="text-lg font-bold mb-1">{pkg.name}</h3>
-              <p className="text-sm text-foreground-secondary mb-4">{pkg.description}</p>
-              
-              <div className="text-xl font-bold text-primary mb-4">{pkg.price}</div>
-
-              <ul className="space-y-2 mb-6">
-                {pkg.includes.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm">
-                    <Check size={16} className="text-success mt-0.5 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                asChild
-                variant={pkg.highlight ? 'primary' : 'outline'}
-                size="sm"
-                className="w-full"
+            return (
+              <motion.div
+                key={pkg.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className={`relative p-6 rounded-xl border transition-all ${
+                  pkg.highlight
+                    ? 'bg-gradient-to-b from-primary/10 to-background border-primary shadow-lg shadow-primary/20'
+                    : pkg.isWaitingList
+                    ? 'bg-gradient-to-b from-warning/5 to-background border-warning/30 hover:border-warning/50'
+                    : 'bg-background border-border hover:border-primary/50'
+                }`}
               >
-                <Link href={whatsappUrl} target="_blank">
-                  Quero esse <ArrowRight size={16} className="ml-1" />
-                </Link>
-              </Button>
-            </motion.div>
-          ))}
+                {pkg.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full">
+                    Popular
+                  </div>
+                )}
+                {pkg.isWaitingList && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-warning text-black text-xs font-bold rounded-full flex items-center gap-1">
+                    <Clock size={12} />
+                    Em montagem
+                  </div>
+                )}
+
+                <h3 className="text-lg font-bold mb-1">{pkg.name}</h3>
+                <p className="text-sm text-foreground-secondary mb-4">{pkg.description}</p>
+                
+                <div className={`text-xl font-bold mb-4 ${pkg.isWaitingList ? 'text-warning' : 'text-primary'}`}>
+                  {pkg.price}
+                </div>
+
+                <ul className="space-y-2 mb-6">
+                  {pkg.includes.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <Check size={16} className={`mt-0.5 flex-shrink-0 ${pkg.isWaitingList ? 'text-warning' : 'text-success'}`} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  asChild
+                  variant={pkg.highlight ? 'primary' : 'outline'}
+                  size="sm"
+                  className={`w-full ${pkg.isWaitingList ? 'border-warning text-warning hover:bg-warning hover:text-black' : ''}`}
+                >
+                  <Link href={whatsappUrl} target="_blank">
+                    {pkg.isWaitingList ? (
+                      <>Entrar na lista <Clock size={14} className="ml-1" /></>
+                    ) : (
+                      <>Quero esse <ArrowRight size={16} className="ml-1" /></>
+                    )}
+                  </Link>
+                </Button>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="mt-10 text-center">

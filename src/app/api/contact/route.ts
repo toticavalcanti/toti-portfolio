@@ -32,7 +32,7 @@ function normalizePhone(phone: string): string {
 /**
  * Build WhatsApp href with pre-filled message
  */
-function buildWhatsAppHref(name: string, pilar: string, message: string): string {
+function buildWhatsAppHref(name: string, pilar: string, message: string, pocketShowWaitlist?: boolean): string {
     const pilarNames: Record<string, string> = {
         'ia-automacao': 'IA & Automação',
         'sites-sistemas': 'Sites & Sistemas',
@@ -40,7 +40,13 @@ function buildWhatsAppHref(name: string, pilar: string, message: string): string
     };
 
     const pilarName = pilarNames[pilar] || pilar;
-    const prefilledMessage = `Olá! Sou ${name}.\n\nInteresse: ${pilarName}\n\n${message}`;
+    let prefilledMessage = `Olá! Sou ${name}.\n\nInteresse: ${pilarName}`;
+
+    if (pocketShowWaitlist) {
+        prefilledMessage += '\n\n🎷 LISTA DE ESPERA POCKET SHOW';
+    }
+
+    prefilledMessage += `\n\n${message}`;
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(prefilledMessage)}`;
 }
@@ -53,6 +59,7 @@ const contactSchema = z.object({
         errorMap: () => ({ message: 'Selecione um pilar válido' }),
     }),
     message: z.string().min(10, 'Mensagem deve ter pelo menos 10 caracteres').max(500, 'Mensagem muito longa'),
+    pocketShowWaitlist: z.boolean().optional(),
 });
 
 type ContactData = z.infer<typeof contactSchema>;
@@ -91,7 +98,12 @@ export async function POST(request: NextRequest) {
             console.warn('[Contact API] DATABASE_URL not configured - lead not saved');
 
             // Build fallback WhatsApp link
-            const whatsappHref = buildWhatsAppHref(parsedData.name, parsedData.pilar, parsedData.message);
+            const whatsappHref = buildWhatsAppHref(
+                parsedData.name,
+                parsedData.pilar,
+                parsedData.message,
+                parsedData.pocketShowWaitlist
+            );
 
             return NextResponse.json(
                 {
@@ -112,6 +124,18 @@ export async function POST(request: NextRequest) {
             'sites-sistemas': 'Sites & Sistemas',
             'audiovisual-musica': 'Audiovisual & Música',
         };
+
+        // Build service interest with pocket show waitlist flag
+        let serviceInterest = pilarNames[parsedData.pilar] || parsedData.pilar;
+        if (parsedData.pocketShowWaitlist) {
+            serviceInterest += ' (Lista Pocket Show)';
+        }
+
+        // Build notes with pocket show flag
+        let notes = `[Formulário Site] ${parsedData.message}`;
+        if (parsedData.pocketShowWaitlist) {
+            notes = `[LISTA POCKET SHOW] ${notes}`;
+        }
 
         // Insert lead into database with NORMALIZED phone
         const insertSql = `
@@ -138,8 +162,8 @@ export async function POST(request: NextRequest) {
         const result = await query(insertSql, [
             normalizedPhone,  // Use normalized phone
             parsedData.name,
-            pilarNames[parsedData.pilar] || parsedData.pilar,
-            `[Formulário Site] ${parsedData.message}`,
+            serviceInterest,
+            notes,
         ]);
 
         if (result.rowCount === 0) {
@@ -150,6 +174,7 @@ export async function POST(request: NextRequest) {
             phone: normalizedPhone,
             name: parsedData.name,
             pilar: parsedData.pilar,
+            pocketShowWaitlist: parsedData.pocketShowWaitlist || false,
             id: result.rows[0]?.id,
         });
 
@@ -163,7 +188,7 @@ export async function POST(request: NextRequest) {
 
         // Build fallback WhatsApp link if we have parsed data
         const whatsappHref = parsedData
-            ? buildWhatsAppHref(parsedData.name, parsedData.pilar, parsedData.message)
+            ? buildWhatsAppHref(parsedData.name, parsedData.pilar, parsedData.message, parsedData.pocketShowWaitlist)
             : `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Vim pelo formulário do site.')}`;
 
         // Return user-friendly error with WhatsApp fallback

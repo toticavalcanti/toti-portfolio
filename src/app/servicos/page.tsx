@@ -3,7 +3,7 @@ import Container from '@/components/Container';
 import Button from '@/components/Button';
 import { aboutInfo } from '@/mockData';
 import Link from 'next/link';
-import { Check, ArrowRight, MessageCircle, Sparkles, Code2, Music } from 'lucide-react';
+import { Check, ArrowRight, MessageCircle, Sparkles, Code2, Music, Clock } from 'lucide-react';
 
 // Define pillars with their services (4-6 items max each)
 const pillars = [
@@ -81,19 +81,17 @@ const pillars = [
         description: 'Modelos virtuais para publicidade, cursos e conteúdo de redes sociais.',
       },
       {
-        name: 'Pocket Shows',
-        description: 'Performance ao vivo profissional com flauta e sax (com ou sem equipamento).',
-      },
-      {
         name: 'Arte Generativa',
         description: 'Capas de álbum, artes para redes sociais e material promocional.',
       },
     ],
+    // Pocket Show handled separately as waiting list
   },
 ];
 
 export default function ServicosPage() {
   const whatsappBase = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
+  const pocketShowWaitlistUrl = `${whatsappBase}?text=${encodeURIComponent('Oi Toti! Quero entrar na lista de espera do Pocket Show. Meu nome é __. Evento em: __ (cidade/data).')}`;
 
   return (
     <>
@@ -126,6 +124,7 @@ export default function ServicosPage() {
       {/* Pillar Sections */}
       {pillars.map((pillar, pillarIndex) => {
         const whatsappUrl = `${whatsappBase}?text=Olá! Quero um orçamento de ${pillar.title}.`;
+        const isAudiovisual = pillar.id === 'audiovisual-musica';
 
         return (
           <section
@@ -161,6 +160,32 @@ export default function ServicosPage() {
                     </div>
                   </div>
                 ))}
+
+                {/* Pocket Show Waiting List Card - Only for Audiovisual */}
+                {isAudiovisual && (
+                  <div className="p-6 rounded-xl bg-gradient-to-br from-warning/5 to-background border-2 border-warning/30 hover:border-warning/50 transition-colors relative">
+                    <div className="absolute -top-3 left-4 px-3 py-1 bg-warning text-black text-xs font-bold rounded-full flex items-center gap-1">
+                      <Clock size={12} />
+                      Em montagem
+                    </div>
+                    <div className="flex items-start gap-3 mt-2">
+                      <Clock size={20} className="text-warning mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h3 className="font-bold mb-1">Pocket Show — Lista de Espera</h3>
+                        <p className="text-sm text-foreground-secondary mb-4">
+                          Performance ao vivo com flauta e sax. Formatos e repertório em definição. 
+                          Garanta prioridade entrando na lista de espera.
+                        </p>
+                        <Button asChild size="sm" className="border-warning text-warning hover:bg-warning hover:text-black" variant="outline">
+                          <Link href={pocketShowWaitlistUrl} target="_blank">
+                            <MessageCircle size={16} className="mr-2" />
+                            Entrar na lista
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Pillar CTA */}

@@ -29,7 +29,7 @@ const portals = [
   {
     id: 'audiovisual-musica',
     title: 'Audiovisual & Música',
-    description: 'Videoclipes com IA, produção musical, pocket shows e avatares virtuais.',
+    description: 'Videoclipes com IA, produção musical, arranjos e avatares virtuais.',
     icon: Music,
     href: '/servicos#audiovisual-musica',
     cta: 'Ver trabalhos',
