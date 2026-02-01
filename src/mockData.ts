@@ -1,4 +1,4 @@
-import { Project, Service, Post, TimelineItem, SocialLink, Channel, Book } from './types';
+import { Project, Service, Post, TimelineItem, SocialLink, Channel, Book, Case } from './types';
 
 // Featured & All Projects
 export const projects: Project[] = [
@@ -1230,4 +1230,87 @@ export const books: Book[] = [
     topics: ['Música', 'História', 'Cultura', 'Evolução Musical'],
     year: '2024'
   }
+];
+
+// Cases (work showcase)
+
+export const cases: Case[] = [
+  {
+    slug: 'ze-ramalho',
+    name: 'Site Zé Ramalho',
+    description: 'Site oficial de um dos maiores artistas do Brasil — frontend, backend e área administrativa.',
+    tags: ['Site', 'Full-Stack', 'Next.js'],
+    liveUrl: 'https://www.zeramalho.com.br',
+    imagePath: '/assets/cases/ze-ramalho/cover.jpg',
+    objective: 'Criar o novo site oficial do artista Zé Ramalho com área administrativa para gestão de conteúdo.',
+    whatWasDone: 'Site completo: frontend Next.js, API Node.js, MongoDB, área admin, animações, SEO, integração com discografia.',
+    stack: 'Next.js + Node.js + MongoDB + TypeScript + Tailwind',
+    ctaText: 'Quero um site assim',
+    pillar: 'sites-sistemas',
+  },
+  {
+    slug: 'codigo-fluente',
+    name: 'Código Fluente',
+    description: 'Plataforma educacional de programação com conteúdo técnico e didático.',
+    tags: ['Plataforma', 'Educação', 'Full-Stack'],
+    liveUrl: 'https://www.codigofluente.com.br',
+    imagePath: '/assets/cases/codigo-fluente/cover.jpg',
+    objective: 'Criar plataforma de ensino de programação com cursos, artigos e comunidade.',
+    whatWasDone: 'Site educacional completo com sistema de cursos, blog técnico e área de membros.',
+    stack: 'Next.js + React + Node.js + PostgreSQL',
+    ctaText: 'Quero uma plataforma assim',
+    pillar: 'sites-sistemas',
+  },
+  {
+    slug: 'neurozen',
+    name: 'NeuroZen',
+    description: 'Landing de livro + chat IA para tirar dúvidas e aumentar conversão.',
+    tags: ['Landing', 'Chat IA', 'Groq'],
+    liveUrl: 'https://neurozen-book.netlify.app/',
+    imagePath: '/assets/cases/neurozen/cover.jpg',
+    objective: 'Criar landing de livro com chat IA integrado para responder dúvidas em tempo real.',
+    whatWasDone: 'Landing page responsiva + chat IA usando Groq para respostas rápidas e contextuais.',
+    stack: 'HTML/CSS + Groq API + UI de Chat customizado',
+    ctaText: 'Quero um chat desse no meu site',
+    pillar: 'sites-sistemas',
+  },
+  {
+    slug: 'magic-prompts',
+    name: 'Magic Prompts',
+    description: 'Landing de infoproduto + galeria para provar qualidade visual.',
+    tags: ['Landing', 'Galeria', 'Conversão'],
+    liveUrl: 'https://magic-prompts.netlify.app/',
+    imagePath: '/assets/cases/magic-prompts/cover.jpg',
+    objective: 'Vender pacote de prompts de IA com demonstração visual da qualidade.',
+    whatWasDone: 'Landing com galeria de exemplos + estrutura de vendas otimizada para conversão.',
+    stack: 'Landing Page + Galeria Lightbox + CTAs estratégicos',
+    ctaText: 'Quero uma landing que converte',
+    pillar: 'sites-sistemas',
+  },
+  {
+    slug: 'emagrecer-depois-dos-40',
+    name: 'Emagrecer Depois dos 40',
+    description: 'Landing com estrutura clássica de venda e navegação por seções.',
+    tags: ['Landing', 'Copy', 'Estrutura'],
+    liveUrl: 'https://emagrecerdepoisdos40.netlify.app/',
+    imagePath: '/assets/cases/emagrecer-depois-dos-40/cover.jpg',
+    objective: 'Criar página de vendas com estrutura persuasiva e navegação intuitiva.',
+    whatWasDone: 'Landing page com seções organizadas, copy de vendas e CTAs distribuídos.',
+    stack: 'Landing Page + Seções + Múltiplos CTAs',
+    ctaText: 'Quero vender meu produto',
+    pillar: 'sites-sistemas',
+  },
+  {
+    slug: 'toti-portfolio',
+    name: 'Toti Portfolio — Captação Automática de Leads',
+    description: 'Formulário inteligente + agente IA no WhatsApp que qualifica leads 24h via GPT-4.',
+    tags: ['Automação', 'WhatsApp IA', 'Leads'],
+    liveUrl: 'https://toticavalcanti.com.br',
+    imagePath: '/assets/cases/toti-portfolio/cover.jpg',
+    objective: 'Criar sistema de captação automática de leads com IA respondendo no WhatsApp e persistência em banco de dados.',
+    whatWasDone: 'API de contato salvando leads no Postgres (Neon) com rastreio por pilar. Webhook Z-API recebendo mensagens e processando com OpenAI GPT-4o-mini. Anti-spam, cache de respostas e fallback de timeout.',
+    stack: 'Next.js + TypeScript + Postgres (Neon) + OpenAI GPT-4o-mini + Z-API + Vercel',
+    ctaText: 'Quero automação assim',
+    pillar: 'ia-automacao',
+  },
 ];

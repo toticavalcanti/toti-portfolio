@@ -183,3 +183,20 @@ export interface Book {
   topics: string[];
   year?: string;
 }
+
+// Case Type (for work showcase)
+export type CasePillar = 'ia-automacao' | 'sites-sistemas' | 'audiovisual-musica';
+
+export interface Case {
+  slug: string;
+  name: string;
+  description: string;
+  tags: string[];
+  liveUrl: string;
+  imagePath: string; // e.g., /assets/cases/<slug>/cover.jpg
+  objective: string;
+  whatWasDone: string;
+  stack: string;
+  ctaText: string;
+  pillar: CasePillar;
+}

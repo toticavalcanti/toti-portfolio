@@ -94,7 +94,7 @@ export default function PackagesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                className={`relative p-6 rounded-xl border transition-all ${
+                className={`relative p-6 rounded-xl border transition-all flex flex-col ${
                   pkg.highlight
                     ? 'bg-gradient-to-b from-primary/10 to-background border-primary shadow-lg shadow-primary/20'
                     : pkg.isWaitingList
@@ -121,7 +121,7 @@ export default function PackagesSection() {
                   {pkg.price}
                 </div>
 
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-6 flex-grow">
                   {pkg.includes.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <Check size={16} className={`mt-0.5 flex-shrink-0 ${pkg.isWaitingList ? 'text-warning' : 'text-success'}`} />
@@ -134,7 +134,7 @@ export default function PackagesSection() {
                   asChild
                   variant={pkg.highlight ? 'primary' : 'outline'}
                   size="sm"
-                  className={`w-full ${pkg.isWaitingList ? 'border-warning text-warning hover:bg-warning hover:text-black' : ''}`}
+                  className={`w-full mt-auto ${pkg.isWaitingList ? 'border-warning text-warning hover:bg-warning hover:text-black' : ''}`}
                 >
                   <Link href={whatsappUrl} target="_blank">
                     {pkg.isWaitingList ? (

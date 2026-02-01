@@ -197,6 +197,11 @@ export default function ServicosPage() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline">
+                  <Link href={`/cases?p=${pillar.id}`}>
+                    Ver cases <ArrowRight size={16} className="ml-2" />
+                  </Link>
+                </Button>
+                <Button asChild variant="secondary">
                   <Link href="/contato">
                     Enviar formulário <ArrowRight size={16} className="ml-2" />
                   </Link>

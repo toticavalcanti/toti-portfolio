@@ -7,124 +7,201 @@ import Button from '@/components/Button';
 import PageHeader from '@/components/PageHeader';
 import { ExternalLink, ArrowDown, Target, Wrench, Layers, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { aboutInfo } from '@/mockData';
+import { aboutInfo, cases } from '@/mockData';
+import { useState, useMemo, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { CasePillar } from '@/types';
 
-// Case studies data
-const cases = [
-  {
-    slug: 'neurozen',
-    name: 'NeuroZen',
-    description: 'Landing de livro + chat IA para tirar dúvidas e aumentar conversão.',
-    tags: ['Landing', 'Chat IA', 'Groq'],
-    liveUrl: 'https://neurozen-book.netlify.app/',
-    objective: 'Criar landing de livro com chat IA integrado para responder dúvidas em tempo real.',
-    whatWasDone: 'Landing page responsiva + chat IA usando Groq para respostas rápidas e contextuais.',
-    stack: 'HTML/CSS + Groq API + UI de Chat customizado',
-    ctaText: 'Quero um chat desse no meu site',
-  },
-  {
-    slug: 'magic-prompts',
-    name: 'Magic Prompts',
-    description: 'Landing de infoproduto + galeria para provar qualidade visual.',
-    tags: ['Landing', 'Galeria', 'Conversão'],
-    liveUrl: 'https://magic-prompts.netlify.app/',
-    objective: 'Vender pacote de prompts de IA com demonstração visual da qualidade.',
-    whatWasDone: 'Landing com galeria de exemplos + estrutura de vendas otimizada para conversão.',
-    stack: 'Landing Page + Galeria Lightbox + CTAs estratégicos',
-    ctaText: 'Quero uma landing que converte',
-  },
-  {
-    slug: 'emagrecer-depois-dos-40',
-    name: 'Emagrecer Depois dos 40',
-    description: 'Landing com estrutura clássica de venda e navegação por seções.',
-    tags: ['Landing', 'Copy', 'Estrutura'],
-    liveUrl: 'https://emagrecerdepoisdos40.netlify.app/',
-    objective: 'Criar página de vendas com estrutura persuasiva e navegação intuitiva.',
-    whatWasDone: 'Landing page com seções organizadas, copy de vendas e CTAs distribuídos.',
-    stack: 'Landing Page + Seções + Múltiplos CTAs',
-    ctaText: 'Quero vender meu produto',
-  },
-];
+const pillarLabels: Record<CasePillar, string> = {
+  'ia-automacao': 'IA & Automação',
+  'sites-sistemas': 'Sites & Sistemas',
+  'audiovisual-musica': 'Audiovisual & Música',
+};
 
-export default function CasesPage() {
+// Loading fallback for Suspense
+function CasesLoading() {
+  return (
+    <div className="py-16 sm:py-20">
+      <Container>
+        <div className="grid md:grid-cols-3 gap-8 animate-pulse">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-background-secondary rounded-2xl h-80" />
+          ))}
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+// Wrapper component that uses useSearchParams
+function CasesContent() {
+  const searchParams = useSearchParams();
+  const pillarFilter = searchParams.get('p') as CasePillar | null;
+  
   const whatsappBase = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}`;
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (slug: string) => {
+    setImageErrors(prev => ({ ...prev, [slug]: true }));
+  };
+
+  // Filter cases by pillar if querystring is present
+  const filteredCases = useMemo(() => {
+    if (!pillarFilter || !pillarLabels[pillarFilter]) {
+      return cases;
+    }
+    return cases.filter(c => c.pillar === pillarFilter);
+  }, [pillarFilter]);
+
+  const pageTitle = pillarFilter && pillarLabels[pillarFilter] 
+    ? `Cases: ${pillarLabels[pillarFilter]}` 
+    : 'Cases';
+  
+  const pageDescription = pillarFilter && pillarLabels[pillarFilter]
+    ? `Projetos de ${pillarLabels[pillarFilter]} — resultados reais que você pode conferir ao vivo`
+    : 'Projetos reais entregues para clientes — resultados que você pode conferir ao vivo';
 
   return (
     <>
       <PageHeader
-        title="Cases"
-        description="Projetos reais entregues para clientes — resultados que você pode conferir ao vivo"
+        title={pageTitle}
+        description={pageDescription}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Cases' },
+          { label: 'Cases', href: '/cases' },
+          ...(pillarFilter && pillarLabels[pillarFilter] ? [{ label: pillarLabels[pillarFilter] }] : []),
         ]}
       />
+
+      {/* Filter Pills */}
+      {pillarFilter && (
+        <section className="pt-4">
+          <Container>
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="text-sm text-foreground-secondary">Filtro:</span>
+              <span className="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary">
+                {pillarLabels[pillarFilter]}
+              </span>
+              <Link 
+                href="/cases" 
+                className="text-sm text-foreground-secondary hover:text-primary underline"
+              >
+                Ver todos
+              </Link>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Cases Grid */}
       <section className="py-16 sm:py-20">
         <Container>
-          <div className="grid md:grid-cols-3 gap-8">
-            {cases.map((caseItem, index) => (
-              <motion.div
-                key={caseItem.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="group bg-background-secondary border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10"
-              >
-                {/* Cover Image */}
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={`/assets/cases/${caseItem.slug}/cover.jpg`}
-                    alt={caseItem.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{caseItem.name}</h3>
-                  <p className="text-foreground-secondary text-sm mb-4">{caseItem.description}</p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {caseItem.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+          {filteredCases.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {filteredCases.map((caseItem, index) => (
+                <motion.div
+                  key={caseItem.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="group bg-background-secondary border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/10 flex flex-col"
+                >
+                  {/* Cover Image */}
+                  <div className="relative aspect-video overflow-hidden bg-background-tertiary">
+                    {!imageErrors[caseItem.slug] ? (
+                      <Image
+                        src={caseItem.imagePath}
+                        alt={caseItem.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={() => handleImageError(caseItem.slug)}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-foreground-secondary">
+                        <span className="text-sm">Imagem não disponível</span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Buttons */}
-                  <div className="flex flex-col gap-2">
-                    <Button asChild size="sm">
-                      <Link href={caseItem.liveUrl} target="_blank">
-                        <ExternalLink size={16} className="mr-2" />
-                        Ver ao vivo
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" size="sm">
-                      <a href={`#${caseItem.slug}`}>
-                        <ArrowDown size={16} className="mr-2" />
-                        Ver detalhes
-                      </a>
-                    </Button>
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold mb-2">{caseItem.name}</h3>
+                    <p className="text-foreground-secondary text-sm mb-4 flex-grow">{caseItem.description}</p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {caseItem.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Buttons - always at bottom */}
+                    <div className="flex flex-col gap-2 mt-auto">
+                      <Button asChild size="sm">
+                        <Link href={caseItem.liveUrl} target="_blank">
+                          <ExternalLink size={16} className="mr-2" />
+                          Ver ao vivo
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a href={`#${caseItem.slug}`}>
+                          <ArrowDown size={16} className="mr-2" />
+                          Ver detalhes
+                        </a>
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            /* Empty State */
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-xl mx-auto text-center py-16"
+            >
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Target size={40} className="text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">
+                Ainda não tenho cases públicos de {pillarFilter && pillarLabels[pillarFilter]}
+              </h3>
+              <p className="text-foreground-secondary mb-8">
+                Estou trabalhando em projetos dessa área. Quer ver algo específico ou conversar sobre sua ideia? 
+                Me chama no WhatsApp!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild>
+                  <Link 
+                    href={`${whatsappBase}?text=${encodeURIComponent(`Oi Toti! Quero falar sobre ${pillarFilter && pillarLabels[pillarFilter]}.`)}`}
+                    target="_blank"
+                  >
+                    <MessageCircle size={18} className="mr-2" />
+                    Quero falar sobre {pillarFilter && pillarLabels[pillarFilter]}
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href={`/servicos#${pillarFilter}`}>
+                    Ver serviços deste pilar
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+          )}
         </Container>
       </section>
 
       {/* Case Details Sections */}
       {cases.map((caseItem, index) => {
-        const whatsappUrl = `${whatsappBase}?text=${encodeURIComponent(`Olá! ${caseItem.ctaText}`)}`;
+        const whatsappMessage = `Oi Toti! Vi o case ${caseItem.name} e quero um site/projeto parecido. Meu objetivo é __.`;
+        const whatsappUrl = `${whatsappBase}?text=${encodeURIComponent(whatsappMessage)}`;
 
         return (
           <section
@@ -151,24 +228,16 @@ export default function CasesPage() {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Preview Images */}
+                  {/* Preview Images - conditional rendering */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border">
-                      <Image
-                        src={`/assets/cases/${caseItem.slug}/preview-1.jpg`}
-                        alt={`${caseItem.name} - Preview 1`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border">
-                      <Image
-                        src={`/assets/cases/${caseItem.slug}/preview-2.jpg`}
-                        alt={`${caseItem.name} - Preview 2`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
+                    <PreviewImage 
+                      src={`/assets/cases/${caseItem.slug}/preview-1.jpg`}
+                      alt={`${caseItem.name} - Preview 1`}
+                    />
+                    <PreviewImage 
+                      src={`/assets/cases/${caseItem.slug}/preview-2.jpg`}
+                      alt={`${caseItem.name} - Preview 2`}
+                    />
                   </div>
 
                   {/* Details */}
@@ -204,13 +273,13 @@ export default function CasesPage() {
                       <Button asChild>
                         <Link href={caseItem.liveUrl} target="_blank">
                           <ExternalLink size={18} className="mr-2" />
-                          Abrir site
+                          Ver ao vivo
                         </Link>
                       </Button>
                       <Button asChild variant="outline">
                         <Link href={whatsappUrl} target="_blank">
                           <MessageCircle size={18} className="mr-2" />
-                          {caseItem.ctaText}
+                          Quero um igual
                         </Link>
                       </Button>
                     </div>
@@ -242,5 +311,38 @@ export default function CasesPage() {
         </Container>
       </section>
     </>
+  );
+}
+
+// Default export wraps the content with Suspense
+export default function CasesPage() {
+  return (
+    <Suspense fallback={<CasesLoading />}>
+      <CasesContent />
+    </Suspense>
+  );
+}
+// Helper component for preview images with error handling
+function PreviewImage({ src, alt }: { src: string; alt: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border bg-background-tertiary flex items-center justify-center">
+        <span className="text-xs text-foreground-secondary">Preview não disponível</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover hover:scale-105 transition-transform duration-300"
+        onError={() => setHasError(true)}
+      />
+    </div>
   );
 }
