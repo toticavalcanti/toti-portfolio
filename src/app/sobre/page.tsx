@@ -3,9 +3,11 @@
 import PageHeader from '@/components/PageHeader';
 import Container from '@/components/Container';
 import Timeline from '@/components/Timeline';
-import { aboutInfo, timeline } from '@/mockData';
-import { Code2, Music, Sparkles, Zap } from 'lucide-react';
+import ChannelsSection from '@/components/ChannelsSection';
+import { aboutInfo, timeline, socialLinks } from '@/mockData';
+import { Code2, Music, Sparkles, ExternalLink, Github, Linkedin, Youtube, Instagram, Store, ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const techStacks = [
   { icon: Code2, label: 'Full-Stack Development', items: ['Golang', 'Python', 'Next.js', 'Node.js', 'TypeScript'] },
@@ -13,6 +15,36 @@ const techStacks = [
   { icon: Music, label: 'Produção Musical', items: ['Edição de Audio e Midi', 'Composição', 'Trilha', 'Mixagem', 'Masterização'] },
   { icon: Code2, label: 'Outras Skills', items: ['Git', 'Docker', 'AWS', 'K8S'] },
 ];
+
+// Essential Links Checklist (DO NOT REMOVE):
+// [x] GitHub
+// [x] LinkedIn
+// [x] YouTube
+// [x] Instagram
+// [x] Redbubble
+// [x] Colab55
+
+const storeLinks = [
+  {
+    name: 'Redbubble',
+    url: 'https://www.redbubble.com/people/toticavalcanti',
+    description: 'Estampas e designs com IA generativa',
+    icon: ShoppingBag,
+  },
+  {
+    name: 'Colab55',
+    url: 'https://www.colab55.com/@toticavalcanti',
+    description: 'Arte digital para produtos físicos',
+    icon: Store,
+  },
+];
+
+const iconMap: Record<string, React.ElementType> = {
+  Github,
+  Linkedin,
+  Youtube,
+  Instagram,
+};
 
 export default function SobrePage() {
   return (
@@ -97,8 +129,64 @@ export default function SobrePage() {
         </Container>
       </section>
 
-      {/* Timeline Section */}
+      {/* Links & Stores Section */}
       <section className="py-16 bg-background">
+        <Container size="md">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            <span className="gradient-text">Links & Lojas</span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Social Links */}
+            <div className="p-6 rounded-xl bg-background-secondary border border-border">
+              <h3 className="text-xl font-bold mb-6">Redes Sociais</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {socialLinks.map((link) => {
+                  const IconComponent = iconMap[link.icon] || ExternalLink;
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      className="flex items-center gap-3 p-3 rounded-lg bg-background hover:bg-primary/10 hover:border-primary/50 border border-border transition-all group"
+                    >
+                      <IconComponent size={20} className="text-primary" />
+                      <span className="font-medium group-hover:text-primary transition-colors">{link.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Store Links */}
+            <div className="p-6 rounded-xl bg-background-secondary border border-border">
+              <h3 className="text-xl font-bold mb-6">Lojas Online</h3>
+              <div className="space-y-4">
+                {storeLinks.map((store) => (
+                  <Link
+                    key={store.name}
+                    href={store.url}
+                    target="_blank"
+                    className="flex items-center gap-4 p-4 rounded-lg bg-background hover:bg-primary/10 hover:border-primary/50 border border-border transition-all group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent to-secondary flex items-center justify-center">
+                      <store.icon size={24} className="text-white" />
+                    </div>
+                    <div>
+                      <span className="font-bold group-hover:text-primary transition-colors">{store.name}</span>
+                      <p className="text-sm text-foreground-secondary">{store.description}</p>
+                    </div>
+                    <ExternalLink size={16} className="ml-auto text-foreground-secondary group-hover:text-primary" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-16 bg-background-secondary">
         <Container size="md">
           <h2 className="text-3xl font-bold text-center mb-16">
             <span className="gradient-text">Minha Jornada</span>
@@ -106,6 +194,9 @@ export default function SobrePage() {
           <Timeline items={timeline} />
         </Container>
       </section>
+
+      {/* YouTube Channels Section */}
+      <ChannelsSection />
     </>
   );
 }

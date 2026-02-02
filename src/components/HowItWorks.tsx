@@ -28,7 +28,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 sm:py-20 md:py-24">
+    <section className="py-12 sm:py-16 relative z-10 bg-background/80 backdrop-blur-sm">
       <Container>
         <SectionTitle
           title="Como Funciona"

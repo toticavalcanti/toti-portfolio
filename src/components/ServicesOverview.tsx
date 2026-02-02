@@ -39,7 +39,7 @@ const portals = [
 
 export default function ServicesOverview() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28">
+    <section className="py-12 sm:py-16 relative z-10 bg-background/80 backdrop-blur-sm">
       <Container>
         <SectionTitle
           title="Escolha seu Objetivo"

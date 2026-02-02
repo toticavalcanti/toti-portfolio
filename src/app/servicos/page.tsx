@@ -3,7 +3,7 @@ import Container from '@/components/Container';
 import Button from '@/components/Button';
 import { aboutInfo } from '@/mockData';
 import Link from 'next/link';
-import { Check, ArrowRight, MessageCircle, Sparkles, Code2, Music, Clock } from 'lucide-react';
+import { Check, ArrowRight, MessageCircle, Sparkles, Code2, Music, Clock, Play } from 'lucide-react';
 
 // Define pillars with their services (4-6 items max each)
 const pillars = [
@@ -172,9 +172,20 @@ export default function ServicosPage() {
                       <Clock size={20} className="text-warning mt-0.5 flex-shrink-0" />
                       <div>
                         <h3 className="font-bold mb-1">Pocket Show — Lista de Espera</h3>
-                        <p className="text-sm text-foreground-secondary mb-4">
+                        <p className="text-sm text-foreground-secondary mb-2">
                           Performance ao vivo com flauta e sax. Formatos e repertório em definição. 
                           Garanta prioridade entrando na lista de espera.
+                        </p>
+                        <p className="text-xs text-foreground-secondary mb-3">
+                          Quer ter uma ideia do clima? Veja alguns trechos no meu canal{' '}
+                          <Link
+                            href="https://www.youtube.com/@toticavalcantimusic"
+                            target="_blank"
+                            className="inline-flex items-center gap-1 text-foreground-secondary hover:text-primary transition-colors underline underline-offset-2"
+                          >
+                            <Play size={12} />
+                            Ver vídeos (YouTube)
+                          </Link>
                         </p>
                         <Button asChild size="sm" className="border-warning text-warning hover:bg-warning hover:text-black" variant="outline">
                           <Link href={pocketShowWaitlistUrl} target="_blank">

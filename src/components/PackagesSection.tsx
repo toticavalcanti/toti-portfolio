@@ -3,7 +3,7 @@
 import Container from './Container';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
-import { Check, ArrowRight, Clock } from 'lucide-react';
+import { Check, ArrowRight, Clock, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { aboutInfo } from '@/mockData';
@@ -68,7 +68,7 @@ export default function PackagesSection() {
   const pocketShowWaitlistUrl = `${whatsappBase}?text=${encodeURIComponent('Oi Toti! Quero entrar na lista de espera do Pocket Show. Meu nome é __. Evento em: __ (cidade/data).')}`;
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-background-secondary">
+    <section className="py-16 sm:py-20 md:py-24 relative z-10 bg-background-secondary/80 backdrop-blur-sm">
       <Container>
         <SectionTitle
           title="Pacotes"
@@ -121,7 +121,7 @@ export default function PackagesSection() {
                   {pkg.price}
                 </div>
 
-                <ul className="space-y-2 mb-6 flex-grow">
+                <ul className="space-y-2 mb-4 flex-grow">
                   {pkg.includes.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm">
                       <Check size={16} className={`mt-0.5 flex-shrink-0 ${pkg.isWaitingList ? 'text-warning' : 'text-success'}`} />
@@ -129,6 +129,23 @@ export default function PackagesSection() {
                     </li>
                   ))}
                 </ul>
+
+                {/* YouTube Preview for Pocket Show */}
+                {pkg.isWaitingList && (
+                  <div className="mb-4 text-center">
+                    <p className="text-xs text-foreground-secondary mb-1">
+                      Quer ter uma ideia do clima?
+                    </p>
+                    <Link
+                      href="https://www.youtube.com/@toticavalcantimusic"
+                      target="_blank"
+                      className="inline-flex items-center gap-1 text-xs text-foreground-secondary hover:text-primary transition-colors underline underline-offset-2"
+                    >
+                      <Play size={12} />
+                      Ver vídeos (YouTube)
+                    </Link>
+                  </div>
+                )}
 
                 <Button
                   asChild

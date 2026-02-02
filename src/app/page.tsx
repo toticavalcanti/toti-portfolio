@@ -3,6 +3,8 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 import ServicesOverview from '@/components/ServicesOverview';
 import HowItWorks from '@/components/HowItWorks';
 import PackagesSection from '@/components/PackagesSection';
+import ChannelsSection from '@/components/ChannelsSection';
+import LinksLojasSection from '@/components/LinksLojasSection';
 import CTASection from '@/components/CTASection';
 
 export default function Home() {
@@ -13,6 +15,8 @@ export default function Home() {
       <FeaturedProjects />
       <HowItWorks />
       <PackagesSection />
+      <ChannelsSection />
+      <LinksLojasSection />
       <CTASection />
     </>
   );
