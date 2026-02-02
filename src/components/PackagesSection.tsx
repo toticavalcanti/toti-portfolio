@@ -68,7 +68,7 @@ export default function PackagesSection() {
   const pocketShowWaitlistUrl = `${whatsappBase}?text=${encodeURIComponent('Oi Toti! Quero entrar na lista de espera do Pocket Show. Meu nome é __. Evento em: __ (cidade/data).')}`;
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative z-10 bg-background-secondary/80 backdrop-blur-sm">
+    <section className="py-16 sm:py-20 md:py-24 relative">
       <Container>
         <SectionTitle
           title="Pacotes"

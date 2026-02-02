@@ -11,7 +11,7 @@ export default function CTASection() {
   const whatsappUrl = `https://wa.me/${aboutInfo.whatsapp.replace(/\D/g, '')}?text=Olá! Vim pelo site e gostaria de saber mais sobre seus serviços.`;
 
   return (
-    <section className="py-12 sm:py-16 relative z-10 overflow-hidden bg-background/80 backdrop-blur-sm">
+    <section className="py-12 sm:py-16 relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary opacity-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />

@@ -56,7 +56,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ParticlesBackground />
-        <div className="relative z-10">
+        <div className="relative">
           <Navbar />
           <main>{children}</main>
           <Footer />

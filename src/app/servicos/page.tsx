@@ -105,7 +105,7 @@ export default function ServicosPage() {
       />
 
       {/* Quick Navigation */}
-      <section className="py-8 border-b border-border sticky top-16 bg-background/95 backdrop-blur-sm z-40">
+      <section className="py-8 border-b border-border sticky top-16 z-40">
         <Container>
           <div className="flex flex-wrap justify-center gap-4">
             {pillars.map((pillar) => (
@@ -130,7 +130,7 @@ export default function ServicosPage() {
           <section
             key={pillar.id}
             id={pillar.id}
-            className={`py-16 sm:py-20 scroll-mt-32 ${pillarIndex % 2 === 1 ? 'bg-background-secondary' : ''}`}
+            className="py-16 sm:py-20 scroll-mt-32"
           >
             <Container>
               {/* Pillar Header */}

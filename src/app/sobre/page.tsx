@@ -59,7 +59,7 @@ export default function SobrePage() {
       />
 
       {/* Bio Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Avatar */}
@@ -94,7 +94,7 @@ export default function SobrePage() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 bg-background-secondary">
+      <section className="py-16">
         <Container size="md">
           <h2 className="text-3xl font-bold text-center mb-12">
             <span className="gradient-text">Habilidades & Ferramentas</span>
@@ -130,7 +130,7 @@ export default function SobrePage() {
       </section>
 
       {/* Links & Stores Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16">
         <Container size="md">
           <h2 className="text-3xl font-bold text-center mb-12">
             <span className="gradient-text">Links & Lojas</span>
@@ -186,7 +186,7 @@ export default function SobrePage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-16 bg-background-secondary">
+      <section className="py-16">
         <Container size="md">
           <h2 className="text-3xl font-bold text-center mb-16">
             <span className="gradient-text">Minha Jornada</span>
