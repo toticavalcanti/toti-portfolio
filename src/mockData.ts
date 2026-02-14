@@ -1313,4 +1313,17 @@ export const cases: Case[] = [
     ctaText: 'Quero automação assim',
     pillar: 'ia-automacao',
   },
+  {
+    slug: 'powerfit-gym',
+    name: 'PowerFit Gym — Landing Page (HTML/CSS) publicada',
+    description: 'Template moderno para academia (HTML + CSS), publicado no Netlify. Ideal para validação rápida e evolução para sistema sob demanda.',
+    tags: ['Landing Page', 'HTML/CSS', 'Netlify', 'Template'],
+    liveUrl: 'https://powerfit-demo.netlify.app/',
+    imagePath: '/assets/cases/powerfit-gym/cover.jpg',
+    objective: 'Criar template moderno de landing page para academia com foco em conversão e validação rápida.',
+    whatWasDone: 'Landing page responsiva em HTML/CSS puro, publicada no Netlify. Design moderno focado em academias, pronto para customização.',
+    stack: 'HTML + CSS + Netlify',
+    ctaText: 'Quero um template assim',
+    pillar: 'sites-sistemas',
+  },
 ];
