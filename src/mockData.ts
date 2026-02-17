@@ -1326,4 +1326,17 @@ export const cases: Case[] = [
     ctaText: 'Quero um template assim',
     pillar: 'sites-sistemas',
   },
+  {
+    slug: 'hubert-laws-solo-flauta',
+    name: 'Hubert Laws Solo Flauta — Landing Page',
+    description: 'Landing page para produto digital musical com transcrição do solo de Hubert Laws na música Luz (Djavan), estrutura de venda e entrega digital.',
+    tags: ['Landing Page', 'Produto Digital', 'Música'],
+    liveUrl: 'https://hubert-laws-solo-flauta.netlify.app/',
+    imagePath: '/assets/cases/hubert-laws-solo-flauta/cover.jpg',
+    objective: 'Criar landing page para produto digital musical autoral com estrutura de venda e entrega digital.',
+    whatWasDone: 'Landing page responsiva com estrutura de vendas e entrega digital automatizada. Demonstração de criação de produto autoral do zero.',
+    stack: 'Next.js + Landing Page Design + Responsive Design',
+    ctaText: 'Quero uma landing assim',
+    pillar: 'sites-sistemas',
+  },
 ];
